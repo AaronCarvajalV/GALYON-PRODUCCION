@@ -1,0 +1,65 @@
+﻿cultivo,categoria,archivo_actual,ancho_px,alto_px,estado,observacion
+Cacao,Planta completa,v52_cacao_planta_completa,1122,1402,LISTA PARA REVISIÓN,Imagen de composición amplia; revisar si el objeto se distingue.
+Cacao,Hojas,v52_cacao_hojas,1122,1402,LISTA PARA REVISIÓN,Revisar correspondencia botánica/encuadre antes de publicar.
+Cacao,Raíces o tallo,v52_cacao_raices,1122,1402,LISTA PARA REVISIÓN,Revisar correspondencia botánica/encuadre antes de publicar.
+Cacao,Frutos / órgano cosechable,v52_cacao_mazorcas,1122,1402,LISTA PARA REVISIÓN,Revisar correspondencia botánica/encuadre antes de publicar.
+Café,Planta completa,v52_cafe_planta_completa,1122,1402,LISTA PARA REVISIÓN,Imagen de composición amplia; revisar si el objeto se distingue.
+Café,Hojas,v52_cafe_hojas,1122,1402,LISTA PARA REVISIÓN,Revisar correspondencia botánica/encuadre antes de publicar.
+Café,Raíces o tallo,v52_cafe_raices,1122,1402,LISTA PARA REVISIÓN,Revisar correspondencia botánica/encuadre antes de publicar.
+Café,Frutos / órgano cosechable,v52_cafe_cerezas,1122,1402,LISTA PARA REVISIÓN,Revisar correspondencia botánica/encuadre antes de publicar.
+Banano,Planta completa,banano,720,1008,CALIDAD INSUFICIENTE,Imagen de composición amplia; revisar si el objeto se distingue.
+Banano,Hojas,,0,0,FALTA FOTOGRAFÍA ESPECÍFICA,Sin imagen: el botón usa un icono genérico.
+Banano,Raíces o tallo,,0,0,FALTA FOTOGRAFÍA ESPECÍFICA,Sin imagen: el botón usa un icono genérico.
+Banano,Frutos / órgano cosechable,v52_banano_racimo,1254,1254,LISTA PARA REVISIÓN,Revisar correspondencia botánica/encuadre antes de publicar.
+Maíz,Planta completa,v52_maiz_campo,1254,1254,LISTA PARA REVISIÓN,Imagen de composición amplia; revisar si el objeto se distingue.
+Maíz,Hojas,,0,0,FALTA FOTOGRAFÍA ESPECÍFICA,Sin imagen: el botón usa un icono genérico.
+Maíz,Raíces o tallo,v52_maiz_planta_raices,1122,1402,LISTA PARA REVISIÓN,Revisar correspondencia botánica/encuadre antes de publicar.
+Maíz,Frutos / órgano cosechable,maiz,720,993,CALIDAD INSUFICIENTE,Revisar correspondencia botánica/encuadre antes de publicar.
+Arroz,Planta completa,arroz,720,971,CALIDAD INSUFICIENTE,Imagen de composición amplia; revisar si el objeto se distingue.
+Arroz,Hojas,,0,0,FALTA FOTOGRAFÍA ESPECÍFICA,Sin imagen: el botón usa un icono genérico.
+Arroz,Raíces o tallo,,0,0,FALTA FOTOGRAFÍA ESPECÍFICA,Sin imagen: el botón usa un icono genérico.
+Arroz,Frutos / órgano cosechable,,0,0,FALTA FOTOGRAFÍA ESPECÍFICA,Sin imagen: el botón usa un icono genérico.
+Caña de azúcar,Planta completa,v52_cana_plantacion,1254,1254,LISTA PARA REVISIÓN,Imagen de composición amplia; revisar si el objeto se distingue.
+Caña de azúcar,Hojas,,0,0,FALTA FOTOGRAFÍA ESPECÍFICA,Sin imagen: el botón usa un icono genérico.
+Caña de azúcar,Raíces o tallo,,0,0,FALTA FOTOGRAFÍA ESPECÍFICA,Sin imagen: el botón usa un icono genérico.
+Caña de azúcar,Frutos / órgano cosechable,,0,0,FALTA FOTOGRAFÍA ESPECÍFICA,Sin imagen: el botón usa un icono genérico.
+Maracuyá,Planta completa,maracuya,720,320,CALIDAD INSUFICIENTE,Imagen de composición amplia; revisar si el objeto se distingue.
+Maracuyá,Hojas,,0,0,FALTA FOTOGRAFÍA ESPECÍFICA,Sin imagen: el botón usa un icono genérico.
+Maracuyá,Raíces o tallo,,0,0,FALTA FOTOGRAFÍA ESPECÍFICA,Sin imagen: el botón usa un icono genérico.
+Maracuyá,Frutos / órgano cosechable,maracuya,720,320,FOTO REPETIDA,La misma imagen sirve como planta completa y frutos; generar una foto exclusiva de fruto.
+Hortalizas,Planta completa,hortalizas,720,320,CALIDAD INSUFICIENTE,Imagen de composición amplia; revisar si el objeto se distingue.
+Hortalizas,Hojas,,0,0,FALTA FOTOGRAFÍA ESPECÍFICA,Sin imagen: el botón usa un icono genérico.
+Hortalizas,Raíces o tallo,,0,0,FALTA FOTOGRAFÍA ESPECÍFICA,Sin imagen: el botón usa un icono genérico.
+Hortalizas,Frutos / órgano cosechable,,0,0,FALTA FOTOGRAFÍA ESPECÍFICA,Sin imagen: el botón usa un icono genérico.
+Tomate,Planta completa,,0,0,FALTA FOTOGRAFÍA ESPECÍFICA,Actualmente se muestra tarjeta sin fotografía; crear original por cultivo/órgano.
+Tomate,Hojas,,0,0,FALTA FOTOGRAFÍA ESPECÍFICA,Actualmente se muestra tarjeta sin fotografía; crear original por cultivo/órgano.
+Tomate,Raíces o tallo,,0,0,FALTA FOTOGRAFÍA ESPECÍFICA,Actualmente se muestra tarjeta sin fotografía; crear original por cultivo/órgano.
+Tomate,Frutos / órgano cosechable,,0,0,FALTA FOTOGRAFÍA ESPECÍFICA,Actualmente se muestra tarjeta sin fotografía; crear original por cultivo/órgano.
+Ají o pimiento,Planta completa,,0,0,FALTA FOTOGRAFÍA ESPECÍFICA,Actualmente se muestra tarjeta sin fotografía; crear original por cultivo/órgano.
+Ají o pimiento,Hojas,,0,0,FALTA FOTOGRAFÍA ESPECÍFICA,Actualmente se muestra tarjeta sin fotografía; crear original por cultivo/órgano.
+Ají o pimiento,Raíces o tallo,,0,0,FALTA FOTOGRAFÍA ESPECÍFICA,Actualmente se muestra tarjeta sin fotografía; crear original por cultivo/órgano.
+Ají o pimiento,Frutos / órgano cosechable,,0,0,FALTA FOTOGRAFÍA ESPECÍFICA,Actualmente se muestra tarjeta sin fotografía; crear original por cultivo/órgano.
+Cítricos,Planta completa,,0,0,FALTA FOTOGRAFÍA ESPECÍFICA,Actualmente se muestra tarjeta sin fotografía; crear original por cultivo/órgano.
+Cítricos,Hojas,,0,0,FALTA FOTOGRAFÍA ESPECÍFICA,Actualmente se muestra tarjeta sin fotografía; crear original por cultivo/órgano.
+Cítricos,Raíces o tallo,,0,0,FALTA FOTOGRAFÍA ESPECÍFICA,Actualmente se muestra tarjeta sin fotografía; crear original por cultivo/órgano.
+Cítricos,Frutos / órgano cosechable,,0,0,FALTA FOTOGRAFÍA ESPECÍFICA,Actualmente se muestra tarjeta sin fotografía; crear original por cultivo/órgano.
+Mango,Planta completa,,0,0,FALTA FOTOGRAFÍA ESPECÍFICA,Actualmente se muestra tarjeta sin fotografía; crear original por cultivo/órgano.
+Mango,Hojas,,0,0,FALTA FOTOGRAFÍA ESPECÍFICA,Actualmente se muestra tarjeta sin fotografía; crear original por cultivo/órgano.
+Mango,Raíces o tallo,,0,0,FALTA FOTOGRAFÍA ESPECÍFICA,Actualmente se muestra tarjeta sin fotografía; crear original por cultivo/órgano.
+Mango,Frutos / órgano cosechable,,0,0,FALTA FOTOGRAFÍA ESPECÍFICA,Actualmente se muestra tarjeta sin fotografía; crear original por cultivo/órgano.
+Chirimoya,Planta completa,,0,0,FALTA FOTOGRAFÍA ESPECÍFICA,Actualmente se muestra tarjeta sin fotografía; crear original por cultivo/órgano.
+Chirimoya,Hojas,,0,0,FALTA FOTOGRAFÍA ESPECÍFICA,Actualmente se muestra tarjeta sin fotografía; crear original por cultivo/órgano.
+Chirimoya,Raíces o tallo,,0,0,FALTA FOTOGRAFÍA ESPECÍFICA,Actualmente se muestra tarjeta sin fotografía; crear original por cultivo/órgano.
+Chirimoya,Frutos / órgano cosechable,,0,0,FALTA FOTOGRAFÍA ESPECÍFICA,Actualmente se muestra tarjeta sin fotografía; crear original por cultivo/órgano.
+Papaya,Planta completa,,0,0,FALTA FOTOGRAFÍA ESPECÍFICA,Actualmente se muestra tarjeta sin fotografía; crear original por cultivo/órgano.
+Papaya,Hojas,,0,0,FALTA FOTOGRAFÍA ESPECÍFICA,Actualmente se muestra tarjeta sin fotografía; crear original por cultivo/órgano.
+Papaya,Raíces o tallo,,0,0,FALTA FOTOGRAFÍA ESPECÍFICA,Actualmente se muestra tarjeta sin fotografía; crear original por cultivo/órgano.
+Papaya,Frutos / órgano cosechable,,0,0,FALTA FOTOGRAFÍA ESPECÍFICA,Actualmente se muestra tarjeta sin fotografía; crear original por cultivo/órgano.
+Flores y ornamentales,Planta completa,,0,0,FALTA FOTOGRAFÍA ESPECÍFICA,Actualmente se muestra tarjeta sin fotografía; crear original por cultivo/órgano.
+Flores y ornamentales,Hojas,,0,0,FALTA FOTOGRAFÍA ESPECÍFICA,Actualmente se muestra tarjeta sin fotografía; crear original por cultivo/órgano.
+Flores y ornamentales,Raíces o tallo,,0,0,FALTA FOTOGRAFÍA ESPECÍFICA,Actualmente se muestra tarjeta sin fotografía; crear original por cultivo/órgano.
+Flores y ornamentales,Frutos / órgano cosechable,,0,0,FALTA FOTOGRAFÍA ESPECÍFICA,Actualmente se muestra tarjeta sin fotografía; crear original por cultivo/órgano.
+Hierbas aromáticas,Planta completa,,0,0,FALTA FOTOGRAFÍA ESPECÍFICA,Actualmente se muestra tarjeta sin fotografía; crear original por cultivo/órgano.
+Hierbas aromáticas,Hojas,,0,0,FALTA FOTOGRAFÍA ESPECÍFICA,Actualmente se muestra tarjeta sin fotografía; crear original por cultivo/órgano.
+Hierbas aromáticas,Raíces o tallo,,0,0,FALTA FOTOGRAFÍA ESPECÍFICA,Actualmente se muestra tarjeta sin fotografía; crear original por cultivo/órgano.
+Hierbas aromáticas,Frutos / órgano cosechable,,0,0,FALTA FOTOGRAFÍA ESPECÍFICA,Actualmente se muestra tarjeta sin fotografía; crear original por cultivo/órgano.

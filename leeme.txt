@@ -1,0 +1,26 @@
+GALYON v5.3.2 · PRUEBA LOCAL — NO PUBLICAR SIN REVISIÓN
+
+Continuación de la v5.3.1:
+- Fotografías individuales de mayor nitidez para tomate, ají/pimiento, cítricos, mango y flores.
+- Nuevas tarjetas de síntomas: pulgones en ají, minador cítrico, oídio en rosas y manchas negras en frutos de mango.
+- Mosca blanca de tomate: fotografía de mayor definición.
+- Finca / Huerto mantienen catálogos distintos; huerto conserva la imagen de la familia.
+- Imágenes generadas con IA únicamente como ejemplos visuales; no son fotografías verificadas de laboratorio ni diagnósticos certeros.
+- Diagnósticos probables solo en cuadros de signos visuales característicos; otras lesiones se dejan como causa por confirmar.
+- GALYON INSECTA orienta a evaluación de formulación en pulgones, sin garantizar eficacia.
+- Diseño del resultado cacao/moniliasis, productos, carrito, precios y promociones conservados.
+- Galerías TRICHO, BACT e INSECTA: 2.5 segundos, hover pausa y control manual.
+- Netlify NO ha sido actualizado.
+
+ABRIR: index.html en el navegador o desplegar el ZIP luego de aprobarlo.
+
+
+ACTUALIZACIÓN v5.3.4 (prueba local)
+- Cacao, mazorcas: foto proporcionada por el usuario para manchas negras, ilustración de insectos sin afirmar perforaciones; moniliasis se mantiene.
+- Cacao, hojas: manchas, hojas comidas y hoja marchita.
+- Cacao, raíces/tallos: lesiones y rama marchita; raíces mantienen su imagen anterior.
+- Cacao, planta completa: escoba de bruja y amarillamiento; rama seca mantiene su imagen anterior.
+- No reconozco mi problema: ilustración neutra de asesoría, reutilizada para todos los cultivos.
+- Ilustraciones de referencia: no constituyen diagnóstico verificado, ni indican eficacia comercial de formulaciones.
+- Se mantienen ventas, promociones, el resultado de moniliasis y carruseles a 2,5 segundos.
+- Esta actualización NO está publicada en Netlify.

@@ -1,0 +1,7 @@
+GALYON Web v5.7.3 — 30 octubre 2026
+
+Se reemplazaron únicamente las cuatro fotografías de combos por los archivos definitivos aportados por el cliente.
+Se conserva la fotografía de REY AGUACATE sin cambios.
+Las nuevas imágenes mantienen su relación de aspecto exacta 1672:941 (16:9 aprox.) y se visualizan completas, sin recortar el título o los envases.
+La sección muestra dos tarjetas por fila en escritorio, una en móvil, y permite ampliar cada banner tocándolo.
+El resto de la página, precios, carrito, asesor y galerías no cambian.

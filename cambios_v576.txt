@@ -1,0 +1,9 @@
+GALYON WEB v5.7.6 — 30 octubre de 2026
+
+- Reemplazo del combo MANGO FURIOSO por el PNG exacto adjuntado por el usuario «Mango Furioso en el Huerto(5).png». Sin retoques ni regeneración; se conservan los bytes originales.
+- La tarjeta y la ampliación muestran el mismo archivo 1672×941 completo, sin recorte mediante object-fit: contain.
+- Se agrandan las categorías «Raíces & suelo», «Desarrollo vegetal» y «Manejo de insectos» y se mejora su contraste.
+- Textos de descripción de las 3 líneas y los 4 combos actualizados para comunicar resultados esperados con afirmaciones responsables. Se conservan los nombres/titulares aprobados.
+- Se corrige la nota de combos que erróneamente decía «Envío no incluido».
+- Se mantienen los 4 combos a $70 con envío gratis en Ecuador, sin cambiar la lógica del carrito ni el pedido de WhatsApp.
+- No se modifican las otras tres imágenes de combos.

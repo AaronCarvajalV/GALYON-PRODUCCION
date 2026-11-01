@@ -1,0 +1,7 @@
+GALYON v5.4.4 — Revisión de estabilidad
+- El asesor mantiene visible su encabezado al avanzar, regresar y reiniciar, sin saltar a productos.
+- Ajuste de anclaje también cuando terminan de cargar imágenes.
+- Fotografías individuales adicionales de hojas amarillas para mango y aguacate.
+- Se mantienen diagnósticos y recomendaciones de v5.4.3, diseño y funciones.
+- La presencia de imágenes genéricas en otras especies se mantiene cuando no existe foto idónea; no se sustituyó por fotografías que podrían confundir el diagnóstico.
+- Falta validación visual en navegador real.

@@ -1,0 +1,10 @@
+GALYON WEB v5.7.5 — 30 de octubre de 2026
+
+• Precio final de los cuatro combos agrícolas: $70 por 4 litros.
+• Envío gratis para los combos GALYON dentro de Ecuador.
+• Actualizadas las cuatro tarjetas de combos, la sección, los precios calculados por el carrito y el mensaje preparado para WhatsApp.
+• El envío gratis aplica a los combos; para productos individuales el costo se confirma por separado.
+• Compra mixta: el carrito avisa que los combos tienen envío gratis y que otros productos requieren cotización de envío.
+• Preguntas frecuentes actualizadas para reflejar la promoción y condiciones de envío.
+• Se conservan las fotos aprobadas, el encuadre y los textos orientados a resultados de la v5.7.4.
+• Otros productos, precios, estilos y funcionalidad mantienen sus valores previos.

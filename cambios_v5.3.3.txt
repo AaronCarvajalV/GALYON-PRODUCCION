@@ -1,0 +1,20 @@
+GALYON v5.3.3 — TRAYECTOS PAPAYA, CHIRIMOYA Y MARACUYÁ
+
+CAMBIOS
+- Papaya: imagen individual 1200 × 960 con anillos ilustrativos; tarjetas para manchas anulares, mosaico foliar y manchas hundidas.
+- Chirimoya: nueva opción de lesiones hundidas en fruto (antracnosis entre las causas), con icono hasta contar con foto clínica verificada.
+- Maracuyá: nuevas opciones de manchas acuosas con halo amarillo en hojas y costras corchosas en frutos; se muestran iconos porque aún no hay fotografía diagnóstica verificada.
+- Mensajes de resultado por cultivo más específicos, especialmente PRSV: no prometer que un bioinsumo cura virus.
+- Sin cambios en carrito, precios, identidad, galerías de productos, sección Nosotros, ni diseño v5.2.3 de resultado cacao/moniliasis.
+- Carruseles de producto continúan a 2,5 segundos.
+
+IMPORTANTE
+La nueva imagen de papaya fue GENERADA, no tomada de un caso confirmado. La orientación es por síntomas, no un diagnóstico definitivo.
+
+REFERENCIAS PARA REVISIÓN TÉCNICA
+- APS: Papaya ringspot virus: https://www.apsnet.org/edcenter/pdlessons/Pages/PapayaRingspotvirus.aspx
+- University of Queensland: Papaya ringspot: https://www.business.qld.gov.au/industries/farms-fishing-forestry/agriculture/biosecurity/plants/priority-pest-disease/papaya-ringspot-disease
+- University of California Davis: Chirimoya (postharvest): https://postharvest.ucdavis.edu/es/produce-facts-sheets/chirimoya
+- UF IFAS: Passion Fruit Problems: https://ask.ifas.ufl.edu/publication/HS1397
+
+Para previsualizar: extraer el ZIP, abrir index.html. Para desplegar en Netlify se sube el contenido del ZIP (index.html debe quedar en raíz).

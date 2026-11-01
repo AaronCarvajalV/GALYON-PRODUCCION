@@ -1,0 +1,12 @@
+v532_tomate_planta: tomatera_frondosa_en_huerto_soleado.png
+v532_tomate_mosca_blanca: mosca_blanca_en_hojas_de_tomate.png
+v532_citricos_arbol: naranjo_rebosante_en_jardín_tropical.png
+v532_citricos_minador: hojas_cítricas_con_rastros_de_minador.png
+v532_mango_arbol: joven_mango_con_frutos_en_el_jardín.png
+v532_mango_fruto_manchas: mangos_enfermos_entre_hojas_verdes.png
+v532_aji_planta: planta_de_ajíes_rojos_y_verdes.png
+v532_aji_pulgones: planta_de_chile_infestada_de_pulgones.png
+v532_flores_jardin: jardín_vibrante_junto_a_la_casa.png
+v532_rosal_oidio: hojas_de_rosal_con_oídio.png
+
+ADVERTENCIA: ilustraciones fotográficas generadas por IA, sujetas a verificación fitopatológica y botánica; sin valor diagnóstico por sí solas.
