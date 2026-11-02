@@ -135,6 +135,16 @@ nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classLi
 $('year').textContent=new Date().getFullYear();
 renderCart();
 
+// ponytail: cierre unificado de modales/drawers y retorno suave al inicio
+document.querySelectorAll('.brand').forEach(b => b.addEventListener('click', () => {
+ closeCart();
+ nav.classList.remove('is-open');
+ menu.setAttribute('aria-expanded', 'false');
+ document.querySelectorAll('.galyon-modal').forEach(m => m.classList.add('is-dismissed'));
+ const dlg = $('combo-lightbox'); if (dlg?.open) dlg.close();
+ $('inicio')?.scrollIntoView({ behavior: 'smooth' });
+}));
+
 
 // Mantener la posición del cliente al abrir o cerrar las fichas.
 let lineReturnScrollY = null;
@@ -176,6 +186,7 @@ document.addEventListener('keydown', e => {
   const modal=gallery.closest('.galyon-modal');
   const surface=gallery.querySelector('.tricho-gallery-slides');
   const slides=[...gallery.querySelectorAll('.tricho-gallery-slide')];
+  const dots=[...gallery.querySelectorAll('.tricho-gallery-dots button, [data-slide]')];
   if(!modal || !surface || slides.length<2) return;
   let current=0, timer=null, resumeTimer=null, focused=false, touchStart=null;
   const isOpen=()=>location.hash==='#'+modal.id && !modal.classList.contains('is-dismissed') && !document.hidden;
@@ -186,6 +197,11 @@ document.addEventListener('keydown', e => {
     slide.classList.toggle('is-current',i===current);
     slide.setAttribute('aria-hidden',String(i!==current));
    });
+   dots.forEach((dot,i)=>{
+    dot.classList.toggle('is-current',i===current);
+    if(i===current) dot.setAttribute('aria-current','true');
+    else dot.removeAttribute('aria-current');
+   });
   }
   function schedule(){
    stop();
@@ -193,12 +209,13 @@ document.addEventListener('keydown', e => {
     timer=setTimeout(()=>{show(current+1);schedule();},INTERVAL);
    }
   }
-  function manual(step=1){
-   show(current+step);
+  function goTo(target){
+   show(target);
    stop();
    // A manual action holds the slide for a full interval.
    if(isOpen()) resumeTimer=setTimeout(schedule,INTERVAL);
   }
+  const manual=(step=1)=>goTo(current+step);
   surface.setAttribute('role','button');
   surface.setAttribute('tabindex','0');
   surface.setAttribute('aria-label','Mostrar la siguiente fotografía');
@@ -217,6 +234,9 @@ document.addEventListener('keydown', e => {
   },{passive:true});
   surface.addEventListener('focusin',()=>{focused=true;stop();});
   surface.addEventListener('focusout',()=>{focused=false;schedule();});
+  gallery.querySelectorAll('.tricho-gallery-prev').forEach(btn=>btn.addEventListener('click',()=>manual(-1)));
+  gallery.querySelectorAll('.tricho-gallery-next').forEach(btn=>btn.addEventListener('click',()=>manual(1)));
+  dots.forEach(dot=>dot.addEventListener('click',()=>goTo(+dot.dataset.slide)));
   function update(){if(isOpen()){show(0);schedule();}else stop();}
   window.addEventListener('hashchange',update);
   document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();else schedule();});
