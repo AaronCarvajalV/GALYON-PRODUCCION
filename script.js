@@ -136,13 +136,17 @@ $('year').textContent=new Date().getFullYear();
 renderCart();
 
 // ponytail: cierre unificado de modales/drawers y retorno suave al inicio
-document.querySelectorAll('.brand').forEach(b => b.addEventListener('click', () => {
+document.querySelectorAll('.brand').forEach(b => b.addEventListener('click', (e) => {
+ e.preventDefault();
  closeCart();
  nav.classList.remove('is-open');
  menu.setAttribute('aria-expanded', 'false');
  document.querySelectorAll('.galyon-modal').forEach(m => m.classList.add('is-dismissed'));
  const dlg = $('combo-lightbox'); if (dlg?.open) dlg.close();
- $('inicio')?.scrollIntoView({ behavior: 'smooth' });
+ window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+ if (window.location.hash) {
+  history.pushState(null, '', window.location.pathname + window.location.search);
+ }
 }));
 
 
