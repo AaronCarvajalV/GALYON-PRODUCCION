@@ -135,19 +135,30 @@ nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classLi
 $('year').textContent=new Date().getFullYear();
 renderCart();
 
-// ponytail: cierre unificado de modales/drawers y retorno suave al inicio
-document.querySelectorAll('.brand').forEach(b => b.addEventListener('click', (e) => {
- e.preventDefault();
+// ponytail: cierre unificado de modales/drawers y retorno limpio al inicio
+function resetToHome(e) {
+ if (e) {
+  if (e.preventDefault) e.preventDefault();
+  if (e.stopPropagation) e.stopPropagation();
+ }
  closeCart();
- nav.classList.remove('is-open');
- menu.setAttribute('aria-expanded', 'false');
+ const nav = $('navlinks'), menu = $('menu-toggle');
+ if (nav) nav.classList.remove('is-open');
+ if (menu) menu.setAttribute('aria-expanded', 'false');
  document.querySelectorAll('.galyon-modal').forEach(m => m.classList.add('is-dismissed'));
  const dlg = $('combo-lightbox'); if (dlg?.open) dlg.close();
- window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+ window.scrollTo(0, 0);
+ document.documentElement.scrollTop = 0;
+ document.body.scrollTop = 0;
  if (window.location.hash) {
-  history.pushState(null, '', window.location.pathname + window.location.search);
+  try {
+   history.replaceState(null, '', window.location.pathname + window.location.search);
+  } catch(err) {}
  }
-}));
+ return false;
+}
+window.resetToHome = resetToHome;
+document.querySelectorAll('.brand').forEach(b => b.addEventListener('click', resetToHome));
 
 
 // Mantener la posición del cliente al abrir o cerrar las fichas.
