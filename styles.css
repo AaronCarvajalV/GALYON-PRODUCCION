@@ -1208,12 +1208,12 @@
 .crop-advisor .advisor-result-v523 .advisor-summary{margin:0;gap:7px}
 .crop-advisor .advisor-result-v523 .advisor-summary span{background:#fafcf7}
 .crop-advisor .advisor-evidence{display:grid;grid-template-columns:140px minmax(0,1fr);gap:14px;border:1px solid #e2e9dd;border-radius:13px;overflow:hidden;background:#fff;min-height:130px}
-.crop-advisor .advisor-evidence:not(:has(.advisor-evidence-image)){grid-template-columns:1fr}
+.crop-advisor .advisor-evidence:not(:has(.advisor-evidence-image)),.crop-advisor .advisor-evidence.is-text-only{grid-template-columns:1fr}
 .crop-advisor .advisor-evidence-image{position:relative;min-height:135px;background:#e1ebe1}
 .crop-advisor .advisor-evidence-image img{display:block;width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
-.crop-advisor .advisor-evidence-image span{position:absolute;bottom:7px;left:7px;right:7px;text-align:center;font-size:8px;letter-spacing:.08em;font-weight:800;color:#fff;background:rgba(9,45,29,.72);border-radius:3px;padding:4px}
+.crop-advisor .advisor-evidence-image .advisor-evidence-tag,.crop-advisor .advisor-evidence-image span:not(.advisor-image-unavailable){position:absolute;bottom:7px;left:7px;right:7px;text-align:center;font-size:8px;letter-spacing:.08em;font-weight:800;color:#fff;background:rgba(9,45,29,.72);border-radius:3px;padding:4px}
 .crop-advisor .advisor-evidence-copy{padding:16px 12px 15px 0;align-self:center}
-.crop-advisor .advisor-evidence:not(:has(.advisor-evidence-image)) .advisor-evidence-copy{padding:16px}
+.crop-advisor .advisor-evidence:not(:has(.advisor-evidence-image)) .advisor-evidence-copy,.crop-advisor .advisor-evidence.is-text-only .advisor-evidence-copy{padding:16px}
 .crop-advisor .advisor-problem-label{font-size:10px;color:#548b5b;letter-spacing:.1em;font-weight:800}
 .crop-advisor .advisor-evidence-copy h4{font-size:15px;line-height:1.45;color:#1e4830;margin:7px 0}
 .crop-advisor .advisor-evidence-copy p{color:#617367;font-size:12px;line-height:1.65;margin:0}
@@ -1242,11 +1242,11 @@
 .crop-advisor .advisor-cta-v523{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0;border-radius:11px;padding:17px 19px;background:#18763e;color:#fff;font-size:14px;font-weight:800}
 .crop-advisor .advisor-cta-v523:hover{background:#116536}
 .crop-advisor .advisor-result-v523 .advisor-caution{font-size:10px;line-height:1.6;margin:0;color:#748476}
-@media(max-width:540px){.crop-advisor .advisor-result-hero{padding:18px}.crop-advisor .advisor-evidence{grid-template-columns:112px minmax(0,1fr)}.crop-advisor .advisor-evidence-copy{padding:10px 10px 10px 0}.crop-advisor .advisor-product{grid-template-columns:104px minmax(0,1fr);gap:11px;padding:9px 12px 14px}.crop-advisor .advisor-product-photo{height:154px}.crop-advisor .advisor-product-copy h5{font-size:18px}.crop-advisor .advisor-solution-heading{padding:15px 14px 2px}.crop-advisor .advisor-product-copy p{font-size:11px}.crop-advisor .advisor-outcomes-new{padding:15px}.crop-advisor .advisor-outcomes-new h4{font-size:17px}}
+@media(max-width:540px){.crop-advisor .advisor-result-hero{padding:18px}.crop-advisor .advisor-evidence:not(.is-text-only){grid-template-columns:112px minmax(0,1fr)}.crop-advisor .advisor-evidence.is-text-only{grid-template-columns:1fr}.crop-advisor .advisor-evidence-copy{padding:10px 10px 10px 0}.crop-advisor .advisor-evidence.is-text-only .advisor-evidence-copy{padding:14px}.crop-advisor .advisor-product{grid-template-columns:104px minmax(0,1fr);gap:11px;padding:9px 12px 14px}.crop-advisor .advisor-product-photo{height:154px}.crop-advisor .advisor-product-copy h5{font-size:18px}.crop-advisor .advisor-solution-heading{padding:15px 14px 2px}.crop-advisor .advisor-product-copy p{font-size:11px}.crop-advisor .advisor-outcomes-new{padding:15px}.crop-advisor .advisor-outcomes-new h4{font-size:17px}}
 @media(prefers-reduced-motion:reduce){.crop-advisor .advisor-result-v523{animation:none}}
 
 /* v5.2.7: Fallback accesible si una fotografía del asesor no carga */
-.crop-advisor .advisor-image-unavailable{font-size:12px;font-weight:700;color:#527358;display:grid;place-items:center;height:100%;min-height:120px;padding:14px;text-align:center;background:#ecf3e8}
+.crop-advisor .advisor-image-unavailable{font-size:11px;line-height:1.35;font-weight:700;color:#527358;display:grid;place-items:center;height:100%;min-height:120px;padding:10px 8px;text-align:center;background:#ecf3e8;position:relative;inset:auto;border-radius:6px;width:100%;word-break:break-word}
 
 /* v5.2.8 · iconografía honesta para síntomas todavía sin fotografía validada */
 .crop-advisor .advisor-options-symptoms .advisor-option.is-text{min-height:185px;background:#f6f9f2;border:1px solid #d8e5d1;justify-content:flex-start}
