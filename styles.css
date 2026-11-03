@@ -1287,10 +1287,12 @@
 @media(max-width:800px){#nosotros .identity-gallery.identity-gallery-steps{grid-template-columns:repeat(2,minmax(0,1fr));min-height:0}#nosotros .identity-gallery-steps .identity-photo{min-height:240px}}
 @media(max-width:400px){#nosotros .identity-gallery-steps .identity-photo{min-height:200px}}
 
-/* GALYON v5.4.0: presencial y remoto, transición accesible */
-#nosotros .identity-remote-photo .frame-remote{animation:galyonRemoteAdvice 5s ease-in-out infinite;opacity:0}
-@keyframes galyonRemoteAdvice{0%,47%{opacity:0}50%,97%{opacity:1}100%{opacity:0}}
-@media(prefers-reduced-motion:reduce){#nosotros .identity-remote-photo .frame-remote{animation:none;opacity:0}}
+/* En campo y a distancia: inspección, asesoría remota y acompañamiento. */
+#nosotros .identity-remote-photo .frame-remote{animation:galyonRemoteAdvice 9s ease-in-out infinite;opacity:0}
+#nosotros .identity-remote-photo .frame-visit{animation:galyonFieldVisit 9s ease-in-out infinite;opacity:0}
+@keyframes galyonRemoteAdvice{0%,30%{opacity:0}33%,66%{opacity:1}69%,100%{opacity:0}}
+@keyframes galyonFieldVisit{0%,63%{opacity:0}66%,97%{opacity:1}100%{opacity:0}}
+@media(prefers-reduced-motion:reduce){#nosotros .identity-remote-photo .frame-remote,#nosotros .identity-remote-photo .frame-visit{animation:none;opacity:0}}
 
 /* v5.4.3: Keep the advisor stationary while its content changes. */
 #advisor-app,#advisor-content{overflow-anchor:none;}
