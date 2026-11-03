@@ -1499,3 +1499,38 @@
   object-fit: cover!important;
   object-position: center!important;
 }
+
+/* El acompañamiento y el asesor forman una sola experiencia. */
+.advisor-integrated { background: #f2f5ed; }
+.advisor-integrated .advisor-shell {
+  grid-template-columns: minmax(0,.85fr) minmax(0,1.15fr);
+  gap: clamp(28px,4vw,58px);
+  align-items: start;
+}
+.advisor-integrated .advisor-story { position: static; padding-top: 0; min-width: 0; }
+.advisor-integrated .advisor-story>.eyebrow { font-size: 10px; line-height: 1.7; letter-spacing: .12em; margin-bottom: 20px; }
+.advisor-integrated .advisor-story h2 { font-size: clamp(36px,4vw,54px); line-height: 1.13; max-width: 480px; }
+.advisor-integrated .advisor-story .advisor-story-lead { font-size: 16px; line-height: 1.8; margin-bottom: 28px; }
+.advisor-method { border-top: 1px solid #d5e1ce; padding-top: 24px; }
+.advisor-method h3 { font-size: 21px; line-height: 1.4; letter-spacing: -.035em; color: #214d34; margin: 0 0 14px; }
+.advisor-method p { font-size: 14px; line-height: 1.8; color: #597163; margin: 0 0 14px; }
+.advisor-story-steps { display: flex; flex-wrap: wrap; gap: 10px 18px; margin-top: 26px; color: #47724a; font-size: 11px; font-weight: 800; }
+.advisor-workspace { min-width: 0; }
+.advisor-workspace-heading { margin-bottom: 20px; }
+.advisor-workspace-heading .eyebrow { font-size: 10px; margin-bottom: 10px; }
+.advisor-workspace-heading h3 { font-size: clamp(24px,2.5vw,31px); line-height: 1.25; letter-spacing: -.04em; color: #173e2a; margin: 0 0 10px; }
+.advisor-workspace-heading p { font-size: 14px; line-height: 1.65; color: #597163; margin: 0; }
+.advisor-workspace>.advisor-disclaimer { font-size: 11px; line-height: 1.7; color: #6b7e6e; margin: 15px 4px 0; }
+@media(max-width:950px) {
+  .advisor-integrated .advisor-shell { grid-template-columns: minmax(0,1fr); gap: 32px; }
+  .advisor-integrated .advisor-story h2 { max-width: 650px; }
+  .advisor-integrated .advisor-story>p { max-width: 100%; }
+  .advisor-method { max-width: 720px; padding-top: 20px; }
+  .advisor-story-steps { margin-top: 20px; }
+}
+@media(max-width:540px) {
+  .advisor-integrated .advisor-story h2 { font-size: 37px; }
+  .advisor-integrated .advisor-story .advisor-story-lead { font-size: 15px; margin-bottom: 22px; }
+  .advisor-method h3 { font-size: 20px; }
+  .advisor-workspace-heading h3 { font-size: 25px; }
+}
