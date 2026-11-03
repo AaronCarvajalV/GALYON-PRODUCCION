@@ -44,12 +44,14 @@ for(const[part,cases]of Object.entries(expected)){
  }
  sim.data.symptom='otro';const unknown=sim.result();assert(unknown.includes('https://wa.me/'));assert(!unknown.includes('class="advisor-product"'));
 }
-assert.equal(tested,16);assert.equal(photos.size,6);
+assert.equal(tested,16);assert.equal(photos.size,10);
 console.log('16 recorridos de Maíz y cuatro opciones de consulta libre: OK');
 
 // Uso opcional en una revisión: comparar todos los diagnósticos de otros cultivos con un script anterior.
 if(process.argv[2]){
  const baseline=simulate(fs.readFileSync(process.argv[2],'utf8'));let compared=0;
+ for(const [part,cases] of Object.entries(expected)){for(const [key] of cases){Object.assign(sim.data,{area:'Finca o plantación',crop:'Maíz',part,symptom:key});Object.assign(baseline.data,sim.data);assert.equal(sim.result(),baseline.result(),'Resultado de Maíz modificado: '+key);}}
+ console.log('16 resultados de Maíz idénticos a la versión anterior.');
  for(const[area,crops]of [['Finca o plantación',sim.farmCrops],['Huerto o jardín',sim.gardenCrops]]){
   for(const crop of crops){if(crop.key==='Maíz')continue;
    Object.assign(sim.data,{area,crop:crop.key});Object.assign(baseline.data,{area,crop:crop.key});

@@ -371,7 +371,8 @@ document.addEventListener('keydown', e => {
     ],
     "product": null,
     "condition": "",
-    "image": ""
+    "image": "",
+    "cardImage": "maiz_amarillamiento_generalizado"
   },
   "maiz_crecimiento_desigual": {
     "part": "Toda la planta",
@@ -392,7 +393,8 @@ document.addEventListener('keydown', e => {
     ],
     "product": null,
     "condition": "",
-    "image": ""
+    "image": "",
+    "cardImage": "maiz_crecimiento_desigual"
   },
   "maiz_marchitez_general": {
     "part": "Toda la planta",
@@ -413,7 +415,8 @@ document.addEventListener('keydown', e => {
     ],
     "product": null,
     "condition": "",
-    "image": ""
+    "image": "",
+    "cardImage": "maiz_marchitez_decaimiento"
   },
   "maiz_caidas_secamiento": {
     "part": "Toda la planta",
@@ -434,7 +437,8 @@ document.addEventListener('keydown', e => {
     ],
     "product": null,
     "condition": "",
-    "image": ""
+    "image": "",
+    "cardImage": "maiz_plantas_caidas_secamiento"
   },
   "maiz_manchas": {
     "part": "Hojas",
@@ -749,7 +753,7 @@ document.addEventListener('keydown', e => {
     a('banano_raices','Problemas en raíces','v535_banano_raices','Raíces deterioradas o poco desarrolladas','Es muy probable que haya daño radicular que está afectando el vigor de la planta.','Comparte también el tipo de suelo, humedad y edad de la plantación.'),
     a('banano_picudo','Galerías o perforaciones en el cormo','v536_banano_galerias_picudo','Orificios o galerías en pseudotallo y cormo','Es muy probable que exista daño de picudo negro del plátano.','Solicita revisión del cormo y, si es posible, evidencia del insecto para confirmar el nivel de ataque.','INSECTA'),unknown
   ],
-  'Maíz':Object.entries(maizeCases).map(([key,c])=>a(key,c.title,c.image,c.sub,c.cause,c.explanation)),
+  'Maíz':Object.entries(maizeCases).map(([key,c])=>a(key,c.title,c.cardImage||c.image,c.sub,c.cause,c.explanation)),
   'Arroz':[
     a('arroz_manchas','Manchas alargadas en hojas','arroz_tizon','Zonas pajizas o cafés','','Examina si el daño está aumentando y si aparece en las hojas más jóvenes.'),
     a('arroz_espiga','Bolas de polvo verde en espigas','arroz_falso_carbon','Algunos granos se convierten en bolas amarillentas o verdosas','','Una foto nítida de la espiga permitirá diferenciar posibles enfermedades.'),

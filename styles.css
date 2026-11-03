@@ -1585,3 +1585,8 @@
 #advisor-app[data-advisor-crop="Maíz"][data-advisor-step="2"] .advisor-options-parts .advisor-option{aspect-ratio:2/1;min-height:0;background:#e3ece0}
 #advisor-app[data-advisor-crop="Maíz"][data-advisor-step="2"] .advisor-options-parts .advisor-option img{object-fit:contain;object-position:center;transform:none}
 @media(max-width:760px){#advisor-app[data-advisor-crop="Maíz"][data-advisor-step="2"] .advisor-options-parts{grid-template-columns:minmax(0,1fr)}}
+
+/* Fotos de Toda la planta de maíz: encuadre amplio y sin zoom al pasar el cursor. */
+#advisor-app[data-advisor-crop="Maíz"] .advisor-options-symptoms .advisor-option:is([data-advisor-value="maiz_amarillamiento_general"],[data-advisor-value="maiz_crecimiento_desigual"],[data-advisor-value="maiz_marchitez_general"],[data-advisor-value="maiz_caidas_secamiento"]){aspect-ratio:16/9;min-height:0}
+#advisor-app[data-advisor-crop="Maíz"] .advisor-options-symptoms .advisor-option:is([data-advisor-value="maiz_amarillamiento_general"],[data-advisor-value="maiz_crecimiento_desigual"],[data-advisor-value="maiz_marchitez_general"],[data-advisor-value="maiz_caidas_secamiento"]) img{object-fit:cover;object-position:center;transform:none}
+@media(max-width:760px){#advisor-app[data-advisor-crop="Maíz"] .advisor-options-symptoms:has([data-advisor-value="maiz_amarillamiento_general"]){grid-template-columns:minmax(0,1fr)}}
