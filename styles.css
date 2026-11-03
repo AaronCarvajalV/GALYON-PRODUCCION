@@ -1486,3 +1486,16 @@
   .soil-plan-heading small { font-size: 13px; }
   .soil-plan-summary { column-gap: 12px; }
 }
+
+/* Tarjetas de líneas más compactas, con un recorte vertical suave. */
+.products .product-card .product-visual {
+  min-height: 0;
+  overflow: hidden!important;
+}
+.products .product-card .product-visual .line-photo {
+  width: 100%;
+  height: auto!important;
+  aspect-ratio: 9 / 14!important;
+  object-fit: cover!important;
+  object-position: center!important;
+}
