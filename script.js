@@ -350,6 +350,371 @@ document.addEventListener('keydown', e => {
   maracuya_mancha_bacteriana:{name:'Posible mancha bacteriana del maracuyá (Xanthomonas spp.)',level:'medio'}
  };
 
+ // Maíz: una ficha por síntoma y categoría; ver docs/asesor-maiz.md.
+ const maizeCases={
+  "maiz_amarillamiento_general": {
+    "part": "Toda la planta",
+    "title": "Amarillamiento generalizado",
+    "sub": "La planta pierde su color verde en varias hojas.",
+    "cause": "Disponibilidad insuficiente de nitrógeno o azufre; raíces afectadas por exceso de agua.",
+    "explanation": "La falta de nutrientes disponibles reduce la formación de clorofila. Una V amarilla desde la punta de hojas viejas orienta a nitrógeno; hojas jóvenes pálidas requieren revisar azufre y raíces.",
+    "management": "Prioriza análisis de suelo y, según la etapa, análisis foliar. Ajusta fertilización y drenaje a los resultados; un microorganismo no sustituye el nutriente faltante.",
+    "goals": [
+      "Recuperar el color y actividad de las hojas nuevas.",
+      "Ajustar la nutrición sin aplicaciones a ciegas.",
+      "Mejorar el aprovechamiento del agua y fertilizantes."
+    ],
+    "actions": [
+      "Compara hojas jóvenes y viejas y registra dónde inicia el amarillo.",
+      "Revisa humedad, raíces y antecedentes de fertilización.",
+      "Muestrea zonas sanas y afectadas por separado antes de corregir la nutrición."
+    ],
+    "product": null,
+    "condition": "",
+    "image": ""
+  },
+  "maiz_crecimiento_desigual": {
+    "part": "Toda la planta",
+    "title": "Plantas pequeñas o crecimiento desigual",
+    "sub": "Hay plantas de distinta altura o sectores que no avanzan.",
+    "cause": "Emergencia irregular, compactación o nutrición limitada; descartar achaparramiento si hay entrenudos cortos y enrojecimiento.",
+    "explanation": "El establecimiento desigual limita la exploración de raíces. Si aparecen entrenudos cortos, hojas rojizas y chicharritas Dalbulus maidis, investiga el complejo de achaparramiento, incluido Spiroplasma kunkelii.",
+    "management": "Revisa siembra, suelo y nutrición. Ante signos de achaparramiento, solicita evaluación fitosanitaria y manejo del vector; los bioinsumos disponibles no curan una infección sistémica.",
+    "goals": [
+      "Identificar por qué unas plantas quedan rezagadas.",
+      "Mejorar la uniformidad del próximo establecimiento.",
+      "Detectar a tiempo un problema de vector o de suelo."
+    ],
+    "actions": [
+      "Compara profundidad de siembra, emergencia y raíces entre plantas.",
+      "Revisa compactación y antecedentes de herbicidas.",
+      "Fotografía entrenudos, coloración y cualquier chicharrita; lleva muestras si el técnico lo indica."
+    ],
+    "product": null,
+    "condition": "",
+    "image": ""
+  },
+  "maiz_marchitez_general": {
+    "part": "Toda la planta",
+    "title": "Marchitez y decaimiento",
+    "sub": "Las hojas pierden turgencia o se enrollan.",
+    "cause": "Déficit de agua o raíces sin oxígeno; diferenciar daño radicular y vascular.",
+    "explanation": "La planta pierde agua más rápido de lo que puede absorberla. Suelo seco apunta a déficit hídrico; suelo saturado con marchitez indica raíces que no respiran o no funcionan bien.",
+    "management": "Corrige el balance de agua antes de elegir un producto. Si hay raíces blandas o lesiones internas, continúa por la categoría Raíces o tallo para orientar la evaluación.",
+    "goals": [
+      "Restablecer el suministro de agua a la planta.",
+      "Evitar riego excesivo cuando el problema es drenaje.",
+      "Separar estrés ambiental de enfermedad radicular."
+    ],
+    "actions": [
+      "Comprueba humedad a profundidad de raíces, no solo en la superficie.",
+      "Observa si las plantas recuperan turgencia al amanecer.",
+      "Compara raíces de plantas sanas y marchitas y registra distribución del daño."
+    ],
+    "product": null,
+    "condition": "",
+    "image": ""
+  },
+  "maiz_caidas_secamiento": {
+    "part": "Toda la planta",
+    "title": "Plantas caídas o secamiento progresivo",
+    "sub": "Se tumban plantas o aparecen focos de secamiento.",
+    "cause": "Acame por pérdida de anclaje o resistencia del tallo; estrés, viento o pudriciones del complejo Fusarium spp.",
+    "explanation": "La raíz o el tallo dejan de sostener la planta. El secamiento prematuro también acompaña pudriciones; una planta caída por viento no demuestra una infección.",
+    "management": "Revisa el punto de falla antes de tratar. Prioriza el manejo de agua, densidad y nutrición, y la evaluación de tallos dañados en lotes próximos a cosecha.",
+    "goals": [
+      "Reducir pérdidas por plantas caídas.",
+      "Distinguir daño mecánico de deterioro de tejidos.",
+      "Priorizar el manejo y cosecha de sectores afectados."
+    ],
+    "actions": [
+      "Distingue raíz arrancada, base blanda y quiebre de entrenudos.",
+      "Aprieta y abre longitudinalmente tallos de una muestra representativa.",
+      "Registra viento, sequía, densidad y ubicación de los focos."
+    ],
+    "product": null,
+    "condition": "",
+    "image": ""
+  },
+  "maiz_manchas": {
+    "part": "Hojas",
+    "title": "Manchas cafés o lesiones alargadas",
+    "sub": "Áreas necróticas que crecen sobre las hojas.",
+    "cause": "Tizón foliar compatible con Exserohilum turcicum; diferenciar Cercospora zeae-maydis, otras manchas y daño químico.",
+    "explanation": "Las lesiones reducen el área verde que sostiene el llenado. Su forma, límites entre nervaduras y avance en hojas nuevas ayudan a distinguir enfermedad de quemadura.",
+    "management": "Bacillus subtilis se considera por su actividad preventiva frente a ciertos hongos foliares. Integra protección del follaje sano, monitoreo e híbridos resistentes.",
+    "goals": [
+      "Conservar área foliar funcional.",
+      "Reducir nuevas lesiones cuando el agente sea susceptible.",
+      "Sostener el potencial de llenado mediante manejo oportuno."
+    ],
+    "actions": [
+      "Fotografía la hoja completa y una lesión de cerca en ambas caras.",
+      "Revisa la hoja de la mazorca y registra la evolución del daño.",
+      "Compara antecedentes de aspersión, híbrido y humedad antes de definir el programa."
+    ],
+    "product": "subtilis",
+    "condition": "Evaluar solo tras identificar un hongo susceptible y verificar cepa, etiqueta y uso foliar de la formulación GALYON.",
+    "image": ""
+  },
+  "maiz_roya": {
+    "part": "Hojas",
+    "title": "Pústulas anaranjadas (roya)",
+    "sub": "Puntos elevados que liberan polvo color óxido.",
+    "cause": "Roya del maíz: Puccinia sorghi o Puccinia polysora.",
+    "explanation": "Las pústulas producen esporas y disminuyen el tejido fotosintético. Examinar ambas caras permite orientar el tipo de roya; distinguir las especies requiere revisión técnica.",
+    "management": "Prioriza identificación, seguimiento de hojas nuevas e híbridos resistentes. No se asigna una formulación GALYON por el color de la pústula: el programa debe tener respaldo específico frente a la roya identificada.",
+    "goals": [
+      "Frenar el avance mediante un programa fitosanitario oportuno.",
+      "Conservar follaje funcional cerca del llenado.",
+      "Elegir materiales y manejo adecuados para el siguiente ciclo."
+    ],
+    "actions": [
+      "Comprueba si el polvo se desprende y fotografía ambas caras.",
+      "Registra altura de las hojas afectadas, etapa e intensidad del avance.",
+      "Si progresa en hojas superiores, solicita evaluación pronta para definir manejo autorizado."
+    ],
+    "product": null,
+    "condition": "",
+    "image": "maiz_roya"
+  },
+  "maiz_oruga": {
+    "part": "Hojas",
+    "title": "Hojas comidas o perforadas por insectos",
+    "sub": "Mordeduras, agujeros o excrementos recientes.",
+    "cause": "Daño de larvas masticadoras, especialmente Spodoptera frugiperda; diferenciar otros insectos y daño físico.",
+    "explanation": "Las larvas consumen follaje y pueden concentrarse en el cogollo. El insecto presente y su tamaño determinan la opción de manejo, no el orificio por sí solo.",
+    "management": "Bacillus thuringiensis actúa por ingestión en larvas susceptibles. El momento de intervención y alcanzar larvas pequeñas son claves para proteger hojas nuevas.",
+    "goals": [
+      "Reducir alimentación de larvas susceptibles.",
+      "Proteger el cogollo y el follaje que se está formando.",
+      "Orientar el control al insecto realmente presente."
+    ],
+    "actions": [
+      "Abre con cuidado el cogollo y fotografía larvas y excrementos.",
+      "Distingue daños antiguos de mordeduras frescas y registra plantas afectadas.",
+      "Conserva enemigos naturales y verifica susceptibilidad y cobertura antes de aplicar."
+    ],
+    "product": "bt",
+    "condition": "Evaluar para larvas pequeñas, activas y susceptibles; confirmar la plaga y el uso indicado de la cepa GALYON.",
+    "image": "maiz_cogollero"
+  },
+  "maiz_clorosis_intervenal": {
+    "part": "Hojas",
+    "title": "Amarillamiento entre nervaduras",
+    "sub": "Franjas claras mientras las nervaduras conservan verde.",
+    "cause": "Desequilibrio de magnesio, zinc o hierro; también raíces restringidas o lesión por herbicidas.",
+    "explanation": "El patrón y la edad de la hoja ayudan a separar causas: magnesio suele afectar primero hojas viejas; zinc o hierro pueden manifestarse en hojas jóvenes. El color no determina por sí solo qué nutriente aplicar.",
+    "management": "Orienta la corrección con análisis de suelo y tejido. Revisa pH, drenaje y aplicaciones recientes antes de indicar fertilizantes; no corresponde vender un bioinsumo por este síntoma aislado.",
+    "goals": [
+      "Identificar el nutriente o factor limitante.",
+      "Corregir la causa del amarillamiento en el crecimiento nuevo.",
+      "Evitar aplicaciones innecesarias o desequilibrios adicionales."
+    ],
+    "actions": [
+      "Fotografía hojas jóvenes y viejas y compara las franjas.",
+      "Revisa pH, fertilización y herbicidas utilizados.",
+      "Toma muestras de suelo y tejido de áreas afectadas y sanas por separado."
+    ],
+    "product": null,
+    "condition": "",
+    "image": ""
+  },
+  "maiz_base_pudricion": {
+    "part": "Raíces o tallo",
+    "title": "Pudrición en la base del tallo",
+    "sub": "La base se oscurece, se ablanda o pierde consistencia.",
+    "cause": "Pudrición basal: Fusarium spp.; diferenciar Pythium spp. y pudrición bacteriana.",
+    "explanation": "La destrucción de tejidos en la base reduce la conducción y el sostén. Tejido acuoso y colapso cerca del suelo orientan a Pythium; olor fuerte y descomposición blanda requieren descartar bacterias.",
+    "management": "Trichoderma spp. se valora como apoyo preventivo del entorno radicular frente a hongos compatibles, junto con drenaje y manejo de residuos. No reconstruye la base dañada.",
+    "goals": [
+      "Proteger raíces y bases aún funcionales.",
+      "Reducir condiciones que favorecen nuevas pudriciones.",
+      "Diferenciar hongo, oomiceto y bacteria antes del manejo."
+    ],
+    "actions": [
+      "Abre la base longitudinalmente y fotografía la lesión interna.",
+      "Revisa saturación del suelo, olor y avance del foco.",
+      "Solicita identificación del agente antes de definir un programa biológico."
+    ],
+    "product": "tricho",
+    "condition": "Considerar si se confirma un hongo radicular susceptible y el uso de la cepa GALYON; no extrapolar a bacterias o Pythium sin validación.",
+    "image": ""
+  },
+  "maiz_raices_deterioradas": {
+    "part": "Raíces o tallo",
+    "title": "Raíces oscuras o deterioradas",
+    "sub": "Raíces con lesiones, pérdida de firmeza o menor desarrollo.",
+    "cause": "Daño radicular por anegamiento o compactación; con lesiones activas, investigar Fusarium spp. y otros patógenos.",
+    "explanation": "La raíz lesionada absorbe menos agua y nutrientes. La falta de oxígeno puede producir un aspecto similar al de una infección; busca tejido blando o necrosado y compara plantas sanas.",
+    "management": "Trichoderma spp. se considera por su acción antagonista en la zona radicular cuando hay un hongo susceptible. Recuperar aireación y manejo hídrico es parte del mismo plan.",
+    "goals": [
+      "Favorecer raíces nuevas funcionales.",
+      "Mejorar exploración del suelo y absorción de agua.",
+      "Disminuir el riesgo de nuevas lesiones fúngicas compatibles."
+    ],
+    "actions": [
+      "Excava plantas completas con suelo para conservar las raíces.",
+      "Compara drenaje, compactación y firmeza del tejido.",
+      "Si hay raíces comidas, busca larvas; si hay lesiones, solicita diagnóstico del agente."
+    ],
+    "product": "tricho",
+    "condition": "Evaluar únicamente si las lesiones corresponden a un hongo susceptible y la formulación GALYON tiene el uso apropiado.",
+    "image": ""
+  },
+  "maiz_galerias_tallo": {
+    "part": "Raíces o tallo",
+    "title": "Perforaciones o galerías en el tallo",
+    "sub": "Orificios con aserrín, excrementos o túneles internos.",
+    "cause": "Barrenador del tallo compatible con Diatraea saccharalis; diferenciar otras larvas perforadoras.",
+    "explanation": "Las galerías interrumpen tejidos y debilitan el tallo. Las larvas ya encerradas son difíciles de alcanzar; identificar la plaga y buscar estadios expuestos define el manejo.",
+    "management": "Bacillus thuringiensis se valora para larvas susceptibles antes de entrar al tallo. Con galerías establecidas, prioriza monitoreo del ciclo y manejo integrado del barrenador.",
+    "goals": [
+      "Prevenir nuevas entradas de larvas susceptibles.",
+      "Conservar resistencia de los tallos nuevos.",
+      "Intervenir en el momento en que la larva está accesible."
+    ],
+    "actions": [
+      "Abre algunos tallos afectados y fotografía larvas y galerías.",
+      "Busca huevos y larvas pequeñas fuera del tallo en plantas vecinas.",
+      "Registra incidencia y coordina manejo de residuos y enemigos naturales con el técnico."
+    ],
+    "product": "bt",
+    "condition": "Evaluar solo si se identifican larvas susceptibles y expuestas y la etiqueta lo permite; no indicar una aspersión para eliminar larvas encerradas.",
+    "image": ""
+  },
+  "maiz_tallo_quebradizo": {
+    "part": "Raíces o tallo",
+    "title": "Tallo debilitado o quebradizo",
+    "sub": "El tallo pierde resistencia o se quiebra al presionarlo.",
+    "cause": "Pérdida de resistencia por estrés y desequilibrio de potasio; descartar Fusarium spp., Colletotrichum graminicola y galerías.",
+    "explanation": "El daño interno y la movilización de reservas hacia la mazorca reducen el sostén. Quiebre y médula deteriorada requieren distinguir nutrición, pudrición e insectos antes de elegir un control.",
+    "management": "Prioriza nutrición equilibrada y evaluación del riesgo de acame. No se prescribe automáticamente un microorganismo para un tallo quebradizo sin conocer la causa.",
+    "goals": [
+      "Reducir pérdidas por quiebre y acame.",
+      "Identificar deterioro interno antes de que avance.",
+      "Mejorar resistencia del cultivo en el siguiente ciclo."
+    ],
+    "actions": [
+      "Aprieta entrenudos inferiores y abre tallos representativos.",
+      "Revisa potasio, densidad, sequía y presencia de galerías.",
+      "En lotes cercanos a madurez, acuerda prioridad de cosecha de sectores inestables."
+    ],
+    "product": null,
+    "condition": "",
+    "image": ""
+  },
+  "maiz_granos_manchas": {
+    "part": "Frutos o mazorcas",
+    "title": "Granos con manchas",
+    "sub": "Granos con puntos oscuros o coloración anormal.",
+    "cause": "Manchado de grano: investigar Fusarium spp., otros hongos y lesiones no infecciosas.",
+    "explanation": "El color anormal puede acompañar colonización fúngica o daño físico. Revisar el grano, su humedad y la presencia de moho permite orientar la evaluación.",
+    "management": "Bacillus amyloliquefaciens se considera como complemento preventivo para proteger tejido sano frente a hongos susceptibles. No revierte el grano dañado ni elimina micotoxinas.",
+    "goals": [
+      "Proteger futuras mazorcas y tejido sano.",
+      "Reducir factores que facilitan nuevas infecciones.",
+      "Separar y evaluar oportunamente granos afectados."
+    ],
+    "actions": [
+      "Compara mazorcas sanas y afectadas y fotografía granos de cerca.",
+      "Revisa daño de insectos, humedad y condiciones de cosecha.",
+      "Separa el grano con moho y evalúa micotoxinas antes de destinarlo a consumo o alimento animal."
+    ],
+    "product": "amyl",
+    "condition": "Valorar tras identificar el agente y verificar susceptibilidad, cepa y uso previsto de la formulación GALYON.",
+    "image": "galyon_maiz_granos_manchas"
+  },
+  "maiz_pudricion_mazorca": {
+    "part": "Frutos o mazorcas",
+    "title": "Pudrición en la mazorca",
+    "sub": "Tejidos deteriorados, húmedos o con micelio.",
+    "cause": "Pudrición de mazorca compatible con Fusarium spp., Stenocarpella maydis o Aspergillus spp.",
+    "explanation": "Los hongos deterioran el grano; algunos producen micotoxinas. El aspecto del moho orienta, pero no permite identificar la especie ni saber si el grano es apto para consumo.",
+    "management": "Bacillus amyloliquefaciens se valora para protección preventiva del tejido sano frente a hongos susceptibles, dentro de un manejo integrado; no como cura de mazorcas podridas.",
+    "goals": [
+      "Evitar nuevas pérdidas en mazorcas sanas.",
+      "Reducir humedad y heridas que favorecen la infección.",
+      "Separar grano deteriorado y orientar su evaluación."
+    ],
+    "actions": [
+      "Separa mazorcas afectadas y conserva muestras para diagnóstico.",
+      "Revisa humedad y daños de insectos; planifica secado y almacenamiento adecuados.",
+      "Consulta evaluación de micotoxinas antes de usar grano con moho."
+    ],
+    "product": "amyl",
+    "condition": "Considerar solo con diagnóstico del agente y verificación de la cepa GALYON; ningún bioinsumo descontamina el grano.",
+    "image": "galyon_maiz_pudricion_mazorca"
+  },
+  "maiz_perforaciones_mazorca": {
+    "part": "Frutos o mazorcas",
+    "title": "Mazorcas comidas o perforadas",
+    "sub": "Galerías, granos mordidos, excrementos o larvas.",
+    "cause": "Daño de larvas en mazorca: Helicoverpa zea, Spodoptera frugiperda u otras especies.",
+    "explanation": "Las larvas consumen estigmas y granos y abren heridas para hongos. El control es más oportuno antes de que se refugien dentro de la mazorca.",
+    "management": "Bacillus thuringiensis se considera por ingestión frente a larvas susceptibles. El plan debe alcanzar larvas pequeñas y expuestas en el momento correcto.",
+    "goals": [
+      "Prevenir nuevas perforaciones de larvas susceptibles.",
+      "Proteger estigmas y granos aún sanos.",
+      "Reducir heridas que facilitan pudriciones."
+    ],
+    "actions": [
+      "Busca larvas vivas y fotografía su tamaño y daño reciente.",
+      "Revisa estigmas y puntas de mazorcas vecinas durante la floración.",
+      "Coordina el momento de intervención antes de que las larvas queden protegidas."
+    ],
+    "product": "bt",
+    "condition": "Valorar para una plaga y cepa compatibles, con larvas susceptibles expuestas y uso autorizado; no presumir alcance dentro de la mazorca.",
+    "image": "galyon_maiz_perforaciones_mazorca"
+  },
+  "maiz_mal_llenado_mazorca": {
+    "part": "Frutos o mazorcas",
+    "title": "Mazorcas poco desarrolladas",
+    "sub": "Zonas sin granos o llenado irregular.",
+    "cause": "Polinización incompleta o aborto de granos por estrés hídrico, calor o nutrición limitada.",
+    "explanation": "La falta de coincidencia entre polen y estigmas o el estrés durante floración y llenado dejan espacios vacíos. No implica por sí sola una enfermedad.",
+    "management": "Revisa agua, polinización y nutrición, apoyándote en análisis de suelo. No corresponde recomendar automáticamente un microorganismo ni prometer rellenar granos ausentes.",
+    "goals": [
+      "Mejorar las condiciones para el llenado de futuras mazorcas.",
+      "Corregir limitaciones de agua o nutrición.",
+      "Ajustar la planificación de siembra y floración."
+    ],
+    "actions": [
+      "Anota fechas de floración y episodios de calor o sequía.",
+      "Revisa riego, densidad y daño de insectos en los estigmas.",
+      "Compara mazorcas de varias zonas y solicita análisis de suelo para el próximo plan."
+    ],
+    "product": null,
+    "condition": "",
+    "image": "galyon_maiz_mal_llenado_mazorca"
+  }
+};
+ const maizeProducts={
+  "subtilis": {
+    "line": "GALYON BACT",
+    "microbe": "Bacillus subtilis",
+    "image": "assets/linea-bact.jpg",
+    "anchor": "#detalle-bact"
+  },
+  "amyl": {
+    "line": "GALYON BACT",
+    "microbe": "Bacillus amyloliquefaciens",
+    "image": "assets/linea-bact.jpg",
+    "anchor": "#detalle-bact"
+  },
+  "tricho": {
+    "line": "GALYON TRICHO",
+    "microbe": "Trichoderma spp.",
+    "image": "assets/linea-tricho.jpg",
+    "anchor": "#detalle-tricho"
+  },
+  "bt": {
+    "line": "GALYON INSECTA",
+    "microbe": "Bacillus thuringiensis",
+    "image": "assets/linea-insecta.jpg",
+    "anchor": "#detalle-insecta"
+  }
+};
  const catalog={
   'Cacao':{
     'Frutos o mazorcas':[
@@ -384,12 +749,7 @@ document.addEventListener('keydown', e => {
     a('banano_raices','Problemas en raíces','v535_banano_raices','Raíces deterioradas o poco desarrolladas','Es muy probable que haya daño radicular que está afectando el vigor de la planta.','Comparte también el tipo de suelo, humedad y edad de la plantación.'),
     a('banano_picudo','Galerías o perforaciones en el cormo','v536_banano_galerias_picudo','Orificios o galerías en pseudotallo y cormo','Es muy probable que exista daño de picudo negro del plátano.','Solicita revisión del cormo y, si es posible, evidencia del insecto para confirmar el nivel de ataque.','INSECTA'),unknown
   ],
-  'Maíz':[
-    a('maiz_manchas','Manchas en hojas','maiz_manchas','Puntos o lesiones alargadas','','Observa si las lesiones aparecen primero en hojas inferiores o superiores.'),
-    a('maiz_oruga','Larvas y daños en el cogollo','maiz_cogollero','Oruga visible, hojas perforadas y excrementos en el cogollo','Posible daño de insectos, incluida alimentación por orugas.','Si puedes fotografiar la larva, el asesor podrá valorar una formulación para la plaga identificada.','INSECTA'),
-    a('maiz_tallo','Tallo deteriorado','maiz_tallo','Zonas oscuras o lesiones','','Una fotografía del tallo y de la planta entera ayuda a diferenciar causas.'),
-    a('maiz_roya','Pústulas anaranjadas','maiz_roya','Pequeñas lesiones de color óxido','Síntomas compatibles con roya, entre otras afecciones.','Compara varias hojas afectadas; se necesita una evaluación para confirmar la causa.'),unknown
-  ],
+  'Maíz':Object.entries(maizeCases).map(([key,c])=>a(key,c.title,c.image,c.sub,c.cause,c.explanation)),
   'Arroz':[
     a('arroz_manchas','Manchas alargadas en hojas','arroz_tizon','Zonas pajizas o cafés','','Examina si el daño está aumentando y si aparece en las hojas más jóvenes.'),
     a('arroz_espiga','Bolas de polvo verde en espigas','arroz_falso_carbon','Algunos granos se convierten en bolas amarillentas o verdosas','','Una foto nítida de la espiga permitirá diferenciar posibles enfermedades.'),
@@ -425,7 +785,7 @@ document.addEventListener('keydown', e => {
  function grid(items,kind=''){return '<div class="advisor-options '+(kind?'advisor-options-'+kind:'')+'">'+items.map(option).join('')+'</div>';}
  const organSymptomKeys={
   'Banano':{'Toda la planta':['banano_marchitez'], 'Hojas':['banano_sigatoka'], 'Raíces o tallo':['banano_tallo','banano_raices','banano_picudo'], 'Frutos o mazorcas':[]},
-  'Maíz':{'Toda la planta':['maiz_manchas','maiz_oruga','maiz_tallo'], 'Hojas':['maiz_manchas','maiz_oruga','maiz_roya'], 'Raíces o tallo':['maiz_tallo'], 'Frutos o mazorcas':[]},
+  'Maíz':Object.fromEntries(specificParts['Maíz'].map(([part])=>[part,Object.keys(maizeCases).filter(key=>maizeCases[key].part===part)])),
   'Caña de azúcar':{'Toda la planta':['cana_roya','cana_carbon','cana_cogollo'], 'Hojas':['cana_roya','cana_cogollo'], 'Raíces o tallo':['cana_carbon','cana_barrenador'], 'Frutos o mazorcas':['cana_carbon','cana_barrenador','cana_cogollo']},
   'Café':{'Toda la planta':['cafe_ramas','cafe_roya'], 'Hojas':['cafe_roya','cafe_hojas'], 'Raíces o tallo':['cafe_ramas'], 'Frutos o mazorcas':['cafe_broca']},
   'Hortalizas':{'Toda la planta':['hort_manchas','hort_blanco','hort_insectos'], 'Hojas':['hort_manchas','hort_blanco','hort_insectos'], 'Raíces o tallo':[], 'Frutos o mazorcas':['hort_frutos']}
@@ -504,12 +864,6 @@ document.addEventListener('keydown', e => {
    a('observacion_banano_pudricion','Frutos blandos o deteriorados','v535_banano_frutos_blandos','Pudrición o partes blandas','','Indica si el problema empezó antes o después de la cosecha.'),
    a('observacion_banano_deformes','Frutos pequeños o deformados','v535_banano_frutos_deformes','Desarrollo desigual en el racimo','','También puede intervenir el estado nutricional, el agua y la edad del racimo.'),unknown
   ];
-  if(data.part==='Frutos o mazorcas' && data.crop==='Maíz')return [
-   a('maiz_granos_manchas','Granos con manchas','galyon_maiz_granos_manchas','Granos con puntos oscuros o coloración anormal','Posible pudrición de grano por Fusarium spp. u otros hongos, o daño no infeccioso.','Si hay moho, evita destinar esa mazorca a consumo o alimento animal hasta evaluar el riesgo de micotoxinas. Compara granos sanos y afectados; requiere diagnóstico.'),
-   a('maiz_pudricion_mazorca','Pudrición en la mazorca','galyon_maiz_pudricion_mazorca','Tejidos oscuros, húmedos o con micelio visible','Posibles pudriciones de mazorca por Fusarium spp., Stenocarpella maydis, Aspergillus spp. u otros microorganismos.','Retira y separa las mazorcas afectadas para evaluación; no recupera el grano una aplicación foliar. Si existe moho, considera riesgo de micotoxinas y consulta antes de destinarlo a consumo.'),
-   a('maiz_perforaciones_mazorca','Mazorcas comidas o perforadas','galyon_maiz_perforaciones_mazorca','Granos mordidos, galerías, frass o larvas','Posible daño de larvas como Helicoverpa zea (gusano elotero), Spodoptera frugiperda u otras plagas.','Busca larvas y excrementos recientes, y fotografía el insecto. El control biológico contra larvas pequeñas requiere alcanzarlas antes de que se protejan dentro de la mazorca.','INSECTA'),
-   a('maiz_mal_llenado_mazorca','Mazorcas poco desarrolladas','galyon_maiz_mal_llenado_mazorca','Faltan granos, hay zonas vacías o llenado irregular','Posibles problemas de polinización, calor, sequía, déficit nutricional o aborto de granos; no implica necesariamente un patógeno.','Revisa condiciones de floración, humedad, densidad y nutrición. Un análisis de suelo puede orientar el plan siguiente; no promete rellenar mazorcas ya formadas.'),unknown
-  ];
   const table=catalog[data.crop];
   if(!table)return general;
   if(Array.isArray(table)){
@@ -520,7 +874,28 @@ document.addEventListener('keydown', e => {
   }
   return table[data.part]||general;
  };
+ function maizeResult(c){
+  const product=c.product?maizeProducts[c.product]:null;
+  const partName=partsForCrop().find(part=>part.key===data.part)?.text||data.part;
+  const image=c.image?'<div class="advisor-evidence-image"><img src="'+e(p(c.image))+'" alt="Referencia visual de '+e(c.title)+'" loading="lazy" decoding="async"><span class="advisor-evidence-tag">'+(c.image.startsWith('galyon_')?'ILUSTRACIÓN DE REFERENCIA':'IMAGEN DE REFERENCIA')+'</span></div>':'';
+  const outcomeCards=c.goals.map((goal,i)=>'<div class="advisor-outcome-card"><span class="advisor-outcome-index">0'+(i+1)+'</span><p>'+e(goal)+'</p></div>').join('');
+  const fieldActions=c.actions.map((action,i)=>'<p>'+e((i+1)+'. '+action)+'</p>').join('');
+  const management=product
+   ? '<div class="advisor-solution"><div class="advisor-solution-heading"><span>PRODUCTO A EVALUAR SEGÚN EL AGENTE</span><h4><strong>'+e(product.line)+' — '+e(product.microbe)+'</strong></h4></div><div class="advisor-product"><div class="advisor-product-photo"><img src="'+e(product.image)+'" alt="'+e(product.line)+'" loading="lazy" decoding="async"></div><div class="advisor-product-copy"><h5>'+e(product.microbe)+'</h5><p class="advisor-formulation-line">'+e(product.line)+'</p><p>'+e(c.management)+'</p><p>'+e(c.condition)+'</p><a href="'+e(product.anchor)+'" class="advisor-line-link">Conocer esta línea →</a></div></div></div>'
+   : '<div class="advisor-next"><div class="advisor-result-label">MANEJO PRIORITARIO</div><strong>Primero, corregir la causa.</strong><p>'+e(c.management)+'</p>'+(data.part==='Hojas'&&data.symptom==='maiz_roya'?'':'<a class="advisor-line-link" href="#analisis">Conocer los análisis de suelo →</a>')+'</div>';
+  const message='Hola, GALYON. Completé el Asesor de Cultivos. Lugar: '+data.area+'. Cultivo: Maíz. Parte afectada: '+partName+'. Síntomas: '+c.title+'. Causa probable a verificar: '+c.cause+' Explicación: '+c.explanation+' Manejo: '+c.management+(product?' Producto a evaluar: '+product.line+' — '+product.microbe+'. Condición: '+c.condition:' Sin bioinsumo asignado automáticamente.')+' Objetivos: '+c.goals.join(' ')+' Acciones de campo: '+c.actions.join(' ')+' Quiero continuar la evaluación con fotografías reales, edad del cultivo, extensión del daño y antecedentes de riego y fertilización. ¿Qué datos o muestras necesitan?';
+  return '<div class="advisor-result-v523">'+
+   '<div class="advisor-result-hero"><div><span class="advisor-result-label">ORIENTACIÓN PARA TU MAÍZ</span><h3>'+e(c.title)+'</h3><p>Entendamos la causa y definamos el manejo.</p></div></div>'+
+   '<div class="advisor-summary"><span><b>Cultivo</b>Maíz</span><span><b>Parte afectada</b>'+e(partName)+'</span><span><b>Síntoma seleccionado</b>'+e(c.title)+'</span></div>'+
+   '<div class="advisor-evidence'+(!image?' is-text-only':'')+'">'+image+'<div class="advisor-evidence-copy"><div class="advisor-problem-label">CAUSA PROBABLE A VERIFICAR</div><h4>'+e(c.cause)+'</h4><p>'+e(c.explanation)+'</p></div></div>'+management+
+   '<div class="advisor-outcomes advisor-outcomes-new"><h4>Qué buscamos conseguir</h4><div class="advisor-outcome-cards">'+outcomeCards+'</div></div>'+
+   '<div class="advisor-tip"><div><strong>Qué hacer en campo</strong>'+fieldActions+'</div></div>'+
+   '<a class="advisor-cta advisor-cta-v523" href="https://wa.me/593968933445?text='+encodeURIComponent(message)+'" target="_blank" rel="noopener"><span>Revisar mi caso con GALYON</span><span aria-hidden="true">→</span></a>'+
+   '<p class="advisor-caution">Orientación por síntomas. Confirmamos la causa con tus datos de campo y, cuando haga falta, análisis. Las imágenes son de referencia.</p></div>';
+ }
  function result(){
+  const maizeCase=data.crop==='Maíz'?maizeCases[data.symptom]:null;
+  if(maizeCase && maizeCase.part===data.part)return maizeResult(maizeCase);
   const symptom=chooseSymptoms().find(s=>s.key===data.symptom) || general.find(s=>s.key===data.symptom);
   const symptomName=symptom?.text||'Sin identificar';
   const possible=symptom?.possible||'';
@@ -539,26 +914,13 @@ document.addEventListener('keydown', e => {
   const insectCase=insectKeys.has(symKey)||isGenericInsect||symKey==='plagas';
   const rootsCase=rootKeys.has(symKey)||isGenericRoots;
   const fungusCase=foliarKeys.has(symKey)||isGenericFoliage;
-  // Regla específica: una fotografía no confirma el patógeno. Solo se ofrece una
-  // línea biológica cuando su diana y su momento de aplicación tienen sentido.
-  const maizEarLine={maiz_granos_manchas:'BACT',maiz_pudricion_mazorca:'BACT',maiz_perforaciones_mazorca:'INSECTA',maiz_mal_llenado_mazorca:null};
-  const selectedLine=Object.prototype.hasOwnProperty.call(maizEarLine,symKey)?maizEarLine[symKey]:(specialKeys.has(symKey)||symKey==='otro'?null:insectCase?'INSECTA':rootsCase?'TRICHO':fungusCase?'BACT':null);
+  const selectedLine=specialKeys.has(symKey)||symKey==='otro'?null:insectCase?'INSECTA':rootsCase?'TRICHO':fungusCase?'BACT':null;
   const portfolio={
    INSECTA:{name:'GALYON INSECTA',image:'assets/linea-insecta.jpg',anchor:'#detalle-insecta',tag:'MANEJO BIOLÓGICO DE INSECTOS',detail:'Beauveria, Metarhizium o Bacillus thuringiensis, según la plaga identificada.',outcomes:['Un manejo más dirigido al insecto que está afectando tu cultivo.','Menor presión de insectos susceptibles cuando se utiliza la formulación adecuada.','Mejor protección del crecimiento nuevo mediante seguimiento y aplicaciones oportunas.']},
    TRICHO:{name:'GALYON TRICHO',image:'assets/linea-tricho.jpg',anchor:'#detalle-tricho',tag:'PROTECCIÓN BIOLÓGICA Y RAÍCES',detail:'Línea con Trichoderma spp. para considerar dentro de un manejo preventivo e integrado.',outcomes:['Condiciones más favorables para desarrollar raíces vigorosas.','Una estrategia biológica adicional frente a determinados hongos susceptibles, según la cepa.','Acompañamiento para cuidar el tejido nuevo y reducir riesgos futuros, sin recuperar tejido ya destruido.']},
    BACT:{name:'GALYON BACT',image:'assets/linea-bact.jpg',anchor:'#detalle-bact',tag:'VIGOR Y DESARROLLO VEGETAL',detail:'Bacillus subtilis o Bacillus amyloliquefaciens, con selección según la necesidad del cultivo.',outcomes:['Mejores condiciones para un crecimiento vegetal vigoroso.','Apoyo al desarrollo radicular y a la actividad biológica del entorno de la planta.','Un plan de aplicación y seguimiento ajustado a la respuesta del cultivo.']}
   };
   const choice=selectedLine?{...portfolio[selectedLine],outcomes:[...portfolio[selectedLine].outcomes]}:null;
-  if(choice && (symKey==='maiz_granos_manchas'||symKey==='maiz_pudricion_mazorca')){
-   choice.tag='APOYO BIOLÓGICO PREVENTIVO · DIAGNÓSTICO PREVIO';
-   choice.formulation='Bacillus amyloliquefaciens';
-   choice.detail='GALYON BACT — Bacillus amyloliquefaciens: formulación específica a evaluar como complemento preventivo para proteger tejido sano frente a hongos susceptibles, después de identificar la causa y verificar compatibilidad y uso previsto. No cura mazorcas podridas ni elimina micotoxinas.';
-  }
-  if(choice && symKey==='maiz_perforaciones_mazorca'){
-   choice.tag='MANEJO DE LARVAS SUSCEPTIBLES';
-   choice.formulation='Bacillus thuringiensis';
-   choice.detail='GALYON INSECTA — Bacillus thuringiensis: formulación específica para evaluar frente a larvas pequeñas susceptibles y expuestas, antes de que penetren en la mazorca. Requiere identificar la plaga y comprobar el uso indicado en la formulación; no se presume control de larvas protegidas dentro de la mazorca.';
-  }
   if(choice && symKey==='cacao_negro'){
    choice.detail='Bacillus amyloliquefaciens es una alternativa biológica para evaluar dentro del manejo de Phytophthora en cacao. Se enfoca en proteger el tejido sano, no en recuperar mazorcas podridas.';
    choice.tag='ALTERNATIVA BIOLÓGICA COMPLEMENTARIA PARA MAZORCA NEGRA';
@@ -575,9 +937,6 @@ document.addEventListener('keydown', e => {
 
   // Personalizar las metas al problema seleccionado; no equivale a prometer eficacia del producto.
   const caseOutcomes={
-   maiz_granos_manchas:['Reducir riesgos en las próximas mazorcas mediante un diagnóstico y manejo preventivo.','Evitar daños adicionales en tejidos sanos cuando la formulación sea apropiada.','Reconocer posibles problemas por hongos y actuar con prevención y monitoreo.'],
-   maiz_pudricion_mazorca:['Priorizar la sanidad y separación de las mazorcas afectadas.','Disminuir factores predisponentes y daños de insectos que abren entrada a hongos.','Evaluar un plan preventivo para la siguiente producción, no recuperar granos podridos.'],
-   maiz_perforaciones_mazorca:['Dirigir el manejo a larvas susceptibles cuando todavía estén expuestas.','Prevenir nuevas perforaciones con monitoreo y aplicaciones oportunas.','Conservar mejor mazorcas nuevas y sanas si el control resulta eficaz.'],
    cacao_blanco:['Proteger mejor las mazorcas que aún están sanas mediante un plan preventivo.','Reducir la presión de la moniliasis combinando vigilancia, retiro de frutos afectados y herramientas biológicas compatibles.','Dar seguimiento a la producción nueva para conservar una mayor proporción de frutos aprovechables.'],
    cacao_negro:['Priorizar la protección de las mazorcas que todavía no muestran daños.','Reducir condiciones que favorecen nuevas pudriciones con un manejo más dirigido.','Conservar más frutos sanos en el siguiente ciclo, si el manejo integrado resulta efectivo.'],
    cacao_escoba:['Identificar nuevos brotes anormales a tiempo para actuar antes de que avance el problema.','Disminuir la presión de la enfermedad con seguimiento y herramientas de manejo integrado.','Favorecer el desarrollo de brotes nuevos mejor cuidados.'],
@@ -636,14 +995,11 @@ document.addEventListener('keydown', e => {
   else if(symKey==='cacao_negro')contextTip='Revisa drenaje y humedad; el manejo preventivo debe centrarse en proteger mazorcas aún sanas.';
   else if(insectCase)contextTip='Busca el insecto o larva y, si es posible, toma una fotografía para seleccionar el microorganismo adecuado.';
   else if(rootsCase)contextTip='Revisa humedad y condición del suelo: los síntomas de raíz también pueden tener causas no infecciosas.';
-  if(symKey==='maiz_mal_llenado_mazorca')contextTip='No se trata automáticamente con un fungicida o bioinsumo. Revisa el agua y el calor durante la floración, la sincronía de polen y estigmas y un análisis de suelo para futuras decisiones.';
-  if(symKey==='maiz_perforaciones_mazorca')contextTip='Confirma si aún existen larvas pequeñas vivas; Bt se debe dirigir a larvas susceptibles antes de que entren y queden protegidas en la mazorca.';
-  if(symKey==='maiz_granos_manchas'||symKey==='maiz_pudricion_mazorca')contextTip='Separa mazorcas con moho o pudrición; algunos hongos producen micotoxinas. Una foto no confirma la especie, y los bioinsumos no descontaminan granos infectados.';
   const symptomsPhoto=symptom?.image?p(symptom.image):null;
   const cropReference=[...farmCrops,...gardenCrops].find(x=>x.key===data.crop)?.image||'';
   const displayPhoto=symptomsPhoto||(cropReference?p(cropReference):null);
   const isSymptomPhoto=Boolean(symptomsPhoto);
-  const isSyntheticReference=Boolean(symptom?.image && /^(v53[234]_|galyon_maiz_)/.test(symptom.image));
+  const isSyntheticReference=Boolean(symptom?.image && /^v53[234]_/.test(symptom.image));
   const isAdvisorConsultation=symKey==='otro';
   const imageBlock=displayPhoto?'<div class="advisor-evidence-image"><img src="'+e(displayPhoto)+'" alt="'+e(isAdvisorConsultation?'Asesor conversando con un agricultor para orientarlo':'Imagen de referencia de '+symptomName)+'" loading="lazy" decoding="async"><span class="advisor-evidence-tag">'+ (isAdvisorConsultation?'ASESORÍA PERSONALIZADA':isSyntheticReference?'ILUSTRACIÓN DE REFERENCIA':isSymptomPhoto?'FOTO DE REFERENCIA':'IMAGEN DEL CULTIVO') +'</span></div>':'';
   const confirmation='<small class="advisor-confirmation-note">Evaluación visual orientativa. Para confirmar el agente causal se necesita revisar la planta y, si corresponde, realizar análisis fitopatológicos.</small>';
@@ -652,9 +1008,8 @@ document.addEventListener('keydown', e => {
    : possible
     ? '<div class="advisor-problem-label">CAUSA A INVESTIGAR</div><h4>'+e(possible)+'</h4>'+confirmation
     : '<div class="advisor-problem-label">LO QUE OBSERVAS</div><h4>'+e(symptomName)+'</h4><small class="advisor-confirmation-note">Estos signos son comunes a varias causas. Necesitamos un detalle adicional para nombrar la más probable.</small>';
-  const poorKernelResult='<div class="advisor-next"><span class="advisor-result-label">PRIMERO, REVISEMOS EL MANEJO</span><strong>Suelo, polinización, agua y nutrición.</strong><p>El llenado incompleto puede deberse a problemas de polinización, calor, falta de agua o nutrición. No indica por sí solo un patógeno ni justifica recomendar automáticamente un bioinsumo.</p><p>Buscamos entender la causa y mejorar el llenado de futuras mazorcas; no recuperar los granos ausentes de las actuales. Revisa las condiciones durante la floración y valora un análisis de suelo para orientar la nutrición.</p><a class="advisor-line-link" href="#analisis">Conocer los análisis de suelo →</a><p>Continúa por WhatsApp con fotos reales, etapa del cultivo, condiciones de riego y datos de floración para orientar el siguiente paso.</p></div>';
-  const results=choice?'<div class="advisor-solution"><div class="advisor-solution-heading"><span>UNA LÍNEA GALYON PARA TU CASO</span><h4>Tu posible aliado: <strong>'+e(choice.name)+'</strong></h4></div><div class="advisor-product"><div class="advisor-product-photo"><img src="'+e(choice.image)+'" loading="lazy" decoding="async" alt="Presentación fotográfica de '+e(choice.name)+'"></div><div class="advisor-product-copy"><span>'+e(choice.tag)+'</span><h5>'+e(choice.formulation||choice.name)+'</h5><p class="advisor-formulation-line">'+e(choice.name)+'</p><p>'+e(choice.detail)+'</p><a href="'+e(choice.anchor)+'" class="advisor-line-link">Conocer esta línea →</a></div></div></div><div class="advisor-outcomes advisor-outcomes-new"><h4>¿Qué resultados puedes esperar?</h4><div class="advisor-outcome-cards">'+choice.outcomes.map((t,i)=>'<div class="advisor-outcome-card"><span class="advisor-outcome-index">'+('0'+(i+1))+'</span><p>'+e(t)+'</p></div>').join('')+'</div><small>Son objetivos de manejo, no resultados garantizados. La eficacia depende de la cepa, formulación, aplicación y condiciones del cultivo.</small></div>':symKey==='maiz_mal_llenado_mazorca'?poorKernelResult:'<div class="advisor-next"><span class="advisor-result-label">PRIMERO, ENTENDAMOS EL PROBLEMA</span><strong>La alternativa correcta depende de lo que esté ocurriendo.</strong><p>Con la información disponible no sería responsable recomendar una formulación todavía. Un asesor GALYON puede revisar tus fotos y ayudarte a elegir entre TRICHO, BACT e INSECTA según corresponda.</p></div>';
-  const message='Hola, GALYON. Completé el Asesor de Cultivos. Lugar: '+data.area+'. Cultivo: '+data.crop+'. Parte afectada: '+(partsForCrop().find(x=>x.key===data.part)?.text||data.part)+'. Síntomas: '+symptomName+'.'+(probable?' Lo más probable según los signos: '+probable.name+' (pendiente de confirmar).':(possible?' Causa a investigar: '+possible+'.':''))+(choice?' Quisiera evaluar '+choice.name+(choice.formulation?' ('+choice.formulation+' como posibilidad)':'')+' y la formulación apropiada.':(symKey==='maiz_mal_llenado_mazorca'?' Quisiera revisar polinización, agua y nutrición, y consultar qué análisis de suelo conviene, sin asignar un bioinsumo automáticamente.':' Necesito que me recomienden una formulación después de revisar el caso.'))+' ¿Qué fotografías o datos adicionales necesitan para mi asesoría gratuita?';
+  const results=choice?'<div class="advisor-solution"><div class="advisor-solution-heading"><span>UNA LÍNEA GALYON PARA TU CASO</span><h4>Tu posible aliado: <strong>'+e(choice.name)+'</strong></h4></div><div class="advisor-product"><div class="advisor-product-photo"><img src="'+e(choice.image)+'" loading="lazy" decoding="async" alt="Presentación fotográfica de '+e(choice.name)+'"></div><div class="advisor-product-copy"><span>'+e(choice.tag)+'</span><h5>'+e(choice.formulation||choice.name)+'</h5><p class="advisor-formulation-line">'+e(choice.name)+'</p><p>'+e(choice.detail)+'</p><a href="'+e(choice.anchor)+'" class="advisor-line-link">Conocer esta línea →</a></div></div></div><div class="advisor-outcomes advisor-outcomes-new"><h4>¿Qué resultados puedes esperar?</h4><div class="advisor-outcome-cards">'+choice.outcomes.map((t,i)=>'<div class="advisor-outcome-card"><span class="advisor-outcome-index">'+('0'+(i+1))+'</span><p>'+e(t)+'</p></div>').join('')+'</div><small>Son objetivos de manejo, no resultados garantizados. La eficacia depende de la cepa, formulación, aplicación y condiciones del cultivo.</small></div>':'<div class="advisor-next"><span class="advisor-result-label">PRIMERO, ENTENDAMOS EL PROBLEMA</span><strong>La alternativa correcta depende de lo que esté ocurriendo.</strong><p>Con la información disponible no sería responsable recomendar una formulación todavía. Un asesor GALYON puede revisar tus fotos y ayudarte a elegir entre TRICHO, BACT e INSECTA según corresponda.</p></div>';
+  const message='Hola, GALYON. Completé el Asesor de Cultivos. Lugar: '+data.area+'. Cultivo: '+data.crop+'. Parte afectada: '+(partsForCrop().find(x=>x.key===data.part)?.text||data.part)+'. Síntomas: '+symptomName+'.'+(probable?' Lo más probable según los signos: '+probable.name+' (pendiente de confirmar).':(possible?' Causa a investigar: '+possible+'.':''))+(choice?' Quisiera evaluar '+choice.name+(choice.formulation?' ('+choice.formulation+' como posibilidad)':'')+' y la formulación apropiada.':' Necesito que me recomienden una formulación después de revisar el caso.')+' ¿Qué fotografías o datos adicionales necesitan para mi asesoría gratuita?';
   return '<div class="advisor-result-v523"><div class="advisor-result-hero"><div><span class="advisor-result-label">RESULTADO DE TU CONSULTA</span><h3>Un camino más claro para cuidar tu cultivo.</h3><p>Revisamos lo que seleccionaste y te mostramos el siguiente paso.</p></div></div><div class="advisor-summary"><span><b>Cultivo</b>'+e(data.crop)+'</span><span><b>Parte afectada</b>'+e(partsForCrop().find(x=>x.key===data.part)?.text||data.part)+'</span><span><b>Síntoma seleccionado</b>'+e(symptomName)+'</span></div><div class="advisor-evidence'+(!imageBlock?' is-text-only':'')+'">'+imageBlock+'<div class="advisor-evidence-copy">'+badge+'<p>'+e(guidance)+'</p></div></div>'+results+'<div class="advisor-tip"><div><strong>Un consejo para comenzar</strong><p>'+e(contextTip)+'</p></div></div><a class="advisor-cta advisor-cta-v523" href="https://wa.me/593968933445?text='+encodeURIComponent(message)+'" target="_blank" rel="noopener"><span>Consulta gratis con un asesor</span><span aria-hidden="true">→</span></a><p class="advisor-caution">Es una orientación basada en los síntomas seleccionados; para confirmar la causa se requiere evaluación técnica y, cuando corresponda, análisis de laboratorio. Las imágenes generadas son ilustrativas, no pruebas diagnósticas ni fotografías clínicas verificadas; el producto debe validarse para el caso concreto.</p></div>';
  }
 
