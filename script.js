@@ -264,8 +264,10 @@ document.addEventListener('keydown', e => {
  const back=document.getElementById('advisor-back');
  const restart=document.getElementById('advisor-restart');
  const fields=['area','crop','part','symptom'];
- const data={area:'',crop:'',part:'',symptom:''};
- let step=0;
+ const ENABLE_GARDEN_MODE=false; // Cambiar a true para reactivar finca/huerto y sus cuatro pasos.
+ const firstStep=ENABLE_GARDEN_MODE?0:1;
+ const data={area:ENABLE_GARDEN_MODE?'':'Finca o plantación',crop:'',part:'',symptom:''};
+ let step=firstStep;
  const p=key=>'assets/asesor/'+key+'.webp';
  const e=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  const a=(key,text,image='',sub='',possible='',guidance='',line='')=>({key,text,image,sub,possible,guidance,line});
@@ -631,10 +633,13 @@ document.addEventListener('keydown', e => {
  }
 
  function render(){
-  label.textContent=step===4?'Tu orientación inicial':`Paso ${step+1} de 4`;
-  [...progress.children].forEach((el,i)=>el.classList.toggle('is-active',i<=Math.min(step,3)));
-  back.hidden=step===0||step===4;
-  restart.hidden=step===0;
+  const totalSteps=ENABLE_GARDEN_MODE?4:3;
+  const visibleStep=step-firstStep;
+  label.textContent=step===4?'Tu orientación inicial':`Paso ${visibleStep+1} de ${totalSteps}`;
+  root.dataset.advisorTotalSteps=String(totalSteps);
+  [...progress.children].forEach((el,i)=>{el.hidden=i>=totalSteps;el.classList.toggle('is-active',i<=Math.min(visibleStep,totalSteps-1));});
+  back.hidden=step===firstStep||step===4;
+  restart.hidden=step===firstStep;
   root.dataset.advisorStep=String(step);
   if(step===0){
    content.innerHTML='<h3>¿Dónde tienes tus cultivos?</h3><p class="advisor-desc">Escoge el espacio que más se parece al tuyo.</p>'+grid([
@@ -703,7 +708,7 @@ document.addEventListener('keydown', e => {
    if(!image.complete) image.addEventListener('load',keepAdvisorTop,{once:true});
   });
  }
- back.addEventListener('click',ev=>{ev.preventDefault();step=Math.max(0,step-1);renderWithoutJump();});
- restart.addEventListener('click',ev=>{ev.preventDefault();step=0;fields.forEach(f=>data[f]='');renderWithoutJump();});
+ back.addEventListener('click',ev=>{ev.preventDefault();step=Math.max(firstStep,step-1);renderWithoutJump();});
+ restart.addEventListener('click',ev=>{ev.preventDefault();step=firstStep;fields.forEach(f=>data[f]='');data.area=ENABLE_GARDEN_MODE?'':'Finca o plantación';renderWithoutJump();});
  render();
 })();

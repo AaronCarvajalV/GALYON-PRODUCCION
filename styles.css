@@ -1534,3 +1534,7 @@
   .advisor-method h3 { font-size: 20px; }
   .advisor-workspace-heading h3 { font-size: 25px; }
 }
+
+/* Barra del asesor según el modo activo. */
+#advisor-app[data-advisor-total-steps="3"] .advisor-progress-bar{grid-template-columns:repeat(3,1fr)}
+.advisor-progress-bar i[hidden]{display:none}
