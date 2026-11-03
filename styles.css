@@ -1565,3 +1565,18 @@
  .advisor-integrated .advisor-options-crops{grid-template-columns:repeat(2,minmax(0,1fr))}
  .advisor-integrated .advisor-shell{gap:28px}
 }
+
+/* Portadas y nombres separados, únicamente en la selección de cultivos. */
+#advisor-app[data-advisor-step="1"] .advisor-progress{display:none}
+#advisor-app[data-advisor-step="1"] .advisor-options-crops .advisor-option{min-height:206px}
+#advisor-app[data-advisor-step="1"] .advisor-options-crops .advisor-option:not(.is-text){background:#fff;border:1px solid #dbe5d7;justify-content:flex-start}
+#advisor-app[data-advisor-step="1"] .advisor-options-crops .advisor-option:not(.is-text)::after{display:none}
+#advisor-app[data-advisor-step="1"] .advisor-options-crops .advisor-option img{position:static;width:100%;height:160px;object-fit:cover;object-position:center center;aspect-ratio:auto}
+#advisor-app[data-advisor-step="1"] .advisor-options-crops .advisor-option:not(.is-text) .advisor-option-text{background:#fff;padding:13px 14px;flex:1}
+#advisor-app[data-advisor-step="1"] .advisor-options-crops .advisor-option:not(.is-text) strong{color:#173d2a;text-shadow:none;font-size:15px;line-height:1.4}
+@media(max-width:760px){
+ #advisor-app[data-advisor-step="1"] .advisor-options-crops .advisor-option{min-height:172px}
+ #advisor-app[data-advisor-step="1"] .advisor-options-crops .advisor-option img{height:120px}
+ #advisor-app[data-advisor-step="1"] .advisor-options-crops .advisor-option:not(.is-text) .advisor-option-text{padding:12px 10px}
+ #advisor-app[data-advisor-step="1"] .advisor-options-crops .advisor-option:not(.is-text) strong{font-size:14px}
+}

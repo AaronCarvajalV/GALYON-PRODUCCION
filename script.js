@@ -277,6 +277,12 @@ document.addEventListener('keydown', e => {
   a('Aguacate','Aguacate','v537_aguacate_arbol'),a('Hortalizas','Hortalizas','v522_jardin_hortalizas'),
   a('Otro cultivo','Otro cultivo','','Descríbenos tu cultivo')
  ];
+ // Portadas exclusivas del selector; conservar imágenes de referencia de los resultados.
+ const farmCropCovers={
+  'Cacao':'catalogo-cacao','Banano':'catalogo-banano','Maíz':'catalogo-maiz',
+  'Mango':'catalogo-mango','Caña de azúcar':'catalogo-cana','Café':'catalogo-cafe',
+  'Aguacate':'catalogo-aguacate','Hortalizas':'catalogo-hortalizas'
+ };
  const gardenCrops=[
   a('Hortalizas','Hortalizas','v522_jardin_hortalizas'), a('Tomate','Tomate','v532_tomate_planta','Cultivo de patio o maceta'),
   a('Ají o pimiento','Ají o pimiento','v532_aji_planta','Frutos y hojas'),a('Cítricos','Cítricos','v532_citricos_arbol','Limón, naranja, mandarina'),
@@ -648,7 +654,7 @@ document.addEventListener('keydown', e => {
    ],'places');
   }else if(step===1){
    const garden=data.area==='Huerto o jardín';
-   content.innerHTML='<h3>¿Qué cultivo tienes?</h3><p class="advisor-desc">Selecciona tu planta para mostrar problemas frecuentes y ayudarte a describirlos.</p>'+grid(garden?gardenCrops:farmCrops,'crops');
+   content.innerHTML='<h3>¿Qué cultivo tienes?</h3><p class="advisor-desc">Selecciona tu planta para mostrar problemas frecuentes y ayudarte a describirlos.</p>'+grid(garden?gardenCrops:farmCrops.map(crop=>({...crop,image:farmCropCovers[crop.key]||crop.image})),'crops');
   }else if(step===2){
    content.innerHTML='<h3>¿Dónde observas el problema?</h3><p class="advisor-desc">Selecciona la parte donde se nota más el daño de tu '+e(data.crop.toLowerCase())+'.</p>'+grid(partsForCrop(),'parts');
   }else if(step===3){
