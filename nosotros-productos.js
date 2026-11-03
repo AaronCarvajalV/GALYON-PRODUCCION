@@ -1,39 +1,27 @@
 'use strict';
-// Carrusel del tercer cuadro. El número de imágenes puede ampliarse sin cambiar el temporizador.
+// Un único reloj mantiene alineados problema, solución y objetivo del cultivo.
 (()=>{
- const gallery=document.querySelector('.identity-photo-solution');
+ const gallery=document.querySelector('.identity-gallery-steps');
  if(!gallery)return;
- const slides=[...gallery.querySelectorAll('.identity-product-slide')];
- const controls=gallery.querySelector('.identity-product-controls');
- const dots=[...gallery.querySelectorAll('[data-product-slide]')];
- const pause=gallery.querySelector('.identity-product-pause');
- if(slides.length<2||!controls||!pause)return;
+ const groups=[...gallery.querySelectorAll('.identity-sequence-slides')].map(group=>[...group.querySelectorAll('.identity-sequence-slide')]);
+ if(!groups.length||groups.some(slides=>slides.length<2))return;
+ const count=Math.min(...groups.map(slides=>slides.length));
  const motion=window.matchMedia('(prefers-reduced-motion: reduce)');
- let current=0,timer=null,paused=motion.matches,visible=false,hovered=false;
+ let current=0,timer=null,visible=false;
  function show(index){
-  current=(index+slides.length)%slides.length;
-  slides.forEach((slide,i)=>{slide.classList.toggle('is-current',i===current);slide.setAttribute('aria-hidden',String(i!==current));});
-  dots.forEach((dot,i)=>dot.setAttribute('aria-pressed',String(i===current)));
+  current=index%count;
+  groups.forEach(slides=>slides.forEach((slide,i)=>{
+   slide.classList.toggle('is-current',i===current);
+   slide.setAttribute('aria-hidden',String(i!==current));
+  }));
  }
  function schedule(){
   clearInterval(timer);timer=null;
-  pause.setAttribute('aria-pressed',String(paused));
-  pause.setAttribute('aria-label',paused?'Reanudar carrusel':'Pausar carrusel');
-  if(pause.dataset.paused!==String(paused)){
-   pause.dataset.paused=String(paused);
-   pause.innerHTML=paused?'<svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path fill="currentColor" d="M4 2l10 6-10 6z"/></svg>':'<svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path fill="currentColor" d="M3 2h4v12H3zM9 2h4v12H9z"/></svg>';
-  }
-  if(visible&&!document.hidden&&!hovered&&!paused&&!gallery.contains(document.activeElement))timer=setInterval(()=>show(current+1),6000);
+  if(visible&&!document.hidden&&!motion.matches)timer=setInterval(()=>show(current+1),6000);
  }
- dots.forEach(dot=>dot.addEventListener('click',()=>{show(Number(dot.dataset.productSlide));schedule();}));
- pause.addEventListener('click',()=>{paused=!paused;schedule();});
- gallery.addEventListener('mouseenter',()=>{hovered=true;schedule();});
- gallery.addEventListener('mouseleave',()=>{hovered=false;schedule();});
- gallery.addEventListener('focusin',schedule);
- gallery.addEventListener('focusout',()=>setTimeout(schedule,0));
  document.addEventListener('visibilitychange',schedule);
- motion.addEventListener('change',()=>{paused=motion.matches;schedule();});
+ motion.addEventListener('change',()=>{if(motion.matches)show(0);schedule();});
  if('IntersectionObserver' in window)new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;schedule();}).observe(gallery);
  else visible=true;
- controls.hidden=false;show(0);schedule();
+ show(0);schedule();
 })();
