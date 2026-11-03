@@ -24,9 +24,6 @@ try {
 } catch(e) {}
 function save(){try{localStorage.setItem('galyon_cart_v20', JSON.stringify(cart));}catch(e){}}
 function count(){return Object.values(cart).reduce((a,b)=>a+b,0)}
-function subtotal(){return Object.entries(cart).reduce((sum,[sku,qty])=>sum+(PRODUCTS[sku]?.unit || 0)*qty,0)}
-function total(){return subtotal()}
-function money(n){return '$'+n.toFixed(2).replace('.00','')}
 function shippingCategory(){
  const skus=Object.keys(cart).filter(sku=>PRODUCTS[sku] && cart[sku]>0);
  const combos=skus.some(sku=>sku.startsWith('combo-'));
@@ -44,17 +41,16 @@ function shippingShort(){
 function toast(message){const el=$('toast');if(!el)return;el.textContent=message;el.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>el.classList.remove('show'),2700)}
 function city(){return $('ship-city')?.value.trim()||''}
 function checkoutText(){
- const rows=Object.entries(cart).filter(([sku,qty])=>PRODUCTS[sku] && qty>0).map(([sku,qty])=>{const p=PRODUCTS[sku];const unit=p.unitLabel||'unidad';const unitText=qty===1?unit:unit+'s';return `• ${qty} ${unitText} de ${p.name} — ${money(qty*p.unit)}`;}).join('\n');
+ const rows=Object.entries(cart).filter(([sku,qty])=>PRODUCTS[sku] && qty>0).map(([sku,qty])=>{const p=PRODUCTS[sku];const unit=p.unitLabel||'unidad';const unitText=qty===1?unit:unit+'s';return `• ${qty} ${unitText} de ${p.name}`;}).join('\n');
 
  return `¡Hola, GALYON! Quisiera solicitar estos productos:
 
 ${rows}
 
-Subtotal de productos: ${money(subtotal())}
 Envío: ${shippingCategory()}
-Total estimado de productos: ${money(total())}${city()?'\nCiudad o cantón: '+city():''}
+Cotización por WhatsApp.${city()?'\nCiudad o cantón: '+city():''}
 
-¿Me confirman disponibilidad, métodos de pago y, si hay productos individuales, su costo de envío?`;
+¿Me confirman precios, disponibilidad, métodos de pago y, si hay productos individuales, su costo de envío?`;
 }
 
 function updateCheckout(){
@@ -71,12 +67,9 @@ function renderCart(){
  document.querySelectorAll('.formulations-cart-count').forEach(el=>el.textContent=n);
  $('cart-items').innerHTML=Object.entries(cart).filter(([sku,qty])=>PRODUCTS[sku]&&qty>0).map(([sku,qty])=>{
   const p=PRODUCTS[sku];
-  return `<div class="cart-item"><img src="${p.image}" alt="Productos de la línea ${p.line}" loading="lazy"><div class="cart-item-main"><strong>${p.name}</strong><small>${p.sizeLabel||'1 litro'} por unidad · ${money(p.unit)}</small><div class="qty"><button type="button" data-change="${sku}" data-delta="-1" aria-label="Restar una unidad de ${p.name}">−</button><span aria-label="${qty} unidades">${qty}</span><button type="button" data-change="${sku}" data-delta="1" aria-label="Añadir una unidad de ${p.name}">+</button></div></div><span class="cart-item-price">${money(p.unit*qty)}</span></div>`;
+  return `<div class="cart-item"><img src="${p.image}" alt="Productos de la línea ${p.line}" loading="lazy"><div class="cart-item-main"><strong>${p.name}</strong><small>${p.sizeLabel||'1 litro'} por unidad</small><div class="qty"><button type="button" data-change="${sku}" data-delta="-1" aria-label="Restar una unidad de ${p.name}">−</button><span aria-label="${qty} unidades">${qty}</span><button type="button" data-change="${sku}" data-delta="1" aria-label="Añadir una unidad de ${p.name}">+</button></div></div></div>`;
  }).join('');
- $('cart-total').textContent=money(total());
  const deal=$('deal-status'); if(deal) deal.textContent=shippingCategory();
- const calc=$('cart-breakdown');
- if(calc) calc.innerHTML=`<span>Subtotal de productos</span><strong>${money(subtotal())}</strong><span>Envío</span><strong>${shippingShort()}</strong>`;
  document.querySelectorAll('[data-change]').forEach(b=>b.addEventListener('click',()=>change(b.dataset.change,Number(b.dataset.delta))));
  updateCheckout();
 }
