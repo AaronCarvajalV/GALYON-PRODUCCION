@@ -1430,3 +1430,59 @@
   .products .product-card .product-tag{display:block;font-size:12px;}
 }
 @media(max-width:360px){.products .product-card .product-top{flex-wrap:wrap;}.products .product-card .product-tag{font-size:11.5px;}}
+
+/* Jerarquía de lectura: descripciones y planes primero, consulta secundaria. */
+.products .product-card .product-details>p {
+  font-size: 15px;
+  line-height: 1.75;
+  height: auto;
+  min-height: 0;
+}
+.product-bottom {
+  flex-wrap: wrap;
+  align-items: center;
+  row-gap: 14px;
+}
+.product-bottom strong {
+  display: block;
+  font-size: 12px;
+  line-height: 1.5;
+  font-weight: 600;
+  letter-spacing: 0;
+  color: #566d5d;
+}
+.product-bottom small { font-size: 11px; line-height: 1.5; }
+.products .product-card .view-line { font-size: 14px; }
+.combos .combo-body h3 { font-size: 21px; line-height: 1.35; }
+.combos .combo-body p { font-size: 15px; line-height: 1.75; }
+.combos .combo-body small { font-size: 13px; line-height: 1.6; }
+.combos .combo-price strong {
+  font-size: 13px;
+  line-height: 1.5;
+  font-weight: 600;
+  color: #566d5d;
+}
+.combos .combo-price span { font-size: 13px; }
+.soil-plan-heading b { font-size: 20px; line-height: 1.35; }
+.soil-plan-heading small { font-size: 14px; line-height: 1.65; }
+.soil-plan-content p { font-size: 15px; line-height: 1.75; }
+.soil-plan-content .soil-plan-caution { font-size: 13px; }
+.soil-plan-summary .soil-plan-price,
+.soil-plan:hover .soil-plan-price,
+.soil-plan[open] .soil-plan-price {
+  font-size: 12px!important;
+  font-weight: 600!important;
+  letter-spacing: 0!important;
+}
+.rice-price strong {
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 600;
+}
+.formulations-from { font-size: 11px; font-weight: 600; white-space: normal; }
+.formulation-price { font-size: 14px; font-weight: 600; }
+@media(max-width:760px) {
+  .soil-plan-heading b { font-size: 19px; }
+  .soil-plan-heading small { font-size: 13px; }
+  .soil-plan-summary { column-gap: 12px; }
+}
