@@ -8,10 +8,10 @@ const PRODUCTS = {
   'insecta-bt': {name:'GALYON INSECTA · Bacillus thuringiensis', line:'insecta', image:'assets/linea-insecta.jpg', unit:20, unitLabel:'litro', sizeLabel:'1 litro'},
   'insecta-beauveria': {name:'GALYON INSECTA · Beauveria bassiana', line:'insecta', image:'assets/linea-insecta.jpg', unit:20, unitLabel:'litro', sizeLabel:'1 litro'},
   'insecta-metarhizium': {name:'GALYON INSECTA · Metarhizium anisopliae', line:'insecta', image:'assets/linea-insecta.jpg', unit:20, unitLabel:'litro', sizeLabel:'1 litro'},
-  'combo-cacao': {name:'GALYON CACAO TITÁN · 2 L TRICHO + 2 L BACT', line:'combo', image:'assets/linea-tricho.jpg', unit:70, unitLabel:'combo', sizeLabel:'4 litros'},
-  'combo-mango': {name:'GALYON MANGO FURIOSO · 2 L BACT + 2 L INSECTA', line:'combo', image:'assets/linea-bact.jpg', unit:70, unitLabel:'combo', sizeLabel:'4 litros'},
-  'combo-cana': {name:'GALYON CAÑA BRAVA · 2 L BACT + 2 L INSECTA', line:'combo', image:'assets/linea-insecta.jpg', unit:70, unitLabel:'combo', sizeLabel:'4 litros'},
-  'combo-banano': {name:'GALYON VERDE BESTIA · 2 L TRICHO + 2 L BACT', line:'combo', image:'assets/linea-tricho.jpg', unit:70, unitLabel:'combo', sizeLabel:'4 litros'}
+  'combo-cacao': {name:'Cacao Vital · 2 L TRICHO + 2 L BACT', line:'combo', image:'assets/linea-tricho.jpg', unit:70, unitLabel:'combo', sizeLabel:'4 litros'},
+  'combo-mango': {name:'Mango Selecto · 2 L BACT + 2 L INSECTA', line:'combo', image:'assets/linea-bact.jpg', unit:70, unitLabel:'combo', sizeLabel:'4 litros'},
+  'combo-cana': {name:'Caña Productiva · 2 L BACT + 2 L INSECTA', line:'combo', image:'assets/linea-insecta.jpg', unit:70, unitLabel:'combo', sizeLabel:'4 litros'},
+  'combo-banano': {name:'Banano Próspero · 2 L TRICHO + 2 L BACT', line:'combo', image:'assets/linea-tricho.jpg', unit:70, unitLabel:'combo', sizeLabel:'4 litros'}
 };
 const $ = id => document.getElementById(id);
 let cart = {};
