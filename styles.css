@@ -1580,3 +1580,8 @@
  #advisor-app[data-advisor-step="1"] .advisor-options-crops .advisor-option:not(.is-text) .advisor-option-text{padding:12px 10px}
  #advisor-app[data-advisor-step="1"] .advisor-options-crops .advisor-option:not(.is-text) strong{font-size:14px}
 }
+
+/* Maíz: encuadre amplio únicamente en la selección de la parte afectada. */
+#advisor-app[data-advisor-crop="Maíz"][data-advisor-step="2"] .advisor-options-parts .advisor-option{aspect-ratio:2/1;min-height:0;background:#e3ece0}
+#advisor-app[data-advisor-crop="Maíz"][data-advisor-step="2"] .advisor-options-parts .advisor-option img{object-fit:contain;object-position:center;transform:none}
+@media(max-width:760px){#advisor-app[data-advisor-crop="Maíz"][data-advisor-step="2"] .advisor-options-parts{grid-template-columns:minmax(0,1fr)}}

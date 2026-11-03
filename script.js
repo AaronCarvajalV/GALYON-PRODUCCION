@@ -295,7 +295,7 @@ document.addEventListener('keydown', e => {
   'Cacao':[['Toda la planta','v52_cacao_planta_completa'],['Hojas','v52_cacao_hojas'],['Raíces o tallo','v52_cacao_raices'],['Frutos o mazorcas','v52_cacao_mazorcas']],
   'Café':[['Toda la planta','v52_cafe_planta_completa'],['Hojas','v52_cafe_hojas'],['Raíces o tallo','v52_cafe_raices'],['Frutos o mazorcas','v52_cafe_cerezas']],
   'Banano':[['Toda la planta','v535_banano_planta'],['Hojas','v526_banano_hojas'],['Raíces o tallo','v535_banano_pseudotallo'],['Frutos o mazorcas','v52_banano_racimo']],
-  'Maíz':[['Toda la planta','v52_maiz_campo'],['Hojas','v522_maiz_hojas'],['Raíces o tallo','v52_maiz_planta_raices'],['Frutos o mazorcas','maiz']],
+  'Maíz':[['Toda la planta','maiz_toda_planta'],['Hojas','maiz_hojas'],['Raíces o tallo','maiz_raices_tallo'],['Frutos o mazorcas','maiz_mazorcas']],
   'Caña de azúcar':[['Toda la planta','v52_cana_plantacion'],['Hojas','v522_cana_hojas'],['Raíces o tallo',''],['Frutos o mazorcas','v522_cana_tallos']],
   'Arroz':[['Toda la planta','v525_arroz_planta'],['Hojas','v525_arroz_hojas'],['Raíces o tallo','v525_arroz_tallos'],['Frutos o mazorcas','v525_arroz_espigas']],
   'Maracuyá':[['Toda la planta','maracuya'],['Hojas',''],['Raíces o tallo',''],['Frutos o mazorcas','maracuya']],
@@ -647,6 +647,7 @@ document.addEventListener('keydown', e => {
   back.hidden=step===firstStep||step===4;
   restart.hidden=step===firstStep;
   root.dataset.advisorStep=String(step);
+  root.dataset.advisorCrop=data.crop;
   if(step===0){
    content.innerHTML='<h3>¿Dónde tienes tus cultivos?</h3><p class="advisor-desc">Escoge el espacio que más se parece al tuyo.</p>'+grid([
     a('Finca o plantación','Finca o plantación','finca','Cultivos de producción'),
