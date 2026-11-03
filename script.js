@@ -271,6 +271,65 @@ document.addEventListener('keydown', e => {
  const p=key=>'assets/asesor/'+key+'.webp';
  const e=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  const a=(key,text,image='',sub='',possible='',guidance='',line='')=>({key,text,image,sub,possible,guidance,line});
+ // BEGIN ADVISOR CARD IMAGES
+ // Solo presentación: no modificar imágenes ni datos de resultados.
+ const advisorCardImages={
+  "Maíz|Raíces o tallo|symptoms|maiz_base_pudricion": "ref-maiz-base-podrida",
+  "Maíz|Raíces o tallo|symptoms|maiz_raices_deterioradas": "ref-maiz-raices-oscuras",
+  "Maíz|Raíces o tallo|symptoms|maiz_galerias_tallo": "ref-maiz-galerias-tallo",
+  "Maíz|Raíces o tallo|symptoms|maiz_tallo_quebradizo": "ref-maiz-tallo-quebradizo",
+  "Mango|Toda la planta|symptoms|observacion_mango_amarillas": "ref-mango-arbol-amarillo",
+  "Mango|Toda la planta|symptoms|observacion_mango_insectos": "ref-mango-arbol-insectos",
+  "Mango|Toda la planta|symptoms|observacion_mango_crecimiento": "ref-mango-crecimiento-desigual",
+  "Mango|Hojas|symptoms|observacion_mango_insectos": "ref-mango-hojas-comidas",
+  "Mango|Hojas|symptoms|observacion_mango_polvo": "ref-mango-hojas-polvo",
+  "Mango|Raíces o tallo|symptoms|observacion_mango_decaimiento": "ref-mango-base-decaimiento",
+  "Mango|Raíces o tallo|symptoms|observacion_mango_insectos": "ref-mango-tallo-galerias",
+  "Caña de azúcar||parts|Raíces o tallo": "ref-cana-raices-categoria",
+  "Aguacate|Toda la planta|symptoms|observacion_aguacate_amarillas": "ref-aguacate-arbol-amarillo",
+  "Aguacate|Toda la planta|symptoms|observacion_aguacate_insectos": "ref-aguacate-arbol-insectos",
+  "Aguacate|Toda la planta|symptoms|observacion_aguacate_crecimiento": "ref-aguacate-crecimiento-desigual",
+  "Aguacate|Hojas|symptoms|observacion_aguacate_insectos": "ref-aguacate-hojas-comidas",
+  "Aguacate|Hojas|symptoms|observacion_aguacate_polvo": "ref-aguacate-hojas-polvo",
+  "Aguacate|Raíces o tallo|symptoms|observacion_aguacate_decaimiento": "ref-aguacate-base-decaimiento",
+  "Aguacate|Raíces o tallo|symptoms|observacion_aguacate_insectos": "ref-aguacate-tallo-galerias",
+  "Aguacate|Frutos o mazorcas|symptoms|observacion_aguacate_insectos": "ref-aguacate-frutos-perforados",
+  "Aguacate|Frutos o mazorcas|symptoms|observacion_aguacate_deformes": "ref-aguacate-frutos-deformes",
+  "Hortalizas||parts|Raíces o tallo": "ref-hortalizas-raices-categoria",
+  "Hortalizas||parts|Frutos o mazorcas": "ref-hortalizas-frutos-categoria",
+  "Cacao|Toda la planta|symptoms|cacao_debil": "ref-cacao-arbol-amarillo",
+  "Cacao|Toda la planta|symptoms|cacao_seco": "ref-cacao-ramas-secas",
+  "Cacao|Raíces o tallo|symptoms|cacao_raices": "ref-cacao-raices-danadas",
+  "Cacao|Frutos o mazorcas|symptoms|cacao_insecto": "ref-cacao-mazorca-insectos",
+  "Banano|Toda la planta|symptoms|banano_marchitez": "ref-banano-arbol-decaido",
+  "Banano|Raíces o tallo|symptoms|banano_picudo": "ref-banano-cormo-galerias",
+  "Mango|Hojas|symptoms|observacion_mango_amarillas": "ref-mango-hojas-amarillas",
+  "Aguacate|Hojas|symptoms|observacion_aguacate_amarillas": "ref-aguacate-hojas-amarillas",
+  "Caña de azúcar|Toda la planta|symptoms|cana_roya": "ref-cana-hoja-roya",
+  "Caña de azúcar|Hojas|symptoms|cana_roya": "ref-cana-hoja-roya",
+  "Caña de azúcar|Toda la planta|symptoms|cana_carbon": "ref-cana-carbon-referencia",
+  "Caña de azúcar|Raíces o tallo|symptoms|cana_carbon": "ref-cana-carbon-referencia",
+  "Caña de azúcar|Frutos o mazorcas|symptoms|cana_carbon": "ref-cana-carbon-referencia",
+  "Caña de azúcar|Toda la planta|symptoms|cana_cogollo": "ref-cana-cogollo-danado",
+  "Caña de azúcar|Hojas|symptoms|cana_cogollo": "ref-cana-cogollo-danado",
+  "Caña de azúcar|Frutos o mazorcas|symptoms|cana_cogollo": "ref-cana-cogollo-danado",
+  "Caña de azúcar|Raíces o tallo|symptoms|cana_barrenador": "ref-cana-tallo-perforado",
+  "Caña de azúcar|Frutos o mazorcas|symptoms|cana_barrenador": "ref-cana-tallo-perforado",
+  "Café|Toda la planta|symptoms|cafe_roya": "ref-cafe-roya-referencia",
+  "Café|Hojas|symptoms|cafe_roya": "ref-cafe-roya-referencia",
+  "Café|Toda la planta|symptoms|cafe_ramas": "ref-cafe-rama-seca",
+  "Café|Raíces o tallo|symptoms|cafe_ramas": "ref-cafe-rama-seca",
+  "Café|Hojas|symptoms|cafe_hojas": "ref-cafe-hojas-manchas",
+  "Café|Frutos o mazorcas|symptoms|cafe_broca": "ref-cafe-cerezas-perforadas",
+  "Hortalizas|Toda la planta|symptoms|hort_manchas": "ref-hortalizas-manchas-hojas",
+  "Hortalizas|Hojas|symptoms|hort_manchas": "ref-hortalizas-manchas-hojas",
+  "Hortalizas|Toda la planta|symptoms|hort_blanco": "ref-hortalizas-polvo-blanco",
+  "Hortalizas|Hojas|symptoms|hort_blanco": "ref-hortalizas-polvo-blanco",
+  "Hortalizas|Toda la planta|symptoms|hort_insectos": "ref-hortalizas-hojas-comidas",
+  "Hortalizas|Hojas|symptoms|hort_insectos": "ref-hortalizas-hojas-comidas",
+  "Hortalizas|Frutos o mazorcas|symptoms|hort_frutos": "ref-hortalizas-frutos-manchas"
+};
+ // END ADVISOR CARD IMAGES
  const farmCrops=[
   a('Cacao','Cacao','cacao'),a('Banano','Banano','banano'),a('Maíz','Maíz','maiz'),
   a('Mango','Mango','v537_mango_arbol'),a('Caña de azúcar','Caña de azúcar','cana'),a('Café','Café','cafe'),
@@ -788,9 +847,15 @@ document.addEventListener('keydown', e => {
   const glyphs={pest:'<circle cx="24" cy="24" r="10"/><path d="M14 13 9 9m25 4 5-4M12 24H5m38 0h-7M14 35l-5 4m25-4 5 4M24 14v20M17 19l14 10"/>',spots:'<path d="M12 39C11 22 20 13 39 9c1 18-7 28-27 30Z"/><path d="M13 38 33 17"/><circle cx="21" cy="24" r="2"/><circle cx="29" cy="29" r="2"/>',rot:'<circle cx="24" cy="25" r="14"/><path d="M24 11c0-6 3-8 8-8M15 16c-5-3-8-2-10-1"/><path d="M17 30l4-5 4 2 5-7"/>',wilt:'<path d="M24 39V23M24 27c-11 2-14-5-14-13 9 0 14 6 14 13Zm0-4c0-8 5-13 14-13 0 8-3 14-14 13Z"/><path d="M12 42h24"/>',growth:'<path d="M24 40V10m0 13c-8 0-12-5-12-12 9 0 12 5 12 12Zm0-5c0-7 4-12 12-12 0 7-4 12-12 12Z"/><path d="M13 40h22"/>'};
   const badge=symptomClass?'<span class="advisor-symptom-illustration advisor-symptom-'+symptomClass+'" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'+glyphs[symptomClass]+'</svg></span>':'';
   const image=item.image?'<img src="'+e(p(item.image))+'" alt="" loading="lazy" decoding="async">':badge||'<span class="advisor-no-photo" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M12 36c15 0 25-11 25-26-14 0-26 9-26 26Z" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M15 32 34 15" fill="none" stroke="currentColor" stroke-width="2.5"/></svg></span>';
-  return '<button type="button" class="advisor-option'+(!item.image?' is-text':'')+'" data-advisor-value="'+e(item.key)+'">'+image+'<span class="advisor-option-text"><strong>'+e(item.text)+'</strong>'+(item.sub?'<small>'+e(item.sub)+'</small>':'')+'</span></button>';
+  return '<button type="button" class="advisor-option'+(!item.image?' is-text':'')+'" data-advisor-value="'+e(item.key)+'"'+(item.referenceImage?' data-reference-image="true" aria-description="Ilustración generada de referencia"':'')+'>'+image+'<span class="advisor-option-text"><strong>'+e(item.text)+'</strong>'+(item.sub?'<small>'+e(item.sub)+'</small>':'')+'</span></button>';
  }
- function grid(items,kind=''){return '<div class="advisor-options '+(kind?'advisor-options-'+kind:'')+'">'+items.map(option).join('')+'</div>';}
+ function grid(items,kind=''){
+  const part=kind==='parts'?'':data.part;
+  return '<div class="advisor-options '+(kind?'advisor-options-'+kind:'')+'">'+items.map(item=>{
+   const image=data.area==='Finca o plantación'&&advisorCardImages[[data.crop,part,kind,item.key].join('|')];
+   return option(image?{...item,image,referenceImage:true}:item);
+  }).join('')+'</div>';
+ }
  const organSymptomKeys={
   'Banano':{'Toda la planta':['banano_marchitez'], 'Hojas':['banano_sigatoka'], 'Raíces o tallo':['banano_tallo','banano_raices','banano_picudo'], 'Frutos o mazorcas':[]},
   'Maíz':Object.fromEntries(specificParts['Maíz'].map(([part])=>[part,Object.keys(maizeCases).filter(key=>maizeCases[key].part===part)])),

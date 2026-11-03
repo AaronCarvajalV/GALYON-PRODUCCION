@@ -1595,3 +1595,8 @@
 #advisor-app[data-advisor-crop="Maíz"] .advisor-options-symptoms .advisor-option:is([data-advisor-value="maiz_manchas"],[data-advisor-value="maiz_roya"],[data-advisor-value="maiz_oruga"],[data-advisor-value="maiz_clorosis_intervenal"]){aspect-ratio:16/9;min-height:0}
 #advisor-app[data-advisor-crop="Maíz"] .advisor-options-symptoms .advisor-option:is([data-advisor-value="maiz_manchas"],[data-advisor-value="maiz_roya"],[data-advisor-value="maiz_oruga"],[data-advisor-value="maiz_clorosis_intervenal"]) img{object-fit:cover;object-position:center;transform:none}
 @media(max-width:760px){#advisor-app[data-advisor-crop="Maíz"] .advisor-options-symptoms:has([data-advisor-value="maiz_clorosis_intervenal"]){grid-template-columns:minmax(0,1fr)}}
+
+/* Ilustraciones nuevas auditadas del asesor; solo las tarjetas asignadas. */
+.crop-advisor .advisor-options .advisor-option[data-reference-image="true"]{min-height:0;aspect-ratio:16/9}
+.crop-advisor .advisor-options .advisor-option[data-reference-image="true"] img{object-fit:cover;object-position:center;transform:none}
+@media(max-width:760px){.crop-advisor .advisor-options:has([data-reference-image="true"]){grid-template-columns:minmax(0,1fr)}}
