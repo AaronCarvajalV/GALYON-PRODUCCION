@@ -1590,3 +1590,8 @@
 #advisor-app[data-advisor-crop="Maíz"] .advisor-options-symptoms .advisor-option:is([data-advisor-value="maiz_amarillamiento_general"],[data-advisor-value="maiz_crecimiento_desigual"],[data-advisor-value="maiz_marchitez_general"],[data-advisor-value="maiz_caidas_secamiento"]){aspect-ratio:16/9;min-height:0}
 #advisor-app[data-advisor-crop="Maíz"] .advisor-options-symptoms .advisor-option:is([data-advisor-value="maiz_amarillamiento_general"],[data-advisor-value="maiz_crecimiento_desigual"],[data-advisor-value="maiz_marchitez_general"],[data-advisor-value="maiz_caidas_secamiento"]) img{object-fit:cover;object-position:center;transform:none}
 @media(max-width:760px){#advisor-app[data-advisor-crop="Maíz"] .advisor-options-symptoms:has([data-advisor-value="maiz_amarillamiento_general"]){grid-template-columns:minmax(0,1fr)}}
+
+/* Hojas de maíz: ilustraciones de referencia, encuadre uniforme y sin zoom. */
+#advisor-app[data-advisor-crop="Maíz"] .advisor-options-symptoms .advisor-option:is([data-advisor-value="maiz_manchas"],[data-advisor-value="maiz_roya"],[data-advisor-value="maiz_oruga"],[data-advisor-value="maiz_clorosis_intervenal"]){aspect-ratio:16/9;min-height:0}
+#advisor-app[data-advisor-crop="Maíz"] .advisor-options-symptoms .advisor-option:is([data-advisor-value="maiz_manchas"],[data-advisor-value="maiz_roya"],[data-advisor-value="maiz_oruga"],[data-advisor-value="maiz_clorosis_intervenal"]) img{object-fit:cover;object-position:center;transform:none}
+@media(max-width:760px){#advisor-app[data-advisor-crop="Maíz"] .advisor-options-symptoms:has([data-advisor-value="maiz_clorosis_intervenal"]){grid-template-columns:minmax(0,1fr)}}

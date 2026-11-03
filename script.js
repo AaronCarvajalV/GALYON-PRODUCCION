@@ -459,7 +459,8 @@ document.addEventListener('keydown', e => {
     ],
     "product": "subtilis",
     "condition": "Evaluar solo tras identificar un hongo susceptible y verificar cepa, etiqueta y uso foliar de la formulación GALYON.",
-    "image": ""
+    "image": "",
+    "cardImage": "maiz_hojas_lesiones_referencia"
   },
   "maiz_roya": {
     "part": "Hojas",
@@ -480,7 +481,8 @@ document.addEventListener('keydown', e => {
     ],
     "product": null,
     "condition": "",
-    "image": "maiz_roya"
+    "image": "maiz_roya",
+    "cardImage": "maiz_hojas_roya_referencia"
   },
   "maiz_oruga": {
     "part": "Hojas",
@@ -501,7 +503,8 @@ document.addEventListener('keydown', e => {
     ],
     "product": "bt",
     "condition": "Evaluar para larvas pequeñas, activas y susceptibles; confirmar la plaga y el uso indicado de la cepa GALYON.",
-    "image": "maiz_cogollero"
+    "image": "maiz_cogollero",
+    "cardImage": "maiz_hojas_insectos_referencia"
   },
   "maiz_clorosis_intervenal": {
     "part": "Hojas",
@@ -522,7 +525,8 @@ document.addEventListener('keydown', e => {
     ],
     "product": null,
     "condition": "",
-    "image": ""
+    "image": "",
+    "cardImage": "maiz_hojas_clorosis_referencia"
   },
   "maiz_base_pudricion": {
     "part": "Raíces o tallo",

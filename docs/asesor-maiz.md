@@ -47,6 +47,6 @@ Estas fuentes apoyan los diferenciales y criterios de selección, no prueban por
 
 ## Imágenes y comprobaciones
 
-Se conservan los cuatro WebP de mazorcas y se identifican como ilustraciones de referencia. Se reutilizan maiz_roya.webp y maiz_cogollero.webp. Toda la planta incorpora cuatro ilustraciones suministradas por el usuario, solo en las tarjetas mediante cardImage; sus resultados permanecen sin foto. Las otras seis fichas no muestran fotografía ni utilizan una planta sana como sustituto de un síntoma.
+Se conservan los cuatro WebP de mazorcas y se identifican como ilustraciones de referencia. Toda la planta incorpora cuatro ilustraciones suministradas por el usuario. Hojas incorpora cuatro ilustraciones nuevas generadas a petición del usuario (lesiones alargadas, pústulas de roya, daño masticador y clorosis intervenal). Ambas categorías usan cardImage solo en las tarjetas: no cambian las imágenes ni los datos de sus resultados. Las cuatro fichas de Raíces o tallo siguen sin fotografía; no se utiliza una planta sana como sustituto de un síntoma.
 
 `node verify_maiz.js` comprueba categorías, claves exclusivas, imágenes, productos y WhatsApp de los 16 casos. Acepta una ruta opcional a un script anterior para comparar los diagnósticos del resto de cultivos. Las comprobaciones de navegador cubren escritorio/móvil, las cuatro consultas libres, Anterior y Reiniciar.

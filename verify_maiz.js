@@ -44,7 +44,7 @@ for(const[part,cases]of Object.entries(expected)){
  }
  sim.data.symptom='otro';const unknown=sim.result();assert(unknown.includes('https://wa.me/'));assert(!unknown.includes('class="advisor-product"'));
 }
-assert.equal(tested,16);assert.equal(photos.size,10);
+assert.equal(tested,16);assert.equal(photos.size,12);
 console.log('16 recorridos de Maíz y cuatro opciones de consulta libre: OK');
 
 // Uso opcional en una revisión: comparar todos los diagnósticos de otros cultivos con un script anterior.
