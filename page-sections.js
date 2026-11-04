@@ -1,37 +1,68 @@
 'use strict';
-// Orientación en la página: enlaces nativos y sección activa, sin ocultar contenido.
+// Apartados independientes con enlaces compartibles y navegación nativa del historial.
 (()=>{
- const header=document.querySelector('.header');
- const select=document.getElementById('page-section-select');
- const jump=document.querySelector('.page-section-jump');
- if(!header||!select||!jump)return;
- const ids=['nosotros','asesor','combos','lineas','tricho-sustrato','humicos','analisis','garantia'];
- const sections=ids.map(id=>document.getElementById(id)).filter(Boolean);
- const links=[...header.querySelectorAll('.navlinks a[href^="#"]')];
- let frame=null,headerHeight=0;
- function update(){
-  frame=null;
-  const height=Math.ceil(header.getBoundingClientRect().height);
-  if(height!==headerHeight){headerHeight=height;document.documentElement.style.setProperty('--galyon-header-height',height+'px');}
-  let current='inicio';
-  for(const section of sections){if(section.getBoundingClientRect().top<=height+40)current=section.id;}
-  const group=current==='humicos'||current==='tricho-sustrato'?'lineas':current;
-  for(const link of links){if(link.hash==='#'+group)link.setAttribute('aria-current','location');else link.removeAttribute('aria-current');}
-  if(select.value!==current)select.value=current;
- }
- function schedule(){if(frame===null)frame=requestAnimationFrame(update);}
- select.addEventListener('change',()=>{
-  const target=document.getElementById(select.value);
-  if(!target)return;
+ const header=document.querySelector('.header'),main=document.getElementById('main-content');
+ const select=document.getElementById('page-section-select'),jump=document.querySelector('.page-section-jump');
+ const context=document.querySelector('.view-context'),contextTitle=document.getElementById('view-context-title');
+ const panels=[...document.querySelectorAll('main [data-page-view]')];
+ if(!header||!main||!select||!jump||!context||!contextTitle||!panels.length)return;
+ const names={inicio:'Inicio',nosotros:'Nosotros',combos:'Combos',lineas:'Productos',asesor:'Asesor de Cultivos',analisis:'Análisis de suelo',garantia:'Acompañamiento','tricho-sustrato':'TRICHO en sustrato',humicos:'Ácidos húmicos'};
+ const modalIds=new Set(['detalle-tricho','detalle-bact','detalle-insecta']);
+ const baseTitle=document.title;
+ let current=null;
+ function closeMenu(){
   document.getElementById('navlinks')?.classList.remove('is-open');
   document.getElementById('menu-toggle')?.setAttribute('aria-expanded','false');
-  if(select.value==='inicio'&&window.resetToHome){window.resetToHome();schedule();return;}
-  if(location.hash==='#'+target.id)target.scrollIntoView({block:'start'});
-  else location.hash=target.id;
+ }
+ function measure(){document.documentElement.style.setProperty('--galyon-header-height',Math.ceil(header.getBoundingClientRect().height)+'px');}
+ function show(view,{scroll=true,focus=true}={}){
+  if(!Object.hasOwn(names,view))return;
+  current=view;
+  for(const panel of panels)panel.hidden=panel.dataset.pageView!==view;
+  document.querySelector('.catalog-chapter').hidden=!['lineas','tricho-sustrato','humicos'].includes(view);
+  main.dataset.currentView=view;
+  context.hidden=view==='inicio';contextTitle.textContent=names[view];
+  const group=['tricho-sustrato','humicos'].includes(view)?'lineas':view;
+  for(const link of header.querySelectorAll('.navlinks a')){
+   if(link.hash==='#'+group)link.setAttribute('aria-current','page');else link.removeAttribute('aria-current');
+  }
+  select.value=view;document.title=view==='inicio'?baseTitle:names[view]+' | GALYON';
+  closeMenu();measure();
+  if(focus){
+   const heading=panels.find(panel=>!panel.hidden)?.querySelector('h1,h2,h3');
+   if(heading){heading.setAttribute('tabindex','-1');heading.focus({preventScroll:true});}
+  }
+  if(scroll)window.scrollTo({top:0,left:0,behavior:'instant'});
+ }
+ function navigate(view,{replace=false}={}){
+  if(!Object.hasOwn(names,view))return;
+  const url=location.pathname+location.search+(view==='inicio'?'':'#'+view);
+  if(url!==location.pathname+location.search+location.hash)history[replace?'replaceState':'pushState'](null,'',url);
+  show(view);
+ }
+ function readLocation({initial=false}={}){
+  const id=location.hash.slice(1);
+  if(modalIds.has(id)){
+   if(!current)show('lineas',{scroll:false,focus:false});
+   document.getElementById(id)?.classList.remove('is-dismissed');
+   return;
+  }
+  show(Object.hasOwn(names,id)?id:'inicio',{focus:!initial});
+ }
+ document.addEventListener('click',event=>{
+  if(event.defaultPrevented||event.button!==0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;
+  const link=event.target.closest('a[href]');
+  if(!link||link.target||link.hasAttribute('download'))return;
+  const url=new URL(link.href,location.href),id=url.hash.slice(1);
+  if(url.origin!==location.origin||url.pathname!==location.pathname||url.search!==location.search||!Object.hasOwn(names,id))return;
+  event.preventDefault();navigate(id);
  });
- window.addEventListener('scroll',schedule,{passive:true});
- window.addEventListener('resize',schedule,{passive:true});
- window.addEventListener('hashchange',schedule);
- if('ResizeObserver' in window)new ResizeObserver(schedule).observe(header);
- jump.hidden=false;update();
+ select.addEventListener('change',()=>navigate(select.value));
+ window.addEventListener('hashchange',()=>readLocation());
+ window.addEventListener('galyon:home',()=>show('inicio',{focus:false}));
+ window.addEventListener('resize',measure,{passive:true});
+ if('ResizeObserver' in window)new ResizeObserver(measure).observe(header);
+ window.galyonPage={current:()=>current,navigate};
+ document.documentElement.classList.add('galyon-views');
+ jump.hidden=false;readLocation({initial:true});
 })();

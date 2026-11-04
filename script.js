@@ -148,6 +148,7 @@ function resetToHome(e) {
    history.replaceState(null, '', window.location.pathname + window.location.search);
   } catch(err) {}
  }
+ window.dispatchEvent(new CustomEvent('galyon:home'));
  return false;
 }
 window.resetToHome = resetToHome;
@@ -172,7 +173,8 @@ function dismissGalyonModal(event){
  const keepY = lineReturnScrollY ?? window.scrollY;
  document.querySelectorAll('.galyon-modal').forEach(m => m.classList.add('is-dismissed'));
  // Sustituimos el hash en vez de enlazar a #lineas, evitando el salto.
- history.replaceState(history.state,'',window.location.pathname+window.location.search);
+ const returnView=window.galyonPage?.current();
+ history.replaceState(history.state,'',window.location.pathname+window.location.search+(returnView&&returnView!=='inicio'?'#'+returnView:''));
  window.scrollTo({top:keepY,left:0,behavior:'instant'});
  requestAnimationFrame(() => window.scrollTo({top:keepY,left:0,behavior:'instant'}));
  lineReturnScrollY = null;

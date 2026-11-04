@@ -11,3 +11,7 @@ Criterio de diseño: agrupar contenido facilita recorrerlo; los enlaces internos
 - https://www.nngroup.com/articles/table-of-contents/
 
 Comprobación en Chromium a 1440, 1024, 390 y 320 px: ocho destinos, sección activa, menú, asesor, carrito, modal, recarga desde arriba y reelección del mismo destino. Se revisaron encuadres de combos, productos y suelo. Las dos imágenes de húmicos indican el contenido neto en su etiqueta; se retiró el texto duplicado debajo de la funda.
+
+## Actualización: vistas independientes
+
+La primera segmentación descrita arriba se sustituyó por una portada breve y apartados que se abren por separado. Véase [navegacion-por-vistas.md](navegacion-por-vistas.md). Ya no se muestran todos los capítulos seguidos en Inicio.
