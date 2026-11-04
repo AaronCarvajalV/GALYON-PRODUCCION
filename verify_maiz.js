@@ -10,7 +10,7 @@ function simulate(source){
  const elements={};
  const element=id=>elements[id]??={dataset:{},children:Array.from({length:4},()=>({classList:{toggle(){}}})),addEventListener(){},contains(){return true},querySelectorAll(){return []},innerHTML:'',textContent:''};
  const start=source.indexOf('// GALYON Asesor de Cultivos');assert(start>=0);
- const code=source.slice(start).replace('(()=>{','function createAdvisor(){').replace(/ render\(\);\n\}\)\(\);\s*$/, ' return {data,chooseSymptoms,partsForCrop,result,visualFor:typeof visualFor==="function"?visualFor:null,render,setStep(value){step=value},farmCrops,gardenCrops};\n}\ncreateAdvisor();');
+ const code=source.slice(start).replace('(()=>{','function createAdvisor(){').replace(/ render\(\);\n\}\)\(\);\s*$/, ' return {data,chooseSymptoms,partsForCrop,result,agentForResult:typeof agentForResult==="function"?agentForResult:null,visualFor:typeof visualFor==="function"?visualFor:null,render,setStep(value){step=value},farmCrops,gardenCrops};\n}\ncreateAdvisor();');
  return vm.runInNewContext(code,{document:{getElementById:element},window:{scrollTo(){}},encodeURIComponent,HTMLImageElement:class{},requestAnimationFrame(){}});
 }
 
@@ -41,7 +41,7 @@ for(const[part,cases]of Object.entries(expected)){
   assert(!/<img[^>]*src="(?:undefined|null|)"/.test(html));
   const visual=sim.visualFor(symptom,'symptoms');
   const evidence=html.match(/class="advisor-evidence-image"><img src="([^"]+)"/);
-  assert(evidence,key+' sin referencia visual');assert.equal(evidence[1],'assets/asesor/'+visual.image+'.webp');
+  assert(evidence,key+' sin referencia visual');assert.equal(evidence[1],'assets/asesor/'+(sim.agentForResult?.()?.image||visual.image)+'.webp');
   tested++;
  }
  sim.data.symptom='otro';const unknown=sim.result();assert(unknown.includes('https://wa.me/'));assert(!unknown.includes('class="advisor-product"'));

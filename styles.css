@@ -1678,3 +1678,9 @@ main #analisis.soilv2{background:#f8f4ec;padding-top:64px;scroll-margin-top:12px
 .weekly-offer-image{display:block;min-width:0}.weekly-offer-image img{display:block;width:100%;height:auto;aspect-ratio:1672/941;object-fit:contain;border-radius:12px}
 .weekly-offer-copy h3{font-size:clamp(23px,2.5vw,33px);line-height:1.2;color:#183f2c;margin:12px 0}.weekly-offer-copy h3 span{color:#5c7941}.weekly-offer-copy p{color:#5a6a50;line-height:1.65;font-size:14px;margin:0 0 20px}
 @media(max-width:760px){.weekly-offer{grid-template-columns:minmax(0,1fr);padding:15px;gap:18px}.weekly-offer-copy .humic-contact{width:100%}}
+
+/* Referencias del posible agente: nombre y escala visual legibles. */
+.crop-advisor .advisor-evidence-image .advisor-evidence-tag.advisor-agent-tag{display:flex;flex-direction:column;align-items:flex-start;gap:4px;max-width:calc(100% - 24px);text-align:left;white-space:normal;line-height:1.35}
+.advisor-agent-tag b{font-size:10px;letter-spacing:.09em}
+.advisor-agent-tag i{font-size:15px;font-weight:600;letter-spacing:0;text-transform:none}
+.advisor-agent-tag small{font-size:10px;font-weight:500;letter-spacing:0;text-transform:none}

@@ -974,13 +974,24 @@ document.addEventListener('keydown', e => {
   }
   return table[data.part]||general;
  };
+ const resultAgents={"cosmopolites":{"id":"cosmopolites","name":"Picudo negro del banano","scientific":"Cosmopolites sordidus","view":"Vista ampliada","image":"agente-cosmopolites"},"hypothenemus":{"id":"hypothenemus","name":"Broca del café","scientific":"Hypothenemus hampei","view":"Vista ampliada","image":"agente-hypothenemus"},"frugiperda":{"id":"frugiperda","name":"Larva de gusano cogollero","scientific":"Spodoptera frugiperda","view":"Vista ampliada","image":"agente-frugiperda"},"diatraea":{"id":"diatraea","name":"Ejemplo de larva barrenadora","scientific":"Diatraea spp.","view":"Vista ampliada","image":"agente-diatraea"},"monilia":{"id":"monilia","name":"Hongo asociado a moniliasis","scientific":"Moniliophthora roreri","view":"Vista microscópica","image":"agente-monilia"},"perniciosa":{"id":"perniciosa","name":"Hongo asociado a escoba de bruja","scientific":"Moniliophthora perniciosa","view":"Vista ampliada","image":"agente-perniciosa"},"phytophthora":{"id":"phytophthora","name":"Oomiceto asociado a mazorca negra","scientific":"Phytophthora spp.","view":"Vista microscópica","image":"agente-phytophthora"},"hemileia":{"id":"hemileia","name":"Hongo de la roya del café","scientific":"Hemileia vastatrix","view":"Vista microscópica","image":"agente-hemileia"},"puccinia":{"id":"puccinia","name":"Hongos asociados a roya","scientific":"Puccinia spp.","view":"Vista microscópica","image":"agente-puccinia"},"sporisorium":{"id":"sporisorium","name":"Hongo del carbón de la caña","scientific":"Sporisorium scitamineum","view":"Vista microscópica","image":"agente-sporisorium"},"pseudocercospora":{"id":"pseudocercospora","name":"Hongos asociados a Sigatoka","scientific":"Pseudocercospora spp.","view":"Vista microscópica","image":"agente-pseudocercospora"},"oidio":{"id":"oidio","name":"Hongos asociados a oídio","scientific":"Hongos del oídio","view":"Vista microscópica","image":"agente-oidio"},"colletotrichum":{"id":"colletotrichum","name":"Hongos asociados a antracnosis","scientific":"Colletotrichum spp.","view":"Vista microscópica","image":"agente-colletotrichum"},"exserohilum":{"id":"exserohilum","name":"Agente a investigar en tizón foliar","scientific":"Exserohilum turcicum","view":"Vista microscópica","image":"agente-exserohilum"}};
+ const resultAgentRoutes={"Banano|banano_picudo":"cosmopolites","Banano|banano_sigatoka":"pseudocercospora","Cacao|cacao_blanco":"monilia","Cacao|cacao_negro":"phytophthora","Cacao|cacao_escoba":"perniciosa","Café|cafe_roya":"hemileia","Café|cafe_broca":"hypothenemus","Maíz|maiz_roya":"puccinia","Maíz|maiz_oruga":"frugiperda","Maíz|maiz_manchas":"exserohilum","Maíz|maiz_galerias_tallo":"diatraea","Caña de azúcar|cana_roya":"puccinia","Caña de azúcar|cana_carbon":"sporisorium","Caña de azúcar|cana_barrenador":"diatraea","Hortalizas|hort_blanco":"oidio","Mango|mango_lesiones_fruto":"colletotrichum"};
+ function agentForResult(){
+  if(data.area!=='Finca o plantación'||!chooseSymptoms().some(item=>item.key===data.symptom))return null;
+  const agent=resultAgents[resultAgentRoutes[data.crop+'|'+data.symptom]];
+  return agent?{...agent,example:data.crop==='Caña de azúcar'&&data.symptom==='cana_barrenador'}:null;
+ }
+ function agentImageBlock(agent){
+  return '<div class="advisor-evidence-image"><img src="'+e(p(agent.image))+'" data-agent-id="'+e(agent.id)+'" alt="Ilustración de referencia de '+e(agent.name)+' — '+e(agent.scientific)+'" loading="lazy" decoding="async"><span class="advisor-evidence-tag advisor-agent-tag"><b>'+(agent.example?'EJEMPLO DEL GRUPO':'POSIBLE CAUSANTE')+'</b><i>'+e(agent.scientific)+'</i><small>'+e(agent.view)+' · ilustración de referencia</small></span></div>';
+ }
  function maizeResult(c){
   const product=c.product?maizeProducts[c.product]:null;
   const partName=partsForCrop().find(part=>part.key===data.part)?.text||data.part;
   const selectedVisual=visualFor(chooseSymptoms().find(item=>item.key===data.symptom),'symptoms');
   const imageSlug=selectedVisual?.image||c.image;
   const generatedReference=selectedVisual?.referenceImage||/^galyon_|^maiz_hojas_/.test(imageSlug||'');
-  const image=imageSlug?'<div class="advisor-evidence-image"><img src="'+e(p(imageSlug))+'" alt="Referencia visual de '+e(c.title)+'" loading="lazy" decoding="async"><span class="advisor-evidence-tag">'+(generatedReference?'ILUSTRACIÓN DE REFERENCIA':'IMAGEN DE REFERENCIA')+'</span></div>':'';
+  const agent=agentForResult();
+  const image=agent?agentImageBlock(agent):imageSlug?'<div class="advisor-evidence-image"><img src="'+e(p(imageSlug))+'" alt="Referencia visual de '+e(c.title)+'" loading="lazy" decoding="async"><span class="advisor-evidence-tag">'+(generatedReference?'ILUSTRACIÓN DE REFERENCIA':'IMAGEN DE REFERENCIA')+'</span></div>':'';
   const outcomeCards=c.goals.map((goal,i)=>'<div class="advisor-outcome-card"><span class="advisor-outcome-index">0'+(i+1)+'</span><p>'+e(goal)+'</p></div>').join('');
   const fieldActions=c.actions.map((action,i)=>'<p>'+e((i+1)+'. '+action)+'</p>').join('');
   const management=product
@@ -1105,7 +1116,8 @@ document.addEventListener('keydown', e => {
   const isSymptomPhoto=Boolean(symptomsPhoto);
   const isSyntheticReference=Boolean(selectedVisual?.referenceImage || (selectedVisual?.image && /^v53[234]_/.test(selectedVisual.image)));
   const isAdvisorConsultation=symKey==='otro';
-  const imageBlock=displayPhoto?'<div class="advisor-evidence-image"><img src="'+e(displayPhoto)+'" alt="'+e(isAdvisorConsultation?'Asesor conversando con un agricultor para orientarlo':'Imagen de referencia de '+symptomName)+'" loading="lazy" decoding="async"><span class="advisor-evidence-tag">'+ (isAdvisorConsultation?'ASESORÍA PERSONALIZADA':isSyntheticReference?'ILUSTRACIÓN DE REFERENCIA':isSymptomPhoto?'FOTO DE REFERENCIA':'IMAGEN DEL CULTIVO') +'</span></div>':'';
+  const agent=agentForResult();
+  const imageBlock=agent?agentImageBlock(agent):displayPhoto?'<div class="advisor-evidence-image"><img src="'+e(displayPhoto)+'" alt="'+e(isAdvisorConsultation?'Asesor conversando con un agricultor para orientarlo':'Imagen de referencia de '+symptomName)+'" loading="lazy" decoding="async"><span class="advisor-evidence-tag">'+ (isAdvisorConsultation?'ASESORÍA PERSONALIZADA':isSyntheticReference?'ILUSTRACIÓN DE REFERENCIA':isSymptomPhoto?'FOTO DE REFERENCIA':'IMAGEN DEL CULTIVO') +'</span></div>':'';
   const confirmation='<small class="advisor-confirmation-note">Evaluación visual orientativa. Para confirmar el agente causal se necesita revisar la planta y, si corresponde, realizar análisis fitopatológicos.</small>';
   const badge=probable
    ? '<div class="advisor-problem-label">'+(probable.level==='alto'?'ES MUY PROBABLE QUE SEA':'LO MÁS PROBABLE ES')+'</div><h4>'+e(probable.name)+'</h4>'+confirmation

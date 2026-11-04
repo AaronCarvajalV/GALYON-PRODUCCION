@@ -5,7 +5,7 @@ const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/st
 const source=fs.readFileSync('script.js','utf8');
 const elements={};
 const element=id=>elements[id]??={dataset:{},children:Array.from({length:4},()=>({classList:{toggle(){}}})),addEventListener(){},contains(){return true},querySelectorAll(){return[]}};
-const code=source.slice(source.indexOf('// GALYON Asesor de Cultivos')).replace('(()=>{','function advisor(){').replace(/ render\(\);\n\}\)\(\);\s*$/,' return {data,partsForCrop,chooseSymptoms,farmCrops,farmCropCovers,grid,visualFor,result,advisorCardImages};\n}\nadvisor();');
+const code=source.slice(source.indexOf('// GALYON Asesor de Cultivos')).replace('(()=>{','function advisor(){').replace(/ render\(\);\n\}\)\(\);\s*$/,' return {data,partsForCrop,chooseSymptoms,farmCrops,farmCropCovers,grid,visualFor,result,agentForResult,advisorCardImages};\n}\nadvisor();');
 const sim=vm.runInNewContext(code,{document:{getElementById:element},window:{},encodeURIComponent});
 let cards=0,replaced=0,covers=0,results=0;const used=new Set();
 for(const crop of sim.farmCrops){
@@ -27,8 +27,8 @@ for(const crop of sim.farmCrops){
     assert(!partImages.has(image),'Una categoría reutiliza la imagen de un síntoma: '+key);
     sim.data.symptom=item.key;const result=sim.result();
     const evidence=result.match(/class="advisor-evidence-image"><img src="([^"]+)"/);
-    assert(evidence,'Resultado sin imagen: '+key);assert.equal(evidence[1],'assets/asesor/'+image+'.webp','Referencia distinta en resultado: '+key);
-    if(sim.advisorCardImages[key])assert(result.includes('ILUSTRACIÓN DE REFERENCIA'));results++;
+    assert(evidence,'Resultado sin imagen: '+key);assert.equal(evidence[1],'assets/asesor/'+(sim.agentForResult()?.image||image)+'.webp','Referencia incorrecta en resultado: '+key);
+    if(sim.agentForResult())assert(result.includes('ilustración de referencia'));else if(sim.advisorCardImages[key])assert(result.includes('ILUSTRACIÓN DE REFERENCIA'));results++;
    }
    if(sim.advisorCardImages[key]){used.add(key);replaced++;assert(html.includes('aria-description="Ilustración generada de referencia"'));}
   }
@@ -45,4 +45,4 @@ const second=JSON.parse(fs.readFileSync('docs/asesor-imagenes-segunda-revision.j
 assert.equal(second.entries.length,25);assert.equal(second.status,'reviewed');
 for(const entry of second.entries){assert.equal(entry.status,'reviewed');assert(fs.existsSync(entry.asset));const key=[entry.crop,entry.part,entry.kind,entry.key].join('|');assert.equal(sim.advisorCardImages[key],entry.slug);}
 assert.equal(covers,8);assert.equal(results,91);
-console.log(`${cards+covers} tarjetas revisadas; ${replaced} asociaciones verificadas; ${results} resultados con la misma referencia del selector. Sin repeticiones entre opciones distintas del mismo grupo.`);
+console.log(`${cards+covers} tarjetas revisadas; ${replaced} asociaciones verificadas; ${results} resultados con referencia de agente o síntoma según el caso. Sin repeticiones entre opciones distintas del mismo grupo.`);
