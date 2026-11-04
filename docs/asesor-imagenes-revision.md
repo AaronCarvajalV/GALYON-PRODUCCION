@@ -1,5 +1,7 @@
 # Revisión de imágenes del Asesor de Cultivos
 
+Registro de la primera revisión (`c9fa754`). La continuidad de las imágenes en resultados y las sustituciones adicionales se documentan en [la segunda revisión](asesor-imagenes-segunda-revision.md).
+
 Alcance: ocho cultivos visibles, 123 tarjetas de categorías y síntomas. El modo Huerto o jardín continúa oculto. Las portadas de cultivos y las imágenes recientes aprobadas de maíz se conservan.
 
 Se incorporan 43 ilustraciones generadas de referencia en 54 asociaciones de tarjetas: cubren 23 tarjetas sin imagen y sustituyen imágenes poco nítidas o que representaban mal el órgano o síntoma. Son escenas ilustrativas, no fotografías de casos clínicos confirmados. Cada botón nuevo incluye una descripción accesible que identifica su origen. No contienen nombres, iconos, marcas ni texto incrustado.

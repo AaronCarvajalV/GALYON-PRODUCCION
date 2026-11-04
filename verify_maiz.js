@@ -10,7 +10,7 @@ function simulate(source){
  const elements={};
  const element=id=>elements[id]??={dataset:{},children:Array.from({length:4},()=>({classList:{toggle(){}}})),addEventListener(){},contains(){return true},querySelectorAll(){return []},innerHTML:'',textContent:''};
  const start=source.indexOf('// GALYON Asesor de Cultivos');assert(start>=0);
- const code=source.slice(start).replace('(()=>{','function createAdvisor(){').replace(/ render\(\);\n\}\)\(\);\s*$/, ' return {data,chooseSymptoms,partsForCrop,result,render,setStep(value){step=value},farmCrops,gardenCrops};\n}\ncreateAdvisor();');
+ const code=source.slice(start).replace('(()=>{','function createAdvisor(){').replace(/ render\(\);\n\}\)\(\);\s*$/, ' return {data,chooseSymptoms,partsForCrop,result,visualFor:typeof visualFor==="function"?visualFor:null,render,setStep(value){step=value},farmCrops,gardenCrops};\n}\ncreateAdvisor();');
  return vm.runInNewContext(code,{document:{getElementById:element},window:{scrollTo(){}},encodeURIComponent,HTMLImageElement:class{},requestAnimationFrame(){}});
 }
 
@@ -39,7 +39,9 @@ for(const[part,cases]of Object.entries(expected)){
   const message=url.searchParams.get('text');assert(message.includes('Cultivo: Maíz'));assert(message.includes(symptom.text));assert(message.includes('Causa probable a verificar:'));assert(message.includes('Objetivos:'));assert(message.includes('Acciones de campo:'));
   if(microbe)assert(message.includes(microbe));else assert(message.includes('Sin bioinsumo asignado automáticamente.'));
   assert(!/<img[^>]*src="(?:undefined|null|)"/.test(html));
-  if(!symptom.image)assert(!html.includes('class="advisor-evidence-image"'),key+' uses a misleading fallback');
+  const visual=sim.visualFor(symptom,'symptoms');
+  const evidence=html.match(/class="advisor-evidence-image"><img src="([^"]+)"/);
+  assert(evidence,key+' sin referencia visual');assert.equal(evidence[1],'assets/asesor/'+visual.image+'.webp');
   tested++;
  }
  sim.data.symptom='otro';const unknown=sim.result();assert(unknown.includes('https://wa.me/'));assert(!unknown.includes('class="advisor-product"'));
@@ -50,17 +52,18 @@ console.log('16 recorridos de Maíz y cuatro opciones de consulta libre: OK');
 // Uso opcional en una revisión: comparar todos los diagnósticos de otros cultivos con un script anterior.
 if(process.argv[2]){
  const baseline=simulate(fs.readFileSync(process.argv[2],'utf8'));let compared=0;
- for(const [part,cases] of Object.entries(expected)){for(const [key] of cases){Object.assign(sim.data,{area:'Finca o plantación',crop:'Maíz',part,symptom:key});Object.assign(baseline.data,sim.data);assert.equal(sim.result(),baseline.result(),'Resultado de Maíz modificado: '+key);}}
- console.log('16 resultados de Maíz idénticos a la versión anterior.');
+ const withoutEvidence=html=>html.replace(/<div class="advisor-evidence-image">[\s\S]*?<\/div>/g,'').replace(/advisor-evidence is-text-only/g,'advisor-evidence');
+ for(const [part,cases] of Object.entries(expected)){for(const [key] of cases){Object.assign(sim.data,{area:'Finca o plantación',crop:'Maíz',part,symptom:key});Object.assign(baseline.data,sim.data);assert.equal(withoutEvidence(sim.result()),withoutEvidence(baseline.result()),'Resultado de Maíz modificado: '+key);}}
+ console.log('16 diagnósticos y mensajes de Maíz idénticos; solo cambia su referencia visual.');
  for(const[area,crops]of [['Finca o plantación',sim.farmCrops],['Huerto o jardín',sim.gardenCrops]]){
   for(const crop of crops){if(crop.key==='Maíz')continue;
    Object.assign(sim.data,{area,crop:crop.key});Object.assign(baseline.data,{area,crop:crop.key});
    for(const part of sim.partsForCrop()){
     sim.data.part=baseline.data.part=part.key;const symptoms=sim.chooseSymptoms();
     assert.equal(JSON.stringify(symptoms),JSON.stringify(baseline.chooseSymptoms()),crop.key);
-    for(const symptom of symptoms){sim.data.symptom=baseline.data.symptom=symptom.key;assert.equal(sim.result(),baseline.result(),crop.key+' / '+part.key+' / '+symptom.key);compared++;}
+    for(const symptom of symptoms){sim.data.symptom=baseline.data.symptom=symptom.key;assert.equal(withoutEvidence(sim.result()),withoutEvidence(baseline.result()),crop.key+' / '+part.key+' / '+symptom.key);compared++;}
    }
   }
  }
- console.log(compared+' resultados de otros cultivos idénticos a la versión anterior.');
+ console.log(compared+' diagnósticos y mensajes de otros cultivos idénticos; solo cambian referencias visuales.');
 }

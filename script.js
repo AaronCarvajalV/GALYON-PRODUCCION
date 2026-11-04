@@ -272,7 +272,7 @@ document.addEventListener('keydown', e => {
  const e=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  const a=(key,text,image='',sub='',possible='',guidance='',line='')=>({key,text,image,sub,possible,guidance,line});
  // BEGIN ADVISOR CARD IMAGES
- // Solo presentación: no modificar imágenes ni datos de resultados.
+ // Solo presentación: los datos de diagnóstico permanecen intactos.
  const advisorCardImages={
   "Maíz|Raíces o tallo|symptoms|maiz_base_pudricion": "ref-maiz-base-podrida",
   "Maíz|Raíces o tallo|symptoms|maiz_raices_deterioradas": "ref-maiz-raices-oscuras",
@@ -327,7 +327,32 @@ document.addEventListener('keydown', e => {
   "Hortalizas|Hojas|symptoms|hort_blanco": "ref-hortalizas-polvo-blanco",
   "Hortalizas|Toda la planta|symptoms|hort_insectos": "ref-hortalizas-hojas-comidas",
   "Hortalizas|Hojas|symptoms|hort_insectos": "ref-hortalizas-hojas-comidas",
-  "Hortalizas|Frutos o mazorcas|symptoms|hort_frutos": "ref-hortalizas-frutos-manchas"
+  "Hortalizas|Frutos o mazorcas|symptoms|hort_frutos": "ref-hortalizas-frutos-manchas",
+  "Cacao||parts|Hojas": "rev2-cacao-hojas-categoria",
+  "Cacao|Raíces o tallo|symptoms|cacao_cancro": "rev2-cacao-cancro",
+  "Cacao|Raíces o tallo|symptoms|cacao_marchito": "rev2-cacao-rama-marchita",
+  "Cacao|Frutos o mazorcas|symptoms|cacao_negro": "rev2-cacao-mazorca-negra",
+  "Cacao|Frutos o mazorcas|symptoms|cacao_blanco": "rev2-cacao-moniliasis",
+  "Banano|Raíces o tallo|symptoms|banano_tallo": "rev2-banano-base-danada",
+  "Banano|Raíces o tallo|symptoms|banano_raices": "rev2-banano-raices-danadas",
+  "Mango|Toda la planta|symptoms|observacion_mango_flor": "rev2-mango-floracion-seca",
+  "Mango||parts|Hojas": "rev2-mango-hojas-categoria",
+  "Mango||parts|Raíces o tallo": "rev2-mango-base-categoria",
+  "Mango|Frutos o mazorcas|symptoms|observacion_mango_pudricion": "rev2-mango-fruto-podrido",
+  "Aguacate|Toda la planta|symptoms|observacion_aguacate_flor": "rev2-aguacate-floracion-seca",
+  "Aguacate||parts|Hojas": "rev2-aguacate-hojas-categoria",
+  "Aguacate||parts|Raíces o tallo": "rev2-aguacate-base-categoria",
+  "Aguacate|Frutos o mazorcas|symptoms|observacion_aguacate_fruto_manchas": "rev2-aguacate-fruto-manchas",
+  "Caña de azúcar||parts|Hojas": "rev2-cana-hojas-categoria",
+  "Caña de azúcar||parts|Frutos o mazorcas": "rev2-cana-tallos-categoria",
+  "Hortalizas||parts|Toda la planta": "rev2-hortalizas-planta-categoria",
+  "Hortalizas||parts|Hojas": "rev2-hortalizas-hojas-categoria",
+  "Banano|Frutos o mazorcas|symptoms|observacion_banano_manchas": "rev2-banano-dedos-manchas",
+  "Cacao||parts|Toda la planta": "rev2-cacao-planta-categoria",
+  "Cacao||parts|Raíces o tallo": "rev2-cacao-raices-categoria",
+  "Cacao||parts|Frutos o mazorcas": "rev2-cacao-fruto-categoria",
+  "Banano||parts|Hojas": "rev2-banano-hojas-categoria",
+  "Cacao|Hojas|symptoms|cacao_amarillo": "rev2-cacao-hoja-amarilla"
 };
  // END ADVISOR CARD IMAGES
  const farmCrops=[
@@ -849,12 +874,14 @@ document.addEventListener('keydown', e => {
   const image=item.image?'<img src="'+e(p(item.image))+'" alt="" loading="lazy" decoding="async">':badge||'<span class="advisor-no-photo" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M12 36c15 0 25-11 25-26-14 0-26 9-26 26Z" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M15 32 34 15" fill="none" stroke="currentColor" stroke-width="2.5"/></svg></span>';
   return '<button type="button" class="advisor-option'+(!item.image?' is-text':'')+'" data-advisor-value="'+e(item.key)+'"'+(item.referenceImage?' data-reference-image="true" aria-description="Ilustración generada de referencia"':'')+'>'+image+'<span class="advisor-option-text"><strong>'+e(item.text)+'</strong>'+(item.sub?'<small>'+e(item.sub)+'</small>':'')+'</span></button>';
  }
- function grid(items,kind=''){
+ function visualFor(item,kind){
+  if(!item)return null;
   const part=kind==='parts'?'':data.part;
-  return '<div class="advisor-options '+(kind?'advisor-options-'+kind:'')+'">'+items.map(item=>{
-   const image=data.area==='Finca o plantación'&&advisorCardImages[[data.crop,part,kind,item.key].join('|')];
-   return option(image?{...item,image,referenceImage:true}:item);
-  }).join('')+'</div>';
+  const image=data.area==='Finca o plantación'&&advisorCardImages[[data.crop,part,kind,item.key].join('|')];
+  return image?{...item,image,referenceImage:true}:item;
+ }
+ function grid(items,kind=''){
+  return '<div class="advisor-options '+(kind?'advisor-options-'+kind:'')+'">'+items.map(item=>option(visualFor(item,kind))).join('')+'</div>';
  }
  const organSymptomKeys={
   'Banano':{'Toda la planta':['banano_marchitez'], 'Hojas':['banano_sigatoka'], 'Raíces o tallo':['banano_tallo','banano_raices','banano_picudo'], 'Frutos o mazorcas':[]},
@@ -950,7 +977,10 @@ document.addEventListener('keydown', e => {
  function maizeResult(c){
   const product=c.product?maizeProducts[c.product]:null;
   const partName=partsForCrop().find(part=>part.key===data.part)?.text||data.part;
-  const image=c.image?'<div class="advisor-evidence-image"><img src="'+e(p(c.image))+'" alt="Referencia visual de '+e(c.title)+'" loading="lazy" decoding="async"><span class="advisor-evidence-tag">'+(c.image.startsWith('galyon_')?'ILUSTRACIÓN DE REFERENCIA':'IMAGEN DE REFERENCIA')+'</span></div>':'';
+  const selectedVisual=visualFor(chooseSymptoms().find(item=>item.key===data.symptom),'symptoms');
+  const imageSlug=selectedVisual?.image||c.image;
+  const generatedReference=selectedVisual?.referenceImage||/^galyon_|^maiz_hojas_/.test(imageSlug||'');
+  const image=imageSlug?'<div class="advisor-evidence-image"><img src="'+e(p(imageSlug))+'" alt="Referencia visual de '+e(c.title)+'" loading="lazy" decoding="async"><span class="advisor-evidence-tag">'+(generatedReference?'ILUSTRACIÓN DE REFERENCIA':'IMAGEN DE REFERENCIA')+'</span></div>':'';
   const outcomeCards=c.goals.map((goal,i)=>'<div class="advisor-outcome-card"><span class="advisor-outcome-index">0'+(i+1)+'</span><p>'+e(goal)+'</p></div>').join('');
   const fieldActions=c.actions.map((action,i)=>'<p>'+e((i+1)+'. '+action)+'</p>').join('');
   const management=product
@@ -1068,11 +1098,12 @@ document.addEventListener('keydown', e => {
   else if(symKey==='cacao_negro')contextTip='Revisa drenaje y humedad; el manejo preventivo debe centrarse en proteger mazorcas aún sanas.';
   else if(insectCase)contextTip='Busca el insecto o larva y, si es posible, toma una fotografía para seleccionar el microorganismo adecuado.';
   else if(rootsCase)contextTip='Revisa humedad y condición del suelo: los síntomas de raíz también pueden tener causas no infecciosas.';
-  const symptomsPhoto=symptom?.image?p(symptom.image):null;
+  const selectedVisual=visualFor(symptom,'symptoms');
+  const symptomsPhoto=selectedVisual?.image?p(selectedVisual.image):null;
   const cropReference=[...farmCrops,...gardenCrops].find(x=>x.key===data.crop)?.image||'';
   const displayPhoto=symptomsPhoto||(cropReference?p(cropReference):null);
   const isSymptomPhoto=Boolean(symptomsPhoto);
-  const isSyntheticReference=Boolean(symptom?.image && /^v53[234]_/.test(symptom.image));
+  const isSyntheticReference=Boolean(selectedVisual?.referenceImage || (selectedVisual?.image && /^v53[234]_/.test(selectedVisual.image)));
   const isAdvisorConsultation=symKey==='otro';
   const imageBlock=displayPhoto?'<div class="advisor-evidence-image"><img src="'+e(displayPhoto)+'" alt="'+e(isAdvisorConsultation?'Asesor conversando con un agricultor para orientarlo':'Imagen de referencia de '+symptomName)+'" loading="lazy" decoding="async"><span class="advisor-evidence-tag">'+ (isAdvisorConsultation?'ASESORÍA PERSONALIZADA':isSyntheticReference?'ILUSTRACIÓN DE REFERENCIA':isSymptomPhoto?'FOTO DE REFERENCIA':'IMAGEN DEL CULTIVO') +'</span></div>':'';
   const confirmation='<small class="advisor-confirmation-note">Evaluación visual orientativa. Para confirmar el agente causal se necesita revisar la planta y, si corresponde, realizar análisis fitopatológicos.</small>';
@@ -1109,7 +1140,7 @@ document.addEventListener('keydown', e => {
   }else if(step===3){
    const options=chooseSymptoms();
    const specific=Boolean(catalog[data.crop]||tailoredCrops[data.crop]);
-   content.innerHTML='<h3>¿Qué problema se parece al tuyo?</h3><p class="advisor-desc">'+(specific?'Elige lo que observas en '+e(data.crop.toLowerCase())+'.':'Todavía no tenemos síntomas fotografiados específicamente para '+e(data.crop.toLowerCase())+'. Puedes describir tu problema con estas opciones generales.')+' Las fotografías de síntomas son de referencia; donde no hay fotografía validada usamos iconos descriptivos, no diagnósticos.</p>'+grid(options,'symptoms');
+   content.innerHTML='<h3>¿Qué problema se parece al tuyo?</h3><p class="advisor-desc">'+(specific?'Elige lo que observas en '+e(data.crop.toLowerCase())+'.':'Todavía no tenemos síntomas fotografiados específicamente para '+e(data.crop.toLowerCase())+'. Puedes describir tu problema con estas opciones generales.')+' Las imágenes son de referencia: compara los signos visibles y elige la opción más parecida.</p>'+grid(options,'symptoms');
   }else content.innerHTML=result();
  }
  // Si falla una imagen, mostramos una tarjeta limpia en lugar del icono roto del navegador.

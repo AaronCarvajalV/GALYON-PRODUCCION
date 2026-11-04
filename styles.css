@@ -1610,3 +1610,13 @@
 #nosotros .identity-product-slides{inset:0 0 40px}
 #nosotros .identity-product-slide{object-fit:contain}
 @media(prefers-reduced-motion:reduce){#nosotros .identity-sequence-slide{transition:none}}
+
+/* Referencias de resultados completas: evitar recortar un encuadre horizontal en una tira vertical. */
+.crop-advisor .advisor-result-v523 .advisor-evidence:has(.advisor-evidence-image){grid-template-columns:minmax(240px,.45fr) minmax(0,1fr)}
+.crop-advisor .advisor-result-v523 .advisor-evidence-image{aspect-ratio:16/9;min-height:0;align-self:center}
+.crop-advisor .advisor-result-v523 .advisor-evidence-image img{object-fit:contain;object-position:center;transform:none}
+@media(max-width:640px){
+ .crop-advisor .advisor-result-v523 .advisor-evidence:has(.advisor-evidence-image){grid-template-columns:minmax(0,1fr);gap:0}
+ .crop-advisor .advisor-result-v523 .advisor-evidence-image{width:100%}
+ .crop-advisor .advisor-result-v523 .advisor-evidence-copy{padding:16px}
+}
