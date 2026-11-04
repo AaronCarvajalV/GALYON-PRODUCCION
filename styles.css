@@ -1620,3 +1620,27 @@
  .crop-advisor .advisor-result-v523 .advisor-evidence-image{width:100%}
  .crop-advisor .advisor-result-v523 .advisor-evidence-copy{padding:16px}
 }
+
+/* Ácidos húmicos: presentación aprobada y consulta de formato por peso. */
+.humic-section{padding-top:22px;padding-bottom:36px;scroll-margin-top:100px}
+.humic-panel{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(24px,4vw,52px);align-items:center;padding:clamp(16px,3vw,32px);border:1px solid #e4ddcf;border-radius:24px;background:#f8f5ef}
+.humic-visual{margin:0;min-width:0}
+.humic-visual a{display:block;border-radius:15px;overflow:hidden}
+.humic-visual img{display:block;width:100%;height:auto;aspect-ratio:1;object-fit:contain}
+.humic-visual figcaption{text-align:center;font-size:11px;color:#66745e;margin-top:9px}
+.humic-copy{min-width:0;padding:8px 0}
+.humic-copy .eyebrow{font-size:10px;line-height:1.6;letter-spacing:.11em}
+.humic-copy h2{font-size:clamp(27px,3.1vw,42px);line-height:1.14;color:#173e2b;margin:12px 0 20px}
+.humic-copy h2 span{color:#527c3a}
+.humic-copy p{font-size:15px;line-height:1.7;color:#53634f;margin:0 0 22px}
+.humic-copy .humic-product-name{font-size:19px;font-weight:750;color:#214a31;margin-bottom:10px}
+.humic-facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:26px 0}
+.humic-facts div{border-top:1px solid #d7dece;padding-top:12px}
+.humic-facts dt{font-size:11px;line-height:1.5;color:#62715a}
+.humic-facts dd{font-size:21px;font-weight:750;line-height:1.5;color:#214a31;margin:5px 0 0}
+.humic-contact{display:inline-flex;align-items:center;justify-content:center;gap:18px;padding:13px 18px;border-radius:10px;background:#214a31;color:#fff;font-size:14px;font-weight:750;text-decoration:none}
+.humic-contact:hover{background:#32613e}
+.humic-contact:focus-visible,.humic-visual a:focus-visible{outline:3px solid #719650;outline-offset:4px}
+.humic-copy .humic-note{font-size:12px;line-height:1.6;margin:12px 0 0;color:#6c7763}
+@media(max-width:800px){.humic-panel{grid-template-columns:minmax(0,1fr);gap:18px}.humic-copy{padding:4px 2px 8px}.humic-copy h2{font-size:30px}.humic-facts{margin:20px 0}.humic-contact{width:100%}}
+@media(max-width:360px){.humic-facts{gap:8px}.humic-facts dt{font-size:10px}.humic-facts dd{font-size:19px}}
