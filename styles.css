@@ -1487,7 +1487,7 @@
   .soil-plan-summary { column-gap: 12px; }
 }
 
-/* Tarjetas de líneas más compactas, con un recorte vertical suave. */
+/* Fotos de las tres líneas: 15 % menos de altura respecto a 9 / 14. */
 .products .product-card .product-visual {
   min-height: 0;
   overflow: hidden!important;
@@ -1495,9 +1495,13 @@
 .products .product-card .product-visual .line-photo {
   width: 100%;
   height: auto!important;
-  aspect-ratio: 9 / 14!important;
+  aspect-ratio: 9 / 11.9!important;
   object-fit: cover!important;
   object-position: center!important;
+}
+
+.products .product-card.bact .product-visual .line-photo {
+  object-position: center 35%!important;
 }
 
 /* El acompañamiento y el asesor forman una sola experiencia. */
