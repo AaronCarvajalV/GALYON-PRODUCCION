@@ -43,6 +43,13 @@ assert.equal(ledger.entries.length,43);assert.equal(ledger.completed_illustratio
 for(const entry of ledger.entries){assert.equal(entry.status,'integrated');assert(fs.existsSync(entry.asset));for(const ref of entry.refs){const key=[ref.crop,ref.part,ref.kind==='part'?'parts':'symptoms',ref.key].join('|');assert.equal(sim.advisorCardImages[key],entry.slug);}}
 const second=JSON.parse(fs.readFileSync('docs/asesor-imagenes-segunda-revision.json','utf8'));
 assert.equal(second.entries.length,25);assert.equal(second.status,'reviewed');
-for(const entry of second.entries){assert.equal(entry.status,'reviewed');assert(fs.existsSync(entry.asset));const key=[entry.crop,entry.part,entry.kind,entry.key].join('|');assert.equal(sim.advisorCardImages[key],entry.slug);}
+for(const entry of second.entries){
+ assert(fs.existsSync(entry.asset));const key=[entry.crop,entry.part,entry.kind,entry.key].join('|');
+ if(entry.status==='restored-original'){
+  assert.equal(sim.advisorCardImages[key],undefined);Object.assign(sim.data,{area:'Finca o plantación',crop:entry.crop,part:entry.part});
+  const original=sim.chooseSymptoms().find(item=>item.key===entry.key),visual=sim.visualFor(original,entry.kind);
+  assert.equal(visual.image,entry.slug);assert(!visual.referenceImage,'La foto real no debe etiquetarse como ilustración');
+ }else{assert.equal(entry.status,'reviewed');assert.equal(sim.advisorCardImages[key],entry.slug);}
+}
 assert.equal(covers,8);assert.equal(results,91);
 console.log(`${cards+covers} tarjetas revisadas; ${replaced} asociaciones verificadas; ${results} resultados con referencia de agente o síntoma según el caso. Sin repeticiones entre opciones distintas del mismo grupo.`);

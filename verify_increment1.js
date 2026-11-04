@@ -110,9 +110,13 @@ test('index.html combo mango card references a WebP image in src attribute', () 
   const mangoCardMatch = indexHtml.match(/02\s*·\s*MANGO[\s\S]*?<\/article>/i);
   assert.ok(mangoCardMatch, 'Could not locate Mango combo card in index.html');
   const cardHtml = mangoCardMatch[0];
-  const srcMatch = cardHtml.match(/<img[^>]+src=["']([^"']+\.webp)["']/i);
+  const srcMatch = cardHtml.match(/<img[^>]+src=["']([^"']+)["']/i);
   assert.ok(srcMatch, `Mango combo card does not reference a .webp image in src. Found card: ${cardHtml.slice(0, 300)}`);
-  comboMangoSrc = srcMatch[1];
+  // Validate the URL, then resolve its pathname; cache versions are not filenames.
+  const imageUrl = new URL(srcMatch[1], 'https://galyon.local/');
+  assert.strictEqual(imageUrl.origin, 'https://galyon.local', 'Expected a local combo asset');
+  assert.ok(imageUrl.pathname.startsWith('/assets/') && imageUrl.pathname.endsWith('.webp'), 'Expected a WebP asset in assets/');
+  comboMangoSrc = decodeURIComponent(imageUrl.pathname).slice(1);
 });
 
 test('Referenced Combo Mango WebP file exists in assets/', () => {

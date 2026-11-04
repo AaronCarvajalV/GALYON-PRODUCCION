@@ -397,7 +397,7 @@ test('Edge-case crops (Arroz, Maracuyá, Otro cultivo) render valid images and c
   }
 });
 
-test('All 149 WebP assets in assets/asesor have positive dimensions (width > 0, height > 0)', () => {
+test('All WebP assets in assets/asesor have positive dimensions (width > 0, height > 0)', () => {
   const files = fs.readdirSync(asesorDir);
   for (const file of files) {
     const buf = fs.readFileSync(path.join(asesorDir, file));

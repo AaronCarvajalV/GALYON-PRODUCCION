@@ -58,7 +58,7 @@
       "status": "reviewed"
     },
     {
-      "slug": "rev2-cacao-moniliasis",
+      "slug": "v52_cacao_moniliasis_foto_real",
       "crop": "Cacao",
       "kind": "symptoms",
       "key": "cacao_blanco",
@@ -66,8 +66,10 @@
       "title": "Polvo blanco o crema",
       "previous_image": "v52_cacao_moniliasis_foto_real",
       "prompt": "An attached cacao pod with a brown necrotic patch and a fine dense WHITE TO CREAM powdery spore coating over that patch, visual reference for moniliasis-like symptoms, entire ridged pod and stem visible with green orchard background.",
-      "asset": "assets/asesor/rev2-cacao-moniliasis.webp",
-      "status": "reviewed"
+      "asset": "assets/asesor/v52_cacao_moniliasis_foto_real.webp",
+      "status": "restored-original",
+      "replaced_illustration": "assets/asesor/rev2-cacao-moniliasis.webp",
+      "reason": "El usuario prefiere conservar la fotografía real original de la mazorca cubierta de polvo blanco."
     },
     {
       "slug": "rev2-banano-base-danada",

@@ -332,7 +332,6 @@ document.addEventListener('keydown', e => {
   "Cacao|Raíces o tallo|symptoms|cacao_cancro": "rev2-cacao-cancro",
   "Cacao|Raíces o tallo|symptoms|cacao_marchito": "rev2-cacao-rama-marchita",
   "Cacao|Frutos o mazorcas|symptoms|cacao_negro": "rev2-cacao-mazorca-negra",
-  "Cacao|Frutos o mazorcas|symptoms|cacao_blanco": "rev2-cacao-moniliasis",
   "Banano|Raíces o tallo|symptoms|banano_tallo": "rev2-banano-base-danada",
   "Banano|Raíces o tallo|symptoms|banano_raices": "rev2-banano-raices-danadas",
   "Mango|Toda la planta|symptoms|observacion_mango_flor": "rev2-mango-floracion-seca",
