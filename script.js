@@ -1182,7 +1182,7 @@ document.addEventListener('keydown', e => {
   // a short one can otherwise force the browser to clamp scroll into the products.
   // Position by document coordinates rather than relying on scroll anchoring.
   render();
-  const headerOffset=90;
+  const headerOffset=(document.querySelector?.('.header')?.getBoundingClientRect().height||74)+16;
   const keepAdvisorTop=()=>{
    const absoluteTop=window.scrollY+root.getBoundingClientRect().top;
    window.scrollTo({top:Math.max(0,absoluteTop-headerOffset),left:0,behavior:'instant'});
