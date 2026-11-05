@@ -1287,10 +1287,12 @@
 @media(max-width:800px){#nosotros .identity-gallery.identity-gallery-steps{grid-template-columns:repeat(2,minmax(0,1fr));min-height:0}#nosotros .identity-gallery-steps .identity-photo{min-height:240px}}
 @media(max-width:400px){#nosotros .identity-gallery-steps .identity-photo{min-height:200px}}
 
-/* GALYON v5.4.0: presencial y remoto, transición accesible */
-#nosotros .identity-remote-photo .frame-remote{animation:galyonRemoteAdvice 5s ease-in-out infinite;opacity:0}
-@keyframes galyonRemoteAdvice{0%,47%{opacity:0}50%,97%{opacity:1}100%{opacity:0}}
-@media(prefers-reduced-motion:reduce){#nosotros .identity-remote-photo .frame-remote{animation:none;opacity:0}}
+/* En campo y a distancia: inspección, asesoría remota y acompañamiento. */
+#nosotros .identity-remote-photo .frame-remote{animation:galyonRemoteAdvice 9s ease-in-out infinite;opacity:0}
+#nosotros .identity-remote-photo .frame-visit{animation:galyonFieldVisit 9s ease-in-out infinite;opacity:0}
+@keyframes galyonRemoteAdvice{0%,30%{opacity:0}33%,66%{opacity:1}69%,100%{opacity:0}}
+@keyframes galyonFieldVisit{0%,63%{opacity:0}66%,97%{opacity:1}100%{opacity:0}}
+@media(prefers-reduced-motion:reduce){#nosotros .identity-remote-photo .frame-remote,#nosotros .identity-remote-photo .frame-visit{animation:none;opacity:0}}
 
 /* v5.4.3: Keep the advisor stationary while its content changes. */
 #advisor-app,#advisor-content{overflow-anchor:none;}
@@ -1428,3 +1430,337 @@
   .products .product-card .product-tag{display:block;font-size:12px;}
 }
 @media(max-width:360px){.products .product-card .product-top{flex-wrap:wrap;}.products .product-card .product-tag{font-size:11.5px;}}
+
+/* Jerarquía de lectura: descripciones y planes primero, consulta secundaria. */
+.products .product-card .product-details>p {
+  font-size: 15px;
+  line-height: 1.75;
+  height: auto;
+  min-height: 0;
+}
+.product-bottom {
+  flex-wrap: wrap;
+  align-items: center;
+  row-gap: 14px;
+}
+.product-bottom strong {
+  display: block;
+  font-size: 12px;
+  line-height: 1.5;
+  font-weight: 600;
+  letter-spacing: 0;
+  color: #566d5d;
+}
+.product-bottom small { font-size: 11px; line-height: 1.5; }
+.products .product-card .view-line { font-size: 14px; }
+.combos .combo-body h3 { font-size: 21px; line-height: 1.35; }
+.combos .combo-body p { font-size: 15px; line-height: 1.75; }
+.combos .combo-body small { font-size: 13px; line-height: 1.6; }
+.combos .combo-price strong {
+  font-size: 13px;
+  line-height: 1.5;
+  font-weight: 600;
+  color: #566d5d;
+}
+.combos .combo-price span { font-size: 13px; }
+.soil-plan-heading b { font-size: 20px; line-height: 1.35; }
+.soil-plan-heading small { font-size: 14px; line-height: 1.65; }
+.soil-plan-content p { font-size: 15px; line-height: 1.75; }
+.soil-plan-content .soil-plan-caution { font-size: 13px; }
+.soil-plan-summary .soil-plan-price,
+.soil-plan:hover .soil-plan-price,
+.soil-plan[open] .soil-plan-price {
+  font-size: 12px!important;
+  font-weight: 600!important;
+  letter-spacing: 0!important;
+}
+.rice-price strong {
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 600;
+}
+.formulations-from { font-size: 11px; font-weight: 600; white-space: normal; }
+.formulation-price { font-size: 14px; font-weight: 600; }
+@media(max-width:760px) {
+  .soil-plan-heading b { font-size: 19px; }
+  .soil-plan-heading small { font-size: 13px; }
+  .soil-plan-summary { column-gap: 12px; }
+}
+
+/* Fotos de las tres líneas: 15 % menos de altura respecto a 9 / 14. */
+.products .product-card .product-visual {
+  min-height: 0;
+  overflow: hidden!important;
+}
+.products .product-card .product-visual .line-photo {
+  width: 100%;
+  height: auto!important;
+  aspect-ratio: 9 / 11.9!important;
+  object-fit: cover!important;
+  object-position: center!important;
+}
+
+.products .product-card.bact .product-visual .line-photo {
+  object-position: center 35%!important;
+}
+
+/* El acompañamiento y el asesor forman una sola experiencia. */
+.advisor-integrated { background: #f2f5ed; }
+.advisor-integrated .advisor-shell {
+  grid-template-columns: minmax(0,.85fr) minmax(0,1.15fr);
+  gap: clamp(28px,4vw,58px);
+  align-items: start;
+}
+.advisor-integrated .advisor-story { position: static; padding-top: 0; min-width: 0; }
+.advisor-integrated .advisor-story>.eyebrow { font-size: 10px; line-height: 1.7; letter-spacing: .12em; margin-bottom: 20px; }
+.advisor-integrated .advisor-story h2 { font-size: clamp(36px,4vw,54px); line-height: 1.13; max-width: 480px; }
+.advisor-integrated .advisor-story .advisor-story-lead { font-size: 16px; line-height: 1.8; margin-bottom: 28px; }
+.advisor-method { border-top: 1px solid #d5e1ce; padding-top: 24px; }
+.advisor-method h3 { font-size: 21px; line-height: 1.4; letter-spacing: -.035em; color: #214d34; margin: 0 0 14px; }
+.advisor-method p { font-size: 14px; line-height: 1.8; color: #597163; margin: 0 0 14px; }
+.advisor-story-steps { display: flex; flex-wrap: wrap; gap: 10px 18px; margin-top: 26px; color: #47724a; font-size: 11px; font-weight: 800; }
+.advisor-workspace { min-width: 0; }
+.advisor-workspace-heading { margin-bottom: 20px; }
+.advisor-workspace-heading .eyebrow { font-size: 10px; margin-bottom: 10px; }
+.advisor-workspace-heading h3 { font-size: clamp(24px,2.5vw,31px); line-height: 1.25; letter-spacing: -.04em; color: #173e2a; margin: 0 0 10px; }
+.advisor-workspace-heading p { font-size: 14px; line-height: 1.65; color: #597163; margin: 0; }
+.advisor-workspace>.advisor-disclaimer { font-size: 11px; line-height: 1.7; color: #6b7e6e; margin: 15px 4px 0; }
+@media(max-width:950px) {
+  .advisor-integrated .advisor-shell { grid-template-columns: minmax(0,1fr); gap: 32px; }
+  .advisor-integrated .advisor-story h2 { max-width: 650px; }
+  .advisor-integrated .advisor-story>p { max-width: 100%; }
+  .advisor-method { max-width: 720px; padding-top: 20px; }
+  .advisor-story-steps { margin-top: 20px; }
+}
+@media(max-width:540px) {
+  .advisor-integrated .advisor-story h2 { font-size: 37px; }
+  .advisor-integrated .advisor-story .advisor-story-lead { font-size: 15px; margin-bottom: 22px; }
+  .advisor-method h3 { font-size: 20px; }
+  .advisor-workspace-heading h3 { font-size: 25px; }
+}
+
+/* Barra del asesor según el modo activo. */
+#advisor-app[data-advisor-total-steps="3"] .advisor-progress-bar{grid-template-columns:repeat(3,1fr)}
+.advisor-progress-bar i[hidden]{display:none}
+
+/* Asesor centrado: presentación arriba y selector horizontal debajo. */
+.advisor-integrated .advisor-shell{grid-template-columns:minmax(0,1fr);gap:36px}
+.advisor-integrated .advisor-story{width:100%;max-width:960px;margin:0 auto;text-align:center;display:grid;grid-template-columns:1fr 1fr;gap:0 32px;align-items:center}
+.advisor-integrated .advisor-story>.eyebrow,.advisor-integrated .advisor-story>h2,.advisor-integrated .advisor-story-steps{grid-column:1/-1}
+.advisor-integrated .advisor-story>.eyebrow{justify-content:center}
+.advisor-integrated .advisor-story h2{max-width:850px;margin:0 auto 24px}
+.advisor-integrated .advisor-story .advisor-story-lead{max-width:none;margin:0;text-align:left}
+.advisor-integrated .advisor-method{border-top:0;border-left:1px solid #d5e1ce;padding:0 0 0 32px;text-align:left;max-width:none}
+.advisor-integrated .advisor-method p:last-child{margin-bottom:0}
+.advisor-integrated .advisor-story-steps{justify-content:center;margin-top:26px}
+.advisor-integrated .advisor-workspace{width:100%;max-width:1100px;margin:0 auto}
+.advisor-integrated .advisor-workspace-heading{text-align:center}
+.advisor-integrated .advisor-workspace-heading .eyebrow{justify-content:center}
+.advisor-integrated .advisor-workspace>.advisor-disclaimer{text-align:center;max-width:800px;margin:16px auto 0}
+.advisor-integrated .advisor-options-crops{grid-template-columns:repeat(3,minmax(0,1fr))}
+.advisor-integrated .advisor-result-v523{max-width:860px;margin-inline:auto}
+@media(max-width:760px){
+ .advisor-integrated .advisor-story{grid-template-columns:minmax(0,1fr);gap:20px}
+ .advisor-integrated .advisor-story>.eyebrow{margin-bottom:0}
+ .advisor-integrated .advisor-story h2{margin-bottom:0}
+ .advisor-integrated .advisor-story .advisor-story-lead{text-align:center;margin:0}
+ .advisor-integrated .advisor-method{border-left:0;border-top:1px solid #d5e1ce;padding:20px 0 0;text-align:center}
+ .advisor-integrated .advisor-story-steps{margin-top:0}
+ .advisor-integrated .advisor-options-crops{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .advisor-integrated .advisor-shell{gap:28px}
+}
+
+/* Portadas y nombres separados, únicamente en la selección de cultivos. */
+#advisor-app[data-advisor-step="1"] .advisor-progress{display:none}
+#advisor-app[data-advisor-step="1"] .advisor-options-crops .advisor-option{min-height:206px}
+#advisor-app[data-advisor-step="1"] .advisor-options-crops .advisor-option:not(.is-text){background:#fff;border:1px solid #dbe5d7;justify-content:flex-start}
+#advisor-app[data-advisor-step="1"] .advisor-options-crops .advisor-option:not(.is-text)::after{display:none}
+#advisor-app[data-advisor-step="1"] .advisor-options-crops .advisor-option img{position:static;width:100%;height:160px;object-fit:cover;object-position:center center;aspect-ratio:auto}
+#advisor-app[data-advisor-step="1"] .advisor-options-crops .advisor-option:not(.is-text) .advisor-option-text{background:#fff;padding:13px 14px;flex:1}
+#advisor-app[data-advisor-step="1"] .advisor-options-crops .advisor-option:not(.is-text) strong{color:#173d2a;text-shadow:none;font-size:15px;line-height:1.4}
+@media(max-width:760px){
+ #advisor-app[data-advisor-step="1"] .advisor-options-crops .advisor-option{min-height:172px}
+ #advisor-app[data-advisor-step="1"] .advisor-options-crops .advisor-option img{height:120px}
+ #advisor-app[data-advisor-step="1"] .advisor-options-crops .advisor-option:not(.is-text) .advisor-option-text{padding:12px 10px}
+ #advisor-app[data-advisor-step="1"] .advisor-options-crops .advisor-option:not(.is-text) strong{font-size:14px}
+}
+
+/* Maíz: encuadre amplio únicamente en la selección de la parte afectada. */
+#advisor-app[data-advisor-crop="Maíz"][data-advisor-step="2"] .advisor-options-parts .advisor-option{aspect-ratio:2/1;min-height:0;background:#e3ece0}
+#advisor-app[data-advisor-crop="Maíz"][data-advisor-step="2"] .advisor-options-parts .advisor-option img{object-fit:contain;object-position:center;transform:none}
+@media(max-width:760px){#advisor-app[data-advisor-crop="Maíz"][data-advisor-step="2"] .advisor-options-parts{grid-template-columns:minmax(0,1fr)}}
+
+/* Fotos de Toda la planta de maíz: encuadre amplio y sin zoom al pasar el cursor. */
+#advisor-app[data-advisor-crop="Maíz"] .advisor-options-symptoms .advisor-option:is([data-advisor-value="maiz_amarillamiento_general"],[data-advisor-value="maiz_crecimiento_desigual"],[data-advisor-value="maiz_marchitez_general"],[data-advisor-value="maiz_caidas_secamiento"]){aspect-ratio:16/9;min-height:0}
+#advisor-app[data-advisor-crop="Maíz"] .advisor-options-symptoms .advisor-option:is([data-advisor-value="maiz_amarillamiento_general"],[data-advisor-value="maiz_crecimiento_desigual"],[data-advisor-value="maiz_marchitez_general"],[data-advisor-value="maiz_caidas_secamiento"]) img{object-fit:cover;object-position:center;transform:none}
+@media(max-width:760px){#advisor-app[data-advisor-crop="Maíz"] .advisor-options-symptoms:has([data-advisor-value="maiz_amarillamiento_general"]){grid-template-columns:minmax(0,1fr)}}
+
+/* Hojas de maíz: ilustraciones de referencia, encuadre uniforme y sin zoom. */
+#advisor-app[data-advisor-crop="Maíz"] .advisor-options-symptoms .advisor-option:is([data-advisor-value="maiz_manchas"],[data-advisor-value="maiz_roya"],[data-advisor-value="maiz_oruga"],[data-advisor-value="maiz_clorosis_intervenal"]){aspect-ratio:16/9;min-height:0}
+#advisor-app[data-advisor-crop="Maíz"] .advisor-options-symptoms .advisor-option:is([data-advisor-value="maiz_manchas"],[data-advisor-value="maiz_roya"],[data-advisor-value="maiz_oruga"],[data-advisor-value="maiz_clorosis_intervenal"]) img{object-fit:cover;object-position:center;transform:none}
+@media(max-width:760px){#advisor-app[data-advisor-crop="Maíz"] .advisor-options-symptoms:has([data-advisor-value="maiz_clorosis_intervenal"]){grid-template-columns:minmax(0,1fr)}}
+
+/* Ilustraciones nuevas auditadas del asesor; solo las tarjetas asignadas. */
+.crop-advisor .advisor-options .advisor-option[data-reference-image="true"]{min-height:0;aspect-ratio:16/9}
+.crop-advisor .advisor-options .advisor-option[data-reference-image="true"] img{object-fit:cover;object-position:center;transform:none}
+@media(max-width:760px){.crop-advisor .advisor-options:has([data-reference-image="true"]){grid-template-columns:minmax(0,1fr)}}
+
+/* Los cuadros 02, 03 y 04 alternan juntos cacao/TRICHO, frutilla/BACT y maíz/INSECTA. */
+#nosotros .identity-photo-solution{background:#fff}
+.identity-sequence-slides{position:absolute;inset:0;overflow:hidden}
+#nosotros .identity-sequence-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .7s ease;cursor:default}
+#nosotros .identity-sequence-slide.is-current{opacity:1}
+#nosotros .identity-product-slides{inset:0}
+#nosotros .identity-product-slide{object-fit:cover}
+@media(prefers-reduced-motion:reduce){#nosotros .identity-sequence-slide{transition:none}}
+
+/* Referencias de resultados completas: evitar recortar un encuadre horizontal en una tira vertical. */
+.crop-advisor .advisor-result-v523 .advisor-evidence:has(.advisor-evidence-image){grid-template-columns:minmax(240px,.45fr) minmax(0,1fr)}
+.crop-advisor .advisor-result-v523 .advisor-evidence-image{aspect-ratio:16/9;min-height:0;align-self:center}
+.crop-advisor .advisor-result-v523 .advisor-evidence-image img{object-fit:contain;object-position:center;transform:none}
+@media(max-width:640px){
+ .crop-advisor .advisor-result-v523 .advisor-evidence:has(.advisor-evidence-image){grid-template-columns:minmax(0,1fr);gap:0}
+ .crop-advisor .advisor-result-v523 .advisor-evidence-image{width:100%}
+ .crop-advisor .advisor-result-v523 .advisor-evidence-copy{padding:16px}
+}
+
+/* Ácidos húmicos: presentación aprobada y consulta de formato por peso. */
+.humic-section{padding-top:22px;padding-bottom:36px;scroll-margin-top:100px}
+.humic-panel{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(24px,4vw,52px);align-items:center;padding:clamp(16px,3vw,32px);border:1px solid #e4ddcf;border-radius:24px;background:#f8f5ef}
+.humic-visual{margin:0;min-width:0}
+.humic-visual a{display:block;border-radius:15px;overflow:hidden}
+.humic-visual img{display:block;width:100%;height:auto;aspect-ratio:1;object-fit:contain}
+.humic-visual figcaption{text-align:center;font-size:11px;color:#66745e;margin-top:9px}
+.humic-copy{min-width:0;padding:8px 0}
+.humic-copy .eyebrow{font-size:10px;line-height:1.6;letter-spacing:.11em}
+.humic-copy h2{font-size:clamp(27px,3.1vw,42px);line-height:1.14;color:#173e2b;margin:12px 0 20px}
+.humic-copy h2 span{color:#527c3a}
+.humic-copy p{font-size:15px;line-height:1.7;color:#53634f;margin:0 0 22px}
+.humic-copy .humic-product-name{font-size:19px;font-weight:750;color:#214a31;margin-bottom:10px}
+.humic-facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:26px 0}
+.humic-facts div{border-top:1px solid #d7dece;padding-top:12px}
+.humic-facts dt{font-size:11px;line-height:1.5;color:#62715a}
+.humic-facts dd{font-size:21px;font-weight:750;line-height:1.5;color:#214a31;margin:5px 0 0}
+.humic-contact{display:inline-flex;align-items:center;justify-content:center;gap:18px;padding:13px 18px;border-radius:10px;background:#214a31;color:#fff;font-size:14px;font-weight:750;text-decoration:none}
+.humic-contact:hover{background:#32613e}
+.humic-contact:focus-visible,.humic-visual a:focus-visible{outline:3px solid #719650;outline-offset:4px}
+.humic-copy .humic-note{font-size:12px;line-height:1.6;margin:12px 0 0;color:#6c7763}
+@media(max-width:800px){.humic-panel{grid-template-columns:minmax(0,1fr);gap:18px}.humic-copy{padding:4px 2px 8px}.humic-copy h2{font-size:30px}.humic-facts{margin:20px 0}.humic-contact{width:100%}}
+@media(max-width:360px){.humic-facts{gap:8px}.humic-facts dt{font-size:10px}.humic-facts dd{font-size:19px}}
+
+/* Secciones claras y orientación persistente en páginas largas. */
+html{scroll-padding-top:calc(var(--galyon-header-height,84px) + 16px)}
+#nosotros,#asesor,#combos,#lineas,#tricho-sustrato,#humicos,#analisis,#garantia{scroll-margin-top:12px}
+.navlinks{gap:22px}.navlinks a{white-space:nowrap}
+.navlinks a[aria-current="location"]{color:#245934;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:7px}
+.page-section-jump{display:none}.page-section-jump[hidden]{display:none}
+.section-waypoint{display:flex;align-items:center;gap:12px;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid #d2deca;color:#335c36}
+.section-waypoint>span{display:grid;place-items:center;flex:0 0 32px;height:32px;border-radius:50%;background:#214a31;color:#fff;font-size:12px;font-weight:800;letter-spacing:.03em}
+.section-waypoint strong{font-size:11px;line-height:1.5;letter-spacing:.12em}
+#asesor{background:#f0f4ec;border-block:1px solid #dbe4d2;padding-block:64px}
+#combos{background:#fff;padding-block:64px}
+.catalog-chapter{background:#eaf0e5;border-block:1px solid #d5dfcd;padding-bottom:24px}
+.catalog-chapter #lineas{background:transparent;padding-top:64px;padding-bottom:28px}
+.catalog-chapter .rice-product-section,.catalog-chapter .humic-section{background:transparent}
+main #analisis.soilv2{background:#f8f4ec;padding-top:64px;scroll-margin-top:12px}
+.section-waypoint-light{color:#e4eed7;border-color:#ffffff30}
+.section-waypoint-light>span{background:#ddebbe;color:#153e2a}
+@media(max-width:1100px){
+ .header .nav{height:68px}.header .nav-wa{display:none}.header .menu-toggle{display:flex}
+ .header .navlinks{display:none;position:absolute;top:68px;left:0;right:0;background:var(--cream);box-shadow:0 12px 22px #0001;padding:14px 22px;flex-direction:column;align-items:stretch;gap:0;z-index:2}
+ .header .navlinks.is-open{display:flex}.header .navlinks a{padding:12px 5px;border-bottom:1px solid #e5ebdf}
+ .page-section-jump{display:block;background:#edf2e7;border-top:1px solid #dce5d3}
+ .page-section-jump>.wrap{display:flex;align-items:center;gap:12px;min-height:42px}
+ .page-section-jump label{font-size:10px;font-weight:800;letter-spacing:.12em;color:#617652}
+ .page-section-jump select{flex:1;min-width:0;min-height:42px;padding:7px 4px;border:0;background:transparent;color:#24462e;font:inherit;font-size:13px;font-weight:650}
+ .header:has(.navlinks.is-open) .page-section-jump{visibility:hidden}
+}
+@media(max-width:760px){.section-waypoint{margin-bottom:18px}.section-waypoint strong{font-size:10px}#asesor,#combos{padding-block:48px}.catalog-chapter #lineas,main #analisis.soilv2{padding-top:48px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.weekly-offer{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,.8fr);gap:clamp(22px,3vw,38px);align-items:center;padding:22px;margin-bottom:38px;border:1px solid #e4ddcf;border-radius:20px;background:#faf6ef}
+.weekly-offer-image{display:block;min-width:0}.weekly-offer-image img{display:block;width:100%;height:auto;aspect-ratio:1672/941;object-fit:contain;border-radius:12px}
+.weekly-offer-copy h3{font-size:clamp(23px,2.5vw,33px);line-height:1.2;color:#183f2c;margin:12px 0}.weekly-offer-copy h3 span{color:#5c7941}.weekly-offer-copy p{color:#5a6a50;line-height:1.65;font-size:14px;margin:0 0 20px}
+.weekly-offer-benefits{display:grid;gap:12px;margin:18px 0}
+.weekly-offer-benefits>div{border-left:2px solid #9ab47b;padding-left:12px}
+.weekly-offer-benefits dt{font-size:14px;font-weight:750;line-height:1.4;color:#214a31;margin-bottom:4px}
+.weekly-offer-benefits dd{font-size:13px;line-height:1.6;color:#5a6a50;margin:0}
+.weekly-offer-copy .weekly-offer-pairing{font-weight:650;color:#335b37;margin-bottom:16px}
+.weekly-offer-copy .weekly-offer-gift{font-size:14px;line-height:1.6}
+@media(max-width:760px){.weekly-offer{grid-template-columns:minmax(0,1fr);padding:15px;gap:18px}.weekly-offer-copy .humic-contact{width:100%}}
+
+/* Referencias del posible agente: nombre y escala visual legibles. */
+.crop-advisor .advisor-evidence-image .advisor-evidence-tag.advisor-agent-tag{display:flex;flex-direction:column;align-items:flex-start;gap:4px;max-width:calc(100% - 24px);text-align:left;white-space:normal;line-height:1.35}
+.advisor-agent-tag b{font-size:10px;letter-spacing:.09em}
+.advisor-agent-tag i{font-size:15px;font-weight:600;letter-spacing:0;text-transform:none}
+.advisor-agent-tag small{font-size:10px;font-weight:500;letter-spacing:0;text-transform:none}
+
+/* Geometría explícita: las fotos no dependen del alto de hijos absolutos en Safari. */
+#nosotros .galyon-showcase .identity-photo{width:100%;min-width:0;aspect-ratio:auto}
+#nosotros .galyon-showcase .identity-photo::before{content:"";display:block;padding-top:133.333333%}
+.crop-advisor .advisor-options{width:100%;min-width:0;justify-items:stretch}
+.crop-advisor button.advisor-option{-webkit-appearance:none;appearance:none;width:100%;min-width:0;max-width:100%;box-sizing:border-box;justify-self:stretch}
+.intro-secondary>summary,.advisor-mobile-context{display:none}
+@media(max-width:760px){
+ main>#nosotros{padding-top:22px;padding-bottom:26px}
+ #nosotros .galyon-showcase{margin-bottom:18px}
+ #nosotros .galyon-showcase-title{margin-bottom:16px}
+ #nosotros .galyon-showcase-title .eyebrow{display:none}
+ #nosotros .galyon-showcase .galyon-showcase-title h2{font-size:24px;line-height:1.15;margin:0}
+ .intro-secondary{width:calc(100% - 36px);margin-inline:auto}
+ .intro-secondary>summary{display:flex;align-items:center;justify-content:space-between;padding:13px 0;color:#305a3c;font-size:14px;font-weight:700;cursor:pointer;list-style:none}
+ .intro-secondary>summary::-webkit-details-marker{display:none}
+ .intro-secondary[open]>summary span{transform:rotate(45deg)}
+ .intro-secondary .wrap{width:100%}
+ .intro-secondary .intro-grid{margin-top:16px}
+ .advisor-integrated .advisor-story{gap:12px}
+ .advisor-integrated .advisor-story h2{font-size:30px;margin-bottom:0}
+ .advisor-integrated .advisor-story>.advisor-story-lead,.advisor-integrated .advisor-story>.advisor-method,.advisor-integrated .advisor-story>.advisor-story-steps{display:none}
+ .advisor-mobile-context{display:block;grid-column:1/-1;text-align:left;color:#52705b;font-size:14px;line-height:1.6}
+ .advisor-mobile-context summary{text-align:center;cursor:pointer;font-weight:650}
+ .advisor-mobile-context p{margin:12px 0 0}
+ .advisor-integrated .advisor-shell{gap:22px}
+ .advisor-workspace-heading{display:none}
+ #advisor-app .advisor-options-parts,#advisor-app .advisor-options-symptoms{display:grid;grid-template-columns:minmax(0,1fr);width:100%;gap:14px}
+ #advisor-app .advisor-options-parts .advisor-option,#advisor-app .advisor-options-symptoms .advisor-option{aspect-ratio:auto!important;min-height:0!important;border:1px solid #dbe5d7;background:#fff;justify-content:flex-start}
+ #advisor-app .advisor-options-parts .advisor-option::after,#advisor-app .advisor-options-symptoms .advisor-option::after{display:none}
+ #advisor-app .advisor-options-parts .advisor-option img,#advisor-app .advisor-options-symptoms .advisor-option img{position:static;inset:auto;display:block;flex:none;width:100%;height:clamp(150px,48vw,230px);aspect-ratio:auto;object-fit:cover;transform:none}
+ #advisor-app .advisor-options-parts .advisor-option-text,#advisor-app .advisor-options-symptoms .advisor-option-text{display:block;flex:none;width:100%;padding:13px 14px;background:#fff;color:#173d2a}
+ #advisor-app .advisor-options-parts .advisor-option strong,#advisor-app .advisor-options-symptoms .advisor-option strong{font-size:15px;line-height:1.4;color:#173d2a;text-shadow:none}
+ #advisor-app .advisor-options-parts .advisor-option small,#advisor-app .advisor-options-symptoms .advisor-option small{font-size:13px;line-height:1.5;color:#607363;text-shadow:none}
+}
+
+/* TRICHO en teléfono: conservar margen por encima de la tapa. */
+@media(max-width:760px){
+ .products .product-card.tricho .product-visual .line-photo{object-position:center 35%!important}
+}
+
+/* Resultados del asesor: botella completa de cada microorganismo. */
+.crop-advisor .advisor-product-photo.advisor-catalog-photo{height:auto;aspect-ratio:1;background:#fbf8f6}
+.crop-advisor .advisor-catalog-photo img{object-fit:contain}
+.crop-advisor .advisor-product.has-variants{grid-template-columns:minmax(0,1fr)}
+.advisor-product-variants{display:grid;grid-template-columns:repeat(auto-fit,minmax(125px,1fr));gap:12px;min-width:0}
+.advisor-variants-label{grid-column:1/-1;margin:0;color:#52705a;font-size:12px;line-height:1.5}
+.advisor-catalog-variant{margin:0;padding:8px;border-radius:10px;border:1px solid #e0e6d9;background:#fbf8f6;min-width:0}
+.advisor-catalog-variant img{display:block;width:100%;height:auto;aspect-ratio:1;object-fit:contain}
+.advisor-catalog-variant figcaption{font-size:12px;line-height:1.5;color:#244b33;text-align:center;padding:8px 2px;overflow-wrap:anywhere}
+@media(max-width:540px){
+ .crop-advisor .advisor-product:has(.advisor-catalog-photo){grid-template-columns:minmax(0,1fr);gap:14px}
+ .crop-advisor .advisor-product-photo.advisor-catalog-photo{width:min(100%,300px);justify-self:center}
+ .advisor-product-variants{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+}
+
+/* Precios visibles y resumen del pedido. */
+.products .product-bottom strong,.combos .combo-price strong,.rice-price strong{font-size:28px;line-height:1.2;font-weight:800;color:#173e2b}
+.product-price-unit{font-size:13px;color:#607363}
+.formulation-price{display:flex;align-items:baseline;gap:5px;flex-wrap:wrap}
+.formulation-price b{font-size:22px;color:#173e2b}
+.formulation-price small{font-size:11px;font-weight:500}
+.weekly-offer-price,.humic-price{display:flex;align-items:baseline;flex-wrap:wrap;gap:12px;margin:20px 0;color:#173e2b}
+.weekly-offer-price strong,.humic-price strong{font-size:36px;line-height:1.1;font-weight:800}
+.weekly-offer-price span,.humic-price span{font-size:13px;color:#52705a}
+.catalog-add{display:inline-flex;align-items:center;justify-content:center;min-height:44px;border:0;border-radius:8px;padding:12px 18px;background:#174b32;color:white;font:inherit;font-size:14px;font-weight:750;margin:0 10px 12px 0;cursor:pointer}
+.catalog-add:hover{background:#276944}
+.cart-summary-row{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:13px;margin:9px 0;color:#42624d}
+.drawer-footer .total-line{border-top:1px solid #dfe8d9;padding-top:12px;margin-top:12px}
+.cart-item-main{min-width:0}.cart-item-main strong{overflow-wrap:anywhere}.cart-item-price{margin-top:9px;font-size:16px;color:#173e2b}
+@media(max-width:540px){.catalog-add{width:100%;margin-right:0}.formulation-price b{font-size:20px}.weekly-offer-price strong,.humic-price strong{font-size:32px}}
