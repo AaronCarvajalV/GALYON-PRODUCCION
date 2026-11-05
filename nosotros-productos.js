@@ -1,6 +1,10 @@
 'use strict';
 // Un único reloj mantiene alineados problema, solución y objetivo del cultivo.
 (()=>{
+ const mobile=window.matchMedia('(max-width: 760px)');
+ const about=document.querySelector('.intro-secondary');
+ function syncAbout(){if(about)about.open=!mobile.matches;}
+ syncAbout();mobile.addEventListener('change',syncAbout);
  const gallery=document.querySelector('.identity-gallery-steps');
  if(!gallery)return;
  const groups=[...gallery.querySelectorAll('.identity-sequence-slides')].map(group=>[...group.querySelectorAll('.identity-sequence-slide')]);

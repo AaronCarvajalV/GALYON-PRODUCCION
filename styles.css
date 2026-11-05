@@ -1693,3 +1693,40 @@ main #analisis.soilv2{background:#f8f4ec;padding-top:64px;scroll-margin-top:12px
 .advisor-agent-tag b{font-size:10px;letter-spacing:.09em}
 .advisor-agent-tag i{font-size:15px;font-weight:600;letter-spacing:0;text-transform:none}
 .advisor-agent-tag small{font-size:10px;font-weight:500;letter-spacing:0;text-transform:none}
+
+/* Geometría explícita: las fotos no dependen del alto de hijos absolutos en Safari. */
+#nosotros .galyon-showcase .identity-photo{width:100%;min-width:0;aspect-ratio:auto}
+#nosotros .galyon-showcase .identity-photo::before{content:"";display:block;padding-top:133.333333%}
+.crop-advisor .advisor-options{width:100%;min-width:0;justify-items:stretch}
+.crop-advisor button.advisor-option{-webkit-appearance:none;appearance:none;width:100%;min-width:0;max-width:100%;box-sizing:border-box;justify-self:stretch}
+.intro-secondary>summary,.advisor-mobile-context{display:none}
+@media(max-width:760px){
+ main{display:flex;flex-direction:column}
+ main>section{min-width:0}
+ main>#nosotros{order:-1;padding-top:22px;padding-bottom:26px}
+ #nosotros .galyon-showcase{margin-bottom:18px}
+ #nosotros .galyon-showcase-title{margin-bottom:16px}
+ #nosotros .galyon-showcase-title .eyebrow{display:none}
+ #nosotros .galyon-showcase .galyon-showcase-title h2{font-size:24px;line-height:1.15;margin:0}
+ .intro-secondary{width:calc(100% - 36px);margin-inline:auto}
+ .intro-secondary>summary{display:flex;align-items:center;justify-content:space-between;padding:13px 0;color:#305a3c;font-size:14px;font-weight:700;cursor:pointer;list-style:none}
+ .intro-secondary>summary::-webkit-details-marker{display:none}
+ .intro-secondary[open]>summary span{transform:rotate(45deg)}
+ .intro-secondary .wrap{width:100%}
+ .intro-secondary .intro-grid{margin-top:16px}
+ .advisor-integrated .advisor-story{gap:12px}
+ .advisor-integrated .advisor-story h2{font-size:30px;margin-bottom:0}
+ .advisor-integrated .advisor-story>.advisor-story-lead,.advisor-integrated .advisor-story>.advisor-method,.advisor-integrated .advisor-story>.advisor-story-steps{display:none}
+ .advisor-mobile-context{display:block;grid-column:1/-1;text-align:left;color:#52705b;font-size:14px;line-height:1.6}
+ .advisor-mobile-context summary{text-align:center;cursor:pointer;font-weight:650}
+ .advisor-mobile-context p{margin:12px 0 0}
+ .advisor-integrated .advisor-shell{gap:22px}
+ .advisor-workspace-heading{display:none}
+ #advisor-app .advisor-options-parts,#advisor-app .advisor-options-symptoms{display:grid;grid-template-columns:minmax(0,1fr);width:100%;gap:14px}
+ #advisor-app .advisor-options-parts .advisor-option,#advisor-app .advisor-options-symptoms .advisor-option{aspect-ratio:auto!important;min-height:0!important;border:1px solid #dbe5d7;background:#fff;justify-content:flex-start}
+ #advisor-app .advisor-options-parts .advisor-option::after,#advisor-app .advisor-options-symptoms .advisor-option::after{display:none}
+ #advisor-app .advisor-options-parts .advisor-option img,#advisor-app .advisor-options-symptoms .advisor-option img{position:static;inset:auto;display:block;flex:none;width:100%;height:clamp(150px,48vw,230px);aspect-ratio:auto;object-fit:cover;transform:none}
+ #advisor-app .advisor-options-parts .advisor-option-text,#advisor-app .advisor-options-symptoms .advisor-option-text{display:block;flex:none;width:100%;padding:13px 14px;background:#fff;color:#173d2a}
+ #advisor-app .advisor-options-parts .advisor-option strong,#advisor-app .advisor-options-symptoms .advisor-option strong{font-size:15px;line-height:1.4;color:#173d2a;text-shadow:none}
+ #advisor-app .advisor-options-parts .advisor-option small,#advisor-app .advisor-options-symptoms .advisor-option small{font-size:13px;line-height:1.5;color:#607363;text-shadow:none}
+}
