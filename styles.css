@@ -1728,3 +1728,8 @@ main #analisis.soilv2{background:#f8f4ec;padding-top:64px;scroll-margin-top:12px
  #advisor-app .advisor-options-parts .advisor-option strong,#advisor-app .advisor-options-symptoms .advisor-option strong{font-size:15px;line-height:1.4;color:#173d2a;text-shadow:none}
  #advisor-app .advisor-options-parts .advisor-option small,#advisor-app .advisor-options-symptoms .advisor-option small{font-size:13px;line-height:1.5;color:#607363;text-shadow:none}
 }
+
+/* TRICHO en teléfono: conservar margen por encima de la tapa. */
+@media(max-width:760px){
+ .products .product-card.tricho .product-visual .line-photo{object-position:center 35%!important}
+}
