@@ -1748,3 +1748,19 @@ main #analisis.soilv2{background:#f8f4ec;padding-top:64px;scroll-margin-top:12px
  .crop-advisor .advisor-product-photo.advisor-catalog-photo{width:min(100%,300px);justify-self:center}
  .advisor-product-variants{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
 }
+
+/* Precios visibles y resumen del pedido. */
+.products .product-bottom strong,.combos .combo-price strong,.rice-price strong{font-size:28px;line-height:1.2;font-weight:800;color:#173e2b}
+.product-price-unit{font-size:13px;color:#607363}
+.formulation-price{display:flex;align-items:baseline;gap:5px;flex-wrap:wrap}
+.formulation-price b{font-size:22px;color:#173e2b}
+.formulation-price small{font-size:11px;font-weight:500}
+.weekly-offer-price,.humic-price{display:flex;align-items:baseline;flex-wrap:wrap;gap:12px;margin:20px 0;color:#173e2b}
+.weekly-offer-price strong,.humic-price strong{font-size:36px;line-height:1.1;font-weight:800}
+.weekly-offer-price span,.humic-price span{font-size:13px;color:#52705a}
+.catalog-add{display:inline-flex;align-items:center;justify-content:center;min-height:44px;border:0;border-radius:8px;padding:12px 18px;background:#174b32;color:white;font:inherit;font-size:14px;font-weight:750;margin:0 10px 12px 0;cursor:pointer}
+.catalog-add:hover{background:#276944}
+.cart-summary-row{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:13px;margin:9px 0;color:#42624d}
+.drawer-footer .total-line{border-top:1px solid #dfe8d9;padding-top:12px;margin-top:12px}
+.cart-item-main{min-width:0}.cart-item-main strong{overflow-wrap:anywhere}.cart-item-price{margin-top:9px;font-size:16px;color:#173e2b}
+@media(max-width:540px){.catalog-add{width:100%;margin-right:0}.formulation-price b{font-size:20px}.weekly-offer-price strong,.humic-price strong{font-size:32px}}

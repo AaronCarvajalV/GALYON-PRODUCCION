@@ -8,10 +8,13 @@ const PRODUCTS = {
   'insecta-bt': {name:'GALYON INSECTA · Bacillus thuringiensis', line:'insecta', image:'assets/linea-insecta.jpg', unit:20, unitLabel:'litro', sizeLabel:'1 litro'},
   'insecta-beauveria': {name:'GALYON INSECTA · Beauveria bassiana', line:'insecta', image:'assets/linea-insecta.jpg', unit:20, unitLabel:'litro', sizeLabel:'1 litro'},
   'insecta-metarhizium': {name:'GALYON INSECTA · Metarhizium anisopliae', line:'insecta', image:'assets/linea-insecta.jpg', unit:20, unitLabel:'litro', sizeLabel:'1 litro'},
-  'combo-cacao': {name:'Cacao Vital · 2 L TRICHO + 2 L BACT', line:'combo', image:'assets/linea-tricho.jpg', unit:70, unitLabel:'combo', sizeLabel:'4 litros'},
-  'combo-mango': {name:'Mango Selecto · 2 L BACT + 2 L INSECTA', line:'combo', image:'assets/linea-bact.jpg', unit:70, unitLabel:'combo', sizeLabel:'4 litros'},
-  'combo-cana': {name:'Caña Productiva · 2 L BACT + 2 L INSECTA', line:'combo', image:'assets/linea-insecta.jpg', unit:70, unitLabel:'combo', sizeLabel:'4 litros'},
-  'combo-banano': {name:'Banano Próspero · 2 L TRICHO + 2 L BACT', line:'combo', image:'assets/linea-tricho.jpg', unit:70, unitLabel:'combo', sizeLabel:'4 litros'}
+  'promo-tricho-humicos': {name:'Promoción TRICHO + ácidos húmicos', line:'promo', image:'assets/promo-tricho-humicos.webp', unit:40, unitLabel:'combo', sizeLabel:'2 litros de TRICHO + 1 kg de ácidos húmicos de regalo', freeShipping:true},
+  'acidos-humicos-1kg': {name:'Ácidos Húmicos 50 %', line:'humicos', image:'assets/acidos-humicos-50.webp?v=3', unit:15, unitLabel:'paquete', sizeLabel:'1 kg'},
+  'tricho-sustrato-1kg': {name:'GALYON TRICHO en sustrato', line:'tricho', image:'assets/tricho-sustrato.webp', unit:25, unitLabel:'paquete', sizeLabel:'1 kg'},
+  'combo-cacao': {freeShipping:true, name:'Cacao Vital · 2 L TRICHO + 2 L BACT', line:'combo', image:'assets/linea-tricho.jpg', unit:60, unitLabel:'combo', sizeLabel:'4 litros'},
+  'combo-mango': {freeShipping:true, name:'Mango Selecto · 2 L BACT + 2 L INSECTA', line:'combo', image:'assets/linea-bact.jpg', unit:60, unitLabel:'combo', sizeLabel:'4 litros'},
+  'combo-cana': {freeShipping:true, name:'Caña Productiva · 2 L BACT + 2 L INSECTA', line:'combo', image:'assets/linea-insecta.jpg', unit:60, unitLabel:'combo', sizeLabel:'4 litros'},
+  'combo-banano': {freeShipping:true, name:'Banano Próspero · 2 L TRICHO + 2 L BACT', line:'combo', image:'assets/linea-tricho.jpg', unit:60, unitLabel:'combo', sizeLabel:'4 litros'}
 };
 const $ = id => document.getElementById(id);
 let cart = {};
@@ -24,33 +27,40 @@ try {
 } catch(e) {}
 function save(){try{localStorage.setItem('galyon_cart_v20', JSON.stringify(cart));}catch(e){}}
 function count(){return Object.values(cart).reduce((a,b)=>a+b,0)}
+const STANDARD_SHIPPING=5;
+function money(value){return '$'+Number(value).toLocaleString('es-EC',{maximumFractionDigits:2});}
+function cartEntries(){return Object.entries(cart).filter(([sku,qty])=>PRODUCTS[sku]&&qty>0);}
+function subtotal(){return cartEntries().reduce((sum,[sku,qty])=>sum+PRODUCTS[sku].unit*qty,0);}
+function shippingCost(){const rows=cartEntries();return rows.length&&rows.some(([sku])=>!PRODUCTS[sku].freeShipping)?STANDARD_SHIPPING:0;}
+function total(){return subtotal()+shippingCost();}
 function shippingCategory(){
- const skus=Object.keys(cart).filter(sku=>PRODUCTS[sku] && cart[sku]>0);
- const combos=skus.some(sku=>sku.startsWith('combo-'));
- const singles=skus.some(sku=>!sku.startsWith('combo-'));
- if(combos && !singles) return 'Envío gratis en combos GALYON (Ecuador)';
- if(combos && singles) return 'Envío gratis en combos; otros productos: costo por confirmar';
- return 'Costo de envío por confirmar según destino';
+ const rows=cartEntries();
+ if(!rows.length)return 'Elige productos para calcular el envío';
+ if(rows.every(([sku])=>PRODUCTS[sku].freeShipping))return 'Envío gratis en combos GALYON (Ecuador)';
+ if(rows.some(([sku])=>PRODUCTS[sku].freeShipping))return 'Envío gratis en combos; envío de otros productos: '+money(STANDARD_SHIPPING);
+ return 'Envío de productos individuales: '+money(STANDARD_SHIPPING);
 }
-function shippingShort(){
- const status=shippingCategory();
- if(status.startsWith('Envío gratis en combos GALYON'))return 'GRATIS';
- if(status.startsWith('Envío gratis en combos;'))return 'Gratis en combos';
- return 'Por confirmar';
+function shippingShort(){return shippingCost()?money(shippingCost()):'Gratis';}
+function syncProductPrices(){
+ document.querySelectorAll('[data-product-price]').forEach(el=>{
+  const product=PRODUCTS[el.dataset.productPrice];
+  if(product)el.textContent=money(product.unit);
+ });
 }
 function toast(message){const el=$('toast');if(!el)return;el.textContent=message;el.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>el.classList.remove('show'),2700)}
 function city(){return $('ship-city')?.value.trim()||''}
 function checkoutText(){
- const rows=Object.entries(cart).filter(([sku,qty])=>PRODUCTS[sku] && qty>0).map(([sku,qty])=>{const p=PRODUCTS[sku];const unit=p.unitLabel||'unidad';const unitText=qty===1?unit:unit+'s';return `• ${qty} ${unitText} de ${p.name}`;}).join('\n');
-
+ const rows=cartEntries().map(([sku,qty])=>{const p=PRODUCTS[sku];return `• ${qty} × ${p.name} (${p.sizeLabel}) · ${money(p.unit)} c/u · ${money(p.unit*qty)}`;}).join('\n');
  return `¡Hola, GALYON! Quisiera solicitar estos productos:
 
 ${rows}
 
-Envío: ${shippingCategory()}
-Cotización por WhatsApp.${city()?'\nCiudad o cantón: '+city():''}
+Subtotal de productos: ${money(subtotal())}
+Envío: ${shippingShort()}
+Total del pedido: ${money(total())}
+${shippingCategory()}${city()?'\nCiudad o cantón: '+city():''}
 
-¿Me confirman precios, disponibilidad, métodos de pago y, si hay productos individuales, su costo de envío?`;
+¿Me confirman disponibilidad, entrega y métodos de pago?`;
 }
 
 function updateCheckout(){
@@ -67,9 +77,13 @@ function renderCart(){
  document.querySelectorAll('.formulations-cart-count').forEach(el=>el.textContent=n);
  $('cart-items').innerHTML=Object.entries(cart).filter(([sku,qty])=>PRODUCTS[sku]&&qty>0).map(([sku,qty])=>{
   const p=PRODUCTS[sku];
-  return `<div class="cart-item"><img src="${p.image}" alt="Productos de la línea ${p.line}" loading="lazy"><div class="cart-item-main"><strong>${p.name}</strong><small>${p.sizeLabel||'1 litro'} por unidad</small><div class="qty"><button type="button" data-change="${sku}" data-delta="-1" aria-label="Restar una unidad de ${p.name}">−</button><span aria-label="${qty} unidades">${qty}</span><button type="button" data-change="${sku}" data-delta="1" aria-label="Añadir una unidad de ${p.name}">+</button></div></div></div>`;
+  return `<div class="cart-item"><img src="${p.image}" alt="Productos de la línea ${p.line}" loading="lazy"><div class="cart-item-main"><strong>${p.name}</strong><small>${p.sizeLabel||'1 litro'} por unidad · ${money(p.unit)} c/u</small><div class="qty"><button type="button" data-change="${sku}" data-delta="-1" aria-label="Restar una unidad de ${p.name}">−</button><span aria-label="${qty} unidades">${qty}</span><button type="button" data-change="${sku}" data-delta="1" aria-label="Añadir una unidad de ${p.name}">+</button></div><div class="cart-item-price">${money(p.unit*qty)}</div></div></div>`;
  }).join('');
- const deal=$('deal-status'); if(deal) deal.textContent=shippingCategory();
+ const deal=$('deal-status');
+ if(deal)deal.textContent=shippingCategory()+(cart['promo-tricho-humicos']?' · '+cart['promo-tricho-humicos']+' kg de ácidos húmicos de regalo con tu promoción TRICHO.':'');
+ $('cart-subtotal').textContent=money(subtotal());
+ $('cart-shipping').textContent=shippingShort();
+ $('cart-total').textContent=money(total());
  document.querySelectorAll('[data-change]').forEach(b=>b.addEventListener('click',()=>change(b.dataset.change,Number(b.dataset.delta))));
  updateCheckout();
 }
@@ -101,9 +115,11 @@ document.querySelectorAll('[data-add-sku]').forEach(a=>a.addEventListener('click
  const sku=a.dataset.addSku;
  if(!PRODUCTS[sku]) return;
  e.preventDefault(); change(sku,1);
+ if(!a.dataset.addLabel)a.dataset.addLabel=a.textContent;
+ const originalLabel=a.dataset.addLabel;
  a.classList.add('was-added');
  a.textContent='Añadido';
- setTimeout(()=>{a.classList.remove('was-added');a.textContent='+ Añadir'},1100);
+ setTimeout(()=>{a.classList.remove('was-added');a.textContent=originalLabel},1100);
  toast(`${PRODUCTS[sku].name} añadido · ${count()} ${count()===1?'producto':'productos'} en tu pedido`);
 }));
 // Combos por cultivo: productos de 4 L con precio propio; sin promoción general de 2 x $30.
@@ -126,6 +142,7 @@ const menu=$('menu-toggle'), nav=$('navlinks');
 menu.addEventListener('click',()=>{const open=nav.classList.toggle('is-open');menu.setAttribute('aria-expanded',String(open))});
 nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('is-open');menu.setAttribute('aria-expanded','false')}));
 $('year').textContent=new Date().getFullYear();
+syncProductPrices();
 renderCart();
 
 // ponytail: cierre unificado de modales/drawers y retorno limpio al inicio
