@@ -1605,9 +1605,10 @@
 .crop-advisor .advisor-options .advisor-option[data-reference-image="true"] img{object-fit:cover;object-position:center;transform:none}
 @media(max-width:760px){.crop-advisor .advisor-options:has([data-reference-image="true"]){grid-template-columns:minmax(0,1fr)}}
 
-/* Los cuadros 02, 03 y 04 alternan juntos cacao/TRICHO y frutilla/BACT. */
+/* Los cuadros 02, 03 y 04 alternan juntos cacao/TRICHO, frutilla/BACT y maíz/INSECTA. */
 #nosotros .identity-photo-solution{background:#fff}
 #nosotros .identity-photo-solution:has(.identity-product-slide.is-current[src*="nosotros-bact-frutilla"]){background:#071a32}
+#nosotros .identity-photo-solution:has(.identity-product-slide.is-current[src*="nosotros-insecta-maiz"]){background:#272b0d}
 .identity-sequence-slides{position:absolute;inset:0;overflow:hidden}
 #nosotros .identity-sequence-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .7s ease;cursor:default}
 #nosotros .identity-sequence-slide.is-current{opacity:1}
