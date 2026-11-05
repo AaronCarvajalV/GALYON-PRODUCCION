@@ -780,32 +780,25 @@ document.addEventListener('keydown', e => {
     "image": "galyon_maiz_mal_llenado_mazorca"
   }
 };
- const maizeProducts={
-  "subtilis": {
-    "line": "GALYON BACT",
-    "microbe": "Bacillus subtilis",
-    "image": "assets/linea-bact.jpg",
-    "anchor": "#detalle-bact"
-  },
-  "amyl": {
-    "line": "GALYON BACT",
-    "microbe": "Bacillus amyloliquefaciens",
-    "image": "assets/linea-bact.jpg",
-    "anchor": "#detalle-bact"
-  },
-  "tricho": {
-    "line": "GALYON TRICHO",
-    "microbe": "Trichoderma spp.",
-    "image": "assets/linea-tricho.jpg",
-    "anchor": "#detalle-tricho"
-  },
-  "bt": {
-    "line": "GALYON INSECTA",
-    "microbe": "Bacillus thuringiensis",
-    "image": "assets/linea-insecta.jpg",
-    "anchor": "#detalle-insecta"
-  }
-};
+ // Una fotografía individual por formulación, compartida por todos los resultados.
+ const advisorProductCatalog={
+  tricho:{line:'GALYON TRICHO',microbe:'Trichoderma spp.',image:'assets/catalogo/tricho-1l.webp',anchor:'#detalle-tricho'},
+  subtilis:{line:'GALYON BACT',microbe:'Bacillus subtilis',image:'assets/catalogo/bact-subtilis-1l.webp',anchor:'#detalle-bact'},
+  amyl:{line:'GALYON BACT',microbe:'Bacillus amyloliquefaciens',image:'assets/catalogo/bact-amyloliquefaciens-1l.webp',anchor:'#detalle-bact'},
+  bt:{line:'GALYON INSECTA',microbe:'Bacillus thuringiensis',image:'assets/catalogo/insecta-bt-1l.webp',anchor:'#detalle-insecta'},
+  beauveria:{line:'GALYON INSECTA',microbe:'Beauveria bassiana',image:'assets/catalogo/insecta-beauveria-1l.webp',anchor:'#detalle-insecta'},
+  metarhizium:{line:'GALYON INSECTA',microbe:'Metarhizium anisopliae',image:'assets/catalogo/insecta-metarhizium-1l.webp',anchor:'#detalle-insecta'}
+ };
+ function advisorProductPhotos(line,formulation=''){
+  const candidates=Object.entries(advisorProductCatalog).filter(([,product])=>product.line===line);
+  const matches=candidates.filter(([,product])=>formulation.includes(product.microbe));
+  // Sin formulación definida, mostrar alternativas de la línea sin elegir una por defecto.
+  const products=matches.length?matches:candidates;
+  const photo=([key,product])=>'<img src="'+e(product.image)+'" data-advisor-product="'+e(key)+'" alt="'+e(product.line+' — '+product.microbe+', presentación de 1 litro')+'" loading="lazy" decoding="async" width="1000" height="1000">';
+  if(products.length===1)return '<div class="advisor-product-photo advisor-catalog-photo">'+photo(products[0])+'</div>';
+  return '<div class="advisor-product-variants" role="group" aria-label="Alternativas de formulación"><p class="advisor-variants-label">Formulaciones a evaluar según el caso</p>'+products.map(entry=>'<figure class="advisor-catalog-variant">'+photo(entry)+'<figcaption>'+e(entry[1].microbe)+'</figcaption></figure>').join('')+'</div>';
+ }
+ const maizeProducts={subtilis:advisorProductCatalog.subtilis,amyl:advisorProductCatalog.amyl,tricho:advisorProductCatalog.tricho,bt:advisorProductCatalog.bt};
  const catalog={
   'Cacao':{
     'Frutos o mazorcas':[
@@ -994,7 +987,7 @@ document.addEventListener('keydown', e => {
   const outcomeCards=c.goals.map((goal,i)=>'<div class="advisor-outcome-card"><span class="advisor-outcome-index">0'+(i+1)+'</span><p>'+e(goal)+'</p></div>').join('');
   const fieldActions=c.actions.map((action,i)=>'<p>'+e((i+1)+'. '+action)+'</p>').join('');
   const management=product
-   ? '<div class="advisor-solution"><div class="advisor-solution-heading"><span>PRODUCTO A EVALUAR SEGÚN EL AGENTE</span><h4><strong>'+e(product.line)+' — '+e(product.microbe)+'</strong></h4></div><div class="advisor-product"><div class="advisor-product-photo"><img src="'+e(product.image)+'" alt="'+e(product.line)+'" loading="lazy" decoding="async"></div><div class="advisor-product-copy"><h5>'+e(product.microbe)+'</h5><p class="advisor-formulation-line">'+e(product.line)+'</p><p>'+e(c.management)+'</p><p>'+e(c.condition)+'</p><a href="'+e(product.anchor)+'" class="advisor-line-link">Conocer esta línea →</a></div></div></div>'
+   ? '<div class="advisor-solution"><div class="advisor-solution-heading"><span>PRODUCTO A EVALUAR SEGÚN EL AGENTE</span><h4><strong>'+e(product.line)+' — '+e(product.microbe)+'</strong></h4></div><div class="advisor-product">'+advisorProductPhotos(product.line,product.microbe)+'<div class="advisor-product-copy"><h5>'+e(product.microbe)+'</h5><p class="advisor-formulation-line">'+e(product.line)+'</p><p>'+e(c.management)+'</p><p>'+e(c.condition)+'</p><a href="'+e(product.anchor)+'" class="advisor-line-link">Conocer esta línea →</a></div></div></div>'
    : '<div class="advisor-next"><div class="advisor-result-label">MANEJO PRIORITARIO</div><strong>Primero, corregir la causa.</strong><p>'+e(c.management)+'</p>'+(data.part==='Hojas'&&data.symptom==='maiz_roya'?'':'<a class="advisor-line-link" href="#analisis">Conocer los análisis de suelo →</a>')+'</div>';
   const message='Hola, GALYON. Completé el Asesor de Cultivos. Lugar: '+data.area+'. Cultivo: Maíz. Parte afectada: '+partName+'. Síntomas: '+c.title+'. Causa probable a verificar: '+c.cause+' Explicación: '+c.explanation+' Manejo: '+c.management+(product?' Producto a evaluar: '+product.line+' — '+product.microbe+'. Condición: '+c.condition:' Sin bioinsumo asignado automáticamente.')+' Objetivos: '+c.goals.join(' ')+' Acciones de campo: '+c.actions.join(' ')+' Quiero continuar la evaluación con fotografías reales, edad del cultivo, extensión del daño y antecedentes de riego y fertilización. ¿Qué datos o muestras necesitan?';
   return '<div class="advisor-result-v523">'+
@@ -1029,9 +1022,9 @@ document.addEventListener('keydown', e => {
   const fungusCase=foliarKeys.has(symKey)||isGenericFoliage;
   const selectedLine=specialKeys.has(symKey)||symKey==='otro'?null:insectCase?'INSECTA':rootsCase?'TRICHO':fungusCase?'BACT':null;
   const portfolio={
-   INSECTA:{name:'GALYON INSECTA',image:'assets/linea-insecta.jpg',anchor:'#detalle-insecta',tag:'MANEJO BIOLÓGICO DE INSECTOS',detail:'Beauveria, Metarhizium o Bacillus thuringiensis, según la plaga identificada.',outcomes:['Un manejo más dirigido al insecto que está afectando tu cultivo.','Menor presión de insectos susceptibles cuando se utiliza la formulación adecuada.','Mejor protección del crecimiento nuevo mediante seguimiento y aplicaciones oportunas.']},
-   TRICHO:{name:'GALYON TRICHO',image:'assets/linea-tricho.jpg',anchor:'#detalle-tricho',tag:'PROTECCIÓN BIOLÓGICA Y RAÍCES',detail:'Línea con Trichoderma spp. para considerar dentro de un manejo preventivo e integrado.',outcomes:['Condiciones más favorables para desarrollar raíces vigorosas.','Una estrategia biológica adicional frente a determinados hongos susceptibles, según la cepa.','Acompañamiento para cuidar el tejido nuevo y reducir riesgos futuros, sin recuperar tejido ya destruido.']},
-   BACT:{name:'GALYON BACT',image:'assets/linea-bact.jpg',anchor:'#detalle-bact',tag:'VIGOR Y DESARROLLO VEGETAL',detail:'Bacillus subtilis o Bacillus amyloliquefaciens, con selección según la necesidad del cultivo.',outcomes:['Mejores condiciones para un crecimiento vegetal vigoroso.','Apoyo al desarrollo radicular y a la actividad biológica del entorno de la planta.','Un plan de aplicación y seguimiento ajustado a la respuesta del cultivo.']}
+   INSECTA:{name:'GALYON INSECTA',anchor:'#detalle-insecta',tag:'MANEJO BIOLÓGICO DE INSECTOS',detail:'Beauveria, Metarhizium o Bacillus thuringiensis, según la plaga identificada.',outcomes:['Un manejo más dirigido al insecto que está afectando tu cultivo.','Menor presión de insectos susceptibles cuando se utiliza la formulación adecuada.','Mejor protección del crecimiento nuevo mediante seguimiento y aplicaciones oportunas.']},
+   TRICHO:{name:'GALYON TRICHO',anchor:'#detalle-tricho',tag:'PROTECCIÓN BIOLÓGICA Y RAÍCES',detail:'Línea con Trichoderma spp. para considerar dentro de un manejo preventivo e integrado.',outcomes:['Condiciones más favorables para desarrollar raíces vigorosas.','Una estrategia biológica adicional frente a determinados hongos susceptibles, según la cepa.','Acompañamiento para cuidar el tejido nuevo y reducir riesgos futuros, sin recuperar tejido ya destruido.']},
+   BACT:{name:'GALYON BACT',anchor:'#detalle-bact',tag:'VIGOR Y DESARROLLO VEGETAL',detail:'Bacillus subtilis o Bacillus amyloliquefaciens, con selección según la necesidad del cultivo.',outcomes:['Mejores condiciones para un crecimiento vegetal vigoroso.','Apoyo al desarrollo radicular y a la actividad biológica del entorno de la planta.','Un plan de aplicación y seguimiento ajustado a la respuesta del cultivo.']}
   };
   const choice=selectedLine?{...portfolio[selectedLine],outcomes:[...portfolio[selectedLine].outcomes]}:null;
   if(choice && symKey==='cacao_negro'){
@@ -1100,6 +1093,11 @@ document.addEventListener('keydown', e => {
    if(formulation){choice.formulation=formulation.name;choice.detail='Formulación a evaluar: '+formulation.name+'. '+formulation.why;}else if(!choice.formulation){choice.detail='Identifica primero el insecto. Evaluaremos Bacillus thuringiensis, Beauveria bassiana o Metarhizium anisopliae según la plaga y su susceptibilidad.';}
   }
   if(choice&&caseOutcomes[symKey])choice.outcomes=caseOutcomes[symKey];
+  if(choice){
+   const candidates=Object.values(advisorProductCatalog).filter(product=>product.line===choice.name);
+   const matched=candidates.filter(product=>(choice.formulation||'').includes(product.microbe));
+   choice.multipleProducts=(matched.length||candidates.length)>1;
+  }
   let contextTip='Envía fotografías claras de la parte afectada y explica desde cuándo notas el problema.';
   if(symKey==='papaya_anillos' || symKey==='papaya_mosaico')contextTip='Las manchas anulares junto con mosaico sugieren un virus. Ninguno de nuestros bioinsumos elimina una infección viral establecida; solicita orientación para confirmar la causa y proteger plantas sanas.';
   else if(symKey==='chirimoya_antracnosis')contextTip='Fotografía frutos afectados y sanos. Diferencia lesión por enfermedad de golpes o daño por frío antes de decidir una aplicación.';
@@ -1123,7 +1121,7 @@ document.addEventListener('keydown', e => {
    : possible
     ? '<div class="advisor-problem-label">CAUSA A INVESTIGAR</div><h4>'+e(possible)+'</h4>'+confirmation
     : '<div class="advisor-problem-label">LO QUE OBSERVAS</div><h4>'+e(symptomName)+'</h4><small class="advisor-confirmation-note">Estos signos son comunes a varias causas. Necesitamos un detalle adicional para nombrar la más probable.</small>';
-  const results=choice?'<div class="advisor-solution"><div class="advisor-solution-heading"><span>UNA LÍNEA GALYON PARA TU CASO</span><h4>Tu posible aliado: <strong>'+e(choice.name)+'</strong></h4></div><div class="advisor-product"><div class="advisor-product-photo"><img src="'+e(choice.image)+'" loading="lazy" decoding="async" alt="Presentación fotográfica de '+e(choice.name)+'"></div><div class="advisor-product-copy"><span>'+e(choice.tag)+'</span><h5>'+e(choice.formulation||choice.name)+'</h5><p class="advisor-formulation-line">'+e(choice.name)+'</p><p>'+e(choice.detail)+'</p><a href="'+e(choice.anchor)+'" class="advisor-line-link">Conocer esta línea →</a></div></div></div><div class="advisor-outcomes advisor-outcomes-new"><h4>¿Qué resultados puedes esperar?</h4><div class="advisor-outcome-cards">'+choice.outcomes.map((t,i)=>'<div class="advisor-outcome-card"><span class="advisor-outcome-index">'+('0'+(i+1))+'</span><p>'+e(t)+'</p></div>').join('')+'</div><small>Son objetivos de manejo, no resultados garantizados. La eficacia depende de la cepa, formulación, aplicación y condiciones del cultivo.</small></div>':'<div class="advisor-next"><span class="advisor-result-label">PRIMERO, ENTENDAMOS EL PROBLEMA</span><strong>La alternativa correcta depende de lo que esté ocurriendo.</strong><p>Con la información disponible no sería responsable recomendar una formulación todavía. Un asesor GALYON puede revisar tus fotos y ayudarte a elegir entre TRICHO, BACT e INSECTA según corresponda.</p></div>';
+  const results=choice?'<div class="advisor-solution"><div class="advisor-solution-heading"><span>UNA LÍNEA GALYON PARA TU CASO</span><h4>Tu posible aliado: <strong>'+e(choice.name)+'</strong></h4></div><div class="advisor-product'+(choice.multipleProducts?' has-variants':'')+'">'+advisorProductPhotos(choice.name,choice.formulation)+'<div class="advisor-product-copy"><span>'+e(choice.tag)+'</span><h5>'+e(choice.formulation||choice.name)+'</h5><p class="advisor-formulation-line">'+e(choice.name)+'</p><p>'+e(choice.detail)+'</p><a href="'+e(choice.anchor)+'" class="advisor-line-link">Conocer esta línea →</a></div></div></div><div class="advisor-outcomes advisor-outcomes-new"><h4>¿Qué resultados puedes esperar?</h4><div class="advisor-outcome-cards">'+choice.outcomes.map((t,i)=>'<div class="advisor-outcome-card"><span class="advisor-outcome-index">'+('0'+(i+1))+'</span><p>'+e(t)+'</p></div>').join('')+'</div><small>Son objetivos de manejo, no resultados garantizados. La eficacia depende de la cepa, formulación, aplicación y condiciones del cultivo.</small></div>':'<div class="advisor-next"><span class="advisor-result-label">PRIMERO, ENTENDAMOS EL PROBLEMA</span><strong>La alternativa correcta depende de lo que esté ocurriendo.</strong><p>Con la información disponible no sería responsable recomendar una formulación todavía. Un asesor GALYON puede revisar tus fotos y ayudarte a elegir entre TRICHO, BACT e INSECTA según corresponda.</p></div>';
   const message='Hola, GALYON. Completé el Asesor de Cultivos. Lugar: '+data.area+'. Cultivo: '+data.crop+'. Parte afectada: '+(partsForCrop().find(x=>x.key===data.part)?.text||data.part)+'. Síntomas: '+symptomName+'.'+(probable?' Lo más probable según los signos: '+probable.name+' (pendiente de confirmar).':(possible?' Causa a investigar: '+possible+'.':''))+(choice?' Quisiera evaluar '+choice.name+(choice.formulation?' ('+choice.formulation+' como posibilidad)':'')+' y la formulación apropiada.':' Necesito que me recomienden una formulación después de revisar el caso.')+' ¿Qué fotografías o datos adicionales necesitan para mi asesoría gratuita?';
   return '<div class="advisor-result-v523"><div class="advisor-result-hero"><div><span class="advisor-result-label">RESULTADO DE TU CONSULTA</span><h3>Un camino más claro para cuidar tu cultivo.</h3><p>Revisamos lo que seleccionaste y te mostramos el siguiente paso.</p></div></div><div class="advisor-summary"><span><b>Cultivo</b>'+e(data.crop)+'</span><span><b>Parte afectada</b>'+e(partsForCrop().find(x=>x.key===data.part)?.text||data.part)+'</span><span><b>Síntoma seleccionado</b>'+e(symptomName)+'</span></div><div class="advisor-evidence'+(!imageBlock?' is-text-only':'')+'">'+imageBlock+'<div class="advisor-evidence-copy">'+badge+'<p>'+e(guidance)+'</p></div></div>'+results+'<div class="advisor-tip"><div><strong>Un consejo para comenzar</strong><p>'+e(contextTip)+'</p></div></div><a class="advisor-cta advisor-cta-v523" href="https://wa.me/593968933445?text='+encodeURIComponent(message)+'" target="_blank" rel="noopener"><span>Consulta gratis con un asesor</span><span aria-hidden="true">→</span></a><p class="advisor-caution">Es una orientación basada en los síntomas seleccionados; para confirmar la causa se requiere evaluación técnica y, cuando corresponda, análisis de laboratorio. Las imágenes generadas son ilustrativas, no pruebas diagnósticas ni fotografías clínicas verificadas; el producto debe validarse para el caso concreto.</p></div>';
  }
@@ -1167,7 +1165,7 @@ document.addEventListener('keydown', e => {
    image.replaceWith(placeholder);
    card.classList.add('is-text');
   }else{
-   const frame=image.closest('.advisor-evidence-image, .advisor-product-photo');
+   const frame=image.closest('.advisor-evidence-image, .advisor-product-photo, .advisor-catalog-variant');
    if(frame){
     const tag=frame.querySelector('.advisor-evidence-tag');
     if(tag)tag.remove();

@@ -1733,3 +1733,18 @@ main #analisis.soilv2{background:#f8f4ec;padding-top:64px;scroll-margin-top:12px
 @media(max-width:760px){
  .products .product-card.tricho .product-visual .line-photo{object-position:center 35%!important}
 }
+
+/* Resultados del asesor: botella completa de cada microorganismo. */
+.crop-advisor .advisor-product-photo.advisor-catalog-photo{height:auto;aspect-ratio:1;background:#fbf8f6}
+.crop-advisor .advisor-catalog-photo img{object-fit:contain}
+.crop-advisor .advisor-product.has-variants{grid-template-columns:minmax(0,1fr)}
+.advisor-product-variants{display:grid;grid-template-columns:repeat(auto-fit,minmax(125px,1fr));gap:12px;min-width:0}
+.advisor-variants-label{grid-column:1/-1;margin:0;color:#52705a;font-size:12px;line-height:1.5}
+.advisor-catalog-variant{margin:0;padding:8px;border-radius:10px;border:1px solid #e0e6d9;background:#fbf8f6;min-width:0}
+.advisor-catalog-variant img{display:block;width:100%;height:auto;aspect-ratio:1;object-fit:contain}
+.advisor-catalog-variant figcaption{font-size:12px;line-height:1.5;color:#244b33;text-align:center;padding:8px 2px;overflow-wrap:anywhere}
+@media(max-width:540px){
+ .crop-advisor .advisor-product:has(.advisor-catalog-photo){grid-template-columns:minmax(0,1fr);gap:14px}
+ .crop-advisor .advisor-product-photo.advisor-catalog-photo{width:min(100%,300px);justify-self:center}
+ .advisor-product-variants{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+}
