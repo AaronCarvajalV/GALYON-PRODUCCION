@@ -1,6 +1,6 @@
 # TRICHO + húmicos: texto de la oferta
 
-El bloque del combo explica el problema (hongos del suelo y nutrientes poco disponibles), diferencia la función de cada producto y presenta su complementariedad dentro del manejo. Conserva la imagen, el regalo de 1 kg, los 2 L de TRICHO, el envío gratis y el enlace de WhatsApp. No se añaden precios visibles ni cambian los otros combos.
+El bloque del combo explica dos problemas: nutrientes desplazados por lluvias y una respuesta limitada del cultivo a la fertilización. Destaca la bioestimulación y protección de TRICHO junto a la disponibilidad de nutrientes que se busca con los húmicos. Conserva la imagen, el regalo de 1 kg, los 2 L de TRICHO, el envío gratis y el enlace de WhatsApp. No se añaden precios visibles ni cambian los otros combos.
 
 ## Evidencia consultada
 
@@ -13,3 +13,9 @@ El texto usa «complementariedad»: prevención biológica y disponibilidad de n
 ## Comprobación
 
 Suites existentes: 15/15 y 18/18. Chromium a 1440, 1024, 390 y 320 px: problema y dos funciones legibles, imagen y cantidades conservadas, enlace de WhatsApp correcto y sin desbordamientos. Se conserva la reducción del 15 % en las fotos de las líneas y el texto de lluvias de la sección de húmicos.
+
+## Bioestimulación y lluvias
+
+Se refuerza el papel bioestimulante de TRICHO, sin usar comparaciones con esteroides ni prometer crecimiento ilimitado. El texto conecta desarrollo radicular y aprovechamiento de nutrientes con su función preventiva, y presenta a los húmicos como complemento de la nutrición. No afirma que eviten toda pérdida por lluvia o sustituyan el drenaje o la fertilización.
+
+Contreras-Cornejo et al., 2009, Plant Physiology, estudió T. virens y T. atroviride en Arabidopsis, con cambios en crecimiento y raíces laterales; investigó la señalización de auxinas como mecanismo. Es respaldo del fundamento bioestimulante de cepas estudiadas, no una validación de la formulación GALYON ni una dosis para cualquier cultivo. DOI: 10.1104/pp.108.130369. https://pmc.ncbi.nlm.nih.gov/articles/PMC2649400/
