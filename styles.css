@@ -1701,9 +1701,7 @@ main #analisis.soilv2{background:#f8f4ec;padding-top:64px;scroll-margin-top:12px
 .crop-advisor button.advisor-option{-webkit-appearance:none;appearance:none;width:100%;min-width:0;max-width:100%;box-sizing:border-box;justify-self:stretch}
 .intro-secondary>summary,.advisor-mobile-context{display:none}
 @media(max-width:760px){
- main{display:flex;flex-direction:column}
- main>section{min-width:0}
- main>#nosotros{order:-1;padding-top:22px;padding-bottom:26px}
+ main>#nosotros{padding-top:22px;padding-bottom:26px}
  #nosotros .galyon-showcase{margin-bottom:18px}
  #nosotros .galyon-showcase-title{margin-bottom:16px}
  #nosotros .galyon-showcase-title .eyebrow{display:none}
