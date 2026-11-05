@@ -1607,13 +1607,14 @@
 
 /* Los cuadros 02, 03 y 04 alternan juntos cacao/TRICHO, frutilla/BACT y maíz/INSECTA. */
 #nosotros .identity-photo-solution{background:#fff}
-#nosotros .identity-photo-solution:has(.identity-product-slide.is-current[src*="nosotros-bact-frutilla"]){background:#071a32}
-#nosotros .identity-photo-solution:has(.identity-product-slide.is-current[src*="nosotros-insecta-maiz"]){background:#272b0d}
 .identity-sequence-slides{position:absolute;inset:0;overflow:hidden}
 #nosotros .identity-sequence-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .7s ease;cursor:default}
 #nosotros .identity-sequence-slide.is-current{opacity:1}
 #nosotros .identity-product-slides{inset:0 0 40px}
 #nosotros .identity-product-slide{object-fit:contain}
+/* Las nuevas composiciones verticales llenan el cuadro hasta sus bordes. */
+#nosotros .identity-product-slides:has(.is-current:is([src*="nosotros-bact-frutilla"],[src*="nosotros-insecta-maiz"])){inset:0}
+#nosotros .identity-product-slide:is([src*="nosotros-bact-frutilla"],[src*="nosotros-insecta-maiz"]){object-fit:cover}
 @media(prefers-reduced-motion:reduce){#nosotros .identity-sequence-slide{transition:none}}
 
 /* Referencias de resultados completas: evitar recortar un encuadre horizontal en una tira vertical. */
