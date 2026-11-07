@@ -35,31 +35,3 @@
  if('ResizeObserver' in window)new ResizeObserver(schedule).observe(header);
  jump.hidden=false;update();
 })();
-
-// Movimiento ambiental de hojas: parallax suave al hacer scroll y pausa al desenfocar pestaña
-(()=>{
- const bg=document.querySelector('.leaf-shadows-bg');
- const drift=document.querySelector('.leaf-shadows-drift');
- const motion=window.matchMedia('(prefers-reduced-motion: reduce)');
- if(!bg)return;
- let ticking=false;
- function updateParallax(){
-  ticking=false;
-  if(motion.matches)return;
-  const scrollY=window.pageYOffset||document.documentElement.scrollTop||0;
-  bg.style.setProperty('--leaf-scroll-y',`${-(scrollY * 0.022).toFixed(1)}px`);
- }
- function onScroll(){
-  if(!ticking){
-   requestAnimationFrame(updateParallax);
-   ticking=true;
-  }
- }
- window.addEventListener('scroll',onScroll,{passive:true});
- document.addEventListener('visibilitychange',()=>{
-  if(drift){
-   drift.style.animationPlayState=document.hidden?'paused':'running';
-  }
- });
-})();
-

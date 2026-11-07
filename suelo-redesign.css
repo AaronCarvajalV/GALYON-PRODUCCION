@@ -1,6 +1,6 @@
 
 /* GALYON: redesign del apartado Análisis de suelo – bloque independiente */
-#analisis.soilv2{padding:54px 0 76px;background:transparent;color:#153d2b}
+#analisis.soilv2{padding:54px 0 76px;background:linear-gradient(180deg,#fafbf7,#f4f7f0);color:#153d2b}
 #analisis.soilv2 .soilv2-wrap{max-width:1500px;margin:auto}
 #analisis.soilv2 .soilv2-hero{display:grid;grid-template-columns:1fr 0.92fr;gap:32px;align-items:center;min-height:255px;margin-bottom:45px;background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 10px 35px rgba(22,60,33,.07)}
 #analisis.soilv2 .soilv2-hero-copy{padding:35px 34px 35px 42px}
